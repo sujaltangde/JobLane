@@ -5,7 +5,8 @@ import { Footer } from './components/Footer'
 import { Jobs } from './pages/Jobs'
 import { Contact } from './pages/Contact'
 import { About } from './pages/About'
-
+import {ToastContainer} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function App() {
@@ -23,7 +24,27 @@ function App() {
 
 
       </Routes>
+      
+      
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+        className="mt-14 font-bold  "
+
+      />
+      
       <Footer/>
+
+
+
 
     </>
   )
