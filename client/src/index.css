@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.blueCol{
+    /* background: #0041F5; */
+    background: #3803FF;
+}
+
+.blueCol:hover{
+    background: #1F00B3;
+}
+.blueColTxt:hover{
+    color: #0041F5;
+}
