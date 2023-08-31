@@ -17,6 +17,12 @@
     color: #0041F5;
 }
 
+.LinkLog:hover{
+    background: #1F00B3;
+}
+
+
+
 *{
     font-family: 'Open Sans', sans-serif ;
 }

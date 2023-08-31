@@ -5,10 +5,9 @@ import { FaBars } from 'react-icons/fa'
 import { RxCross1 } from 'react-icons/rx'
 import { MdOutlineBusinessCenter } from 'react-icons/md'
 import { Menu, Text } from '@mantine/core';
-import {FaUserCircle, FaSave} from 'react-icons/fa'
-import {BiSolidUserRectangle} from 'react-icons/bi'
-import {MdDoneAll} from 'react-icons/md'
-import {RiLogoutBoxFill} from 'react-icons/ri'
+import { FaUserCircle, FaSave } from 'react-icons/fa'
+import { MdDoneAll } from 'react-icons/md'
+import { RiLogoutBoxFill } from 'react-icons/ri'
 import { toast } from 'react-toastify';
 
 
@@ -19,7 +18,7 @@ export const Navbar = () => {
     const [isLogin, setIsLogin] = useState(false)
 
 
-    const LogOut = () =>{
+    const LogOut = () => {
         toast.success("Logout Successful !")
     }
 
@@ -33,22 +32,26 @@ export const Navbar = () => {
                     <Link to="/jobs" className='hover:underline underline-offset-4 underL ' >Jobs</Link>
                     <Link to='/contact' className='hover:underline underline-offset-4 underL' >Contact</Link>
                     <Link to='/about' className='hover:underline underline-offset-4 underL' >About</Link>
-                    
 
-                    {isLogin ? <Menu  shadow="md" width={200}>
+
+                    {isLogin ? <Menu shadow="md" width={200}>
                         <Menu.Target className=''>
-                        <Avatar  className='cursor-pointer  fixed  right-32' radius="xl" src="/images/light.jpg" alt="it's me" />
+                            <Avatar className='cursor-pointer  fixed  right-32' radius="xl" src="/images/light.jpg" alt="it's me" />
                         </Menu.Target>
 
                         <Menu.Dropdown className=''>
                             <Link to="/profile"><Menu.Item className='' icon={<FaUserCircle size={14} />}>My Profile</Menu.Item></Link>
                             <Link to="/applied"><Menu.Item className='' icon={<MdDoneAll size={14} />}>Applied Jobs</Menu.Item></Link>
-                           <Link to="/saved"> <Menu.Item className='' icon={<FaSave size={14} />}>Saved Jobs</Menu.Item></Link>
+                            <Link to="/saved"> <Menu.Item className='' icon={<FaSave size={14} />}>Saved Jobs</Menu.Item></Link>
                             <Menu.Divider />
                             <Menu.Item onClick={LogOut} color="red" icon={<RiLogoutBoxFill size={14} />}>Logout</Menu.Item>
                         </Menu.Dropdown>
-                    </Menu>:
-                    <Link className='cursor-pointer  fixed  right-32' to="/login"><BiSolidUserRectangle  size={25}/></Link>
+                    </Menu> :
+                        <span className='fixed right-32 flex gap-3'>
+                            <Link className='cursor-pointer    text-sm px-3  py-1 rounded-xl blueCol ' to="/login">Login</Link>
+                            <Link className='cursor-pointer    text-sm px-3  py-1 rounded-xl blueCol ' to="/register">Register</Link>
+
+                        </span>
                     }
 
 
@@ -57,31 +60,26 @@ export const Navbar = () => {
                     <Link to="/" className=' text-lg titleT flex justify-center items-center gap-1' >
                         <MdOutlineBusinessCenter size={19} />  JOBLANE</Link>
                     <div className='flex justify-center items-center' >
-                        <div className='pr-12' >
-                            <Menu shadow="md" width={200}>
-                        <Menu.Target>
-                        <Avatar className='cursor-pointer ' radius="xl" size={26} src="/images/light.jpg" alt="it's me" />
-                        </Menu.Target>
+                        <div className='pr-12 ' >
+                            {isLogin ? <Menu shadow="md" width={200}>
+                                <Menu.Target className=''>
+                                    <Avatar size={28} className='cursor-pointer  ' radius="xl" src="/images/light.jpg" alt="it's me" />
+                                </Menu.Target>
 
-                        <Menu.Dropdown>
-                            <Menu.Label>Application</Menu.Label>
-                            <Menu.Item icon={<MdOutlineBusinessCenter size={14} />}>Settings</Menu.Item>
-                            <Menu.Item icon={<MdOutlineBusinessCenter size={14} />}>Messages</Menu.Item>
-                            <Menu.Item icon={<MdOutlineBusinessCenter size={14} />}>Gallery</Menu.Item>
-                            <Menu.Item
-                                icon={<MdOutlineBusinessCenter size={14} />}
-                                rightSection={<Text size="xs" color="dimmed">⌘K</Text>}
-                            >
-                                Search
-                            </Menu.Item>
+                                <Menu.Dropdown className=''>
+                                    <Link to="/profile"><Menu.Item className='' icon={<FaUserCircle size={14} />}>My Profile</Menu.Item></Link>
+                                    <Link to="/applied"><Menu.Item className='' icon={<MdDoneAll size={14} />}>Applied Jobs</Menu.Item></Link>
+                                    <Link to="/saved"> <Menu.Item className='' icon={<FaSave size={14} />}>Saved Jobs</Menu.Item></Link>
+                                    <Menu.Divider />
+                                    <Menu.Item onClick={LogOut} color="red" icon={<RiLogoutBoxFill size={14} />}>Logout</Menu.Item>
+                                </Menu.Dropdown>
+                            </Menu> :
+                                <span className='flex gap-3 fixed  top-3 right-16'>
+                                    <Link className='cursor-pointer    text-sm px-3  py-1 rounded-xl blueCol ' to="/login">Login</Link>
+                                    <Link className='cursor-pointer    text-sm px-3  py-1 rounded-xl blueCol ' to="/register">Register</Link>
 
-                            <Menu.Divider />
-
-                            <Menu.Label>Danger zone</Menu.Label>
-                            <Menu.Item icon={<MdOutlineBusinessCenter size={14} />}>Transfer my data</Menu.Item>
-                            <Menu.Item color="red" icon={<MdOutlineBusinessCenter size={14} />}>Delete my account</Menu.Item>
-                        </Menu.Dropdown>
-                    </Menu>
+                                </span>
+                            }
 
                         </div>
 
