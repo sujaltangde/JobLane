@@ -7,7 +7,6 @@ import { useState } from 'react';
 
 export const Home = () => {
 
- 
     return (
 
 
@@ -26,11 +25,12 @@ export const Home = () => {
                         <p className='md:text-xl text-sm'>Your <span className='text-yellow-500'>gateway</span> to job opportunities.</p>
                     </div>
 
-                    <div className='pt-12 '>
 
+                  <div className='pt-16 pb-8'>
+                       
+                  </div>
 
-                    </div>
-
+                    
 
                 </div>
 

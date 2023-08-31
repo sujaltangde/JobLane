@@ -30,6 +30,11 @@
 
 }
 
+
+.zInd{
+    z-index: 1000;
+}
+
 /* font-family: 'Open Sans', sans-serif;
 font-family: 'Russo One', sans-serif;
 font-family: 'Ubuntu', sans-serif; */

@@ -7,6 +7,11 @@ import { Contact } from './pages/Contact'
 import { About } from './pages/About'
 import {ToastContainer} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
+import { MyProfile } from './pages/MyProfile'
+import {AppliedJobs} from './pages/AppliedJobs'
+import {SavedJobs} from './pages/SavedJobs'
+import {Login} from './pages/Login'
+import {Register} from './pages/Register'
 
 
 function App() {
@@ -21,6 +26,11 @@ function App() {
         <Route path='/jobs' element={<Jobs/>} />
         <Route path='/contact' element={<Contact/>} />
         <Route path='/about' element={<About/>} />
+        <Route path='/profile' element={<MyProfile/>} />
+        <Route path='/applied' element={<AppliedJobs/>} />
+        <Route path='/saved' element={<SavedJobs/>} />
+        <Route path='/login' element={<Login/>} />
+        <Route path='/register' element={<Register/>} />
 
 
       </Routes>

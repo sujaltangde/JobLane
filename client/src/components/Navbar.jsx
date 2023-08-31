@@ -6,18 +6,27 @@ import { RxCross1 } from 'react-icons/rx'
 import { MdOutlineBusinessCenter } from 'react-icons/md'
 import { Menu, Text } from '@mantine/core';
 import {FaUserCircle, FaSave} from 'react-icons/fa'
+import {BiSolidUserRectangle} from 'react-icons/bi'
 import {MdDoneAll} from 'react-icons/md'
 import {RiLogoutBoxFill} from 'react-icons/ri'
+import { toast } from 'react-toastify';
 
 
 export const Navbar = () => {
 
     const [toggle, setToggle] = useState(false)
 
+    const [isLogin, setIsLogin] = useState(false)
+
+
+    const LogOut = () =>{
+        toast.success("Logout Successful !")
+    }
+
     return (
         <>
 
-            <div className='text-white  fixed min-w-full bg-gray-950'>
+            <div className='text-white  z-20 fixed min-w-full bg-gray-950'>
                 <ul className='md:flex hidden justify-center items-center gap-24 pt-4 pb-3 font-semibold text-xl'>
 
                     <Link to="/" className=' hover:underline underline-offset-4 underL ' >Home</Link>
@@ -26,19 +35,21 @@ export const Navbar = () => {
                     <Link to='/about' className='hover:underline underline-offset-4 underL' >About</Link>
                     
 
-                    <Menu  shadow="md" width={200}>
-                        <Menu.Target>
-                        <Avatar className='cursor-pointer fixed  right-32' radius="xl" src="/images/light.jpg" alt="it's me" />
+                    {isLogin ? <Menu  shadow="md" width={200}>
+                        <Menu.Target className=''>
+                        <Avatar  className='cursor-pointer  fixed  right-32' radius="xl" src="/images/light.jpg" alt="it's me" />
                         </Menu.Target>
 
                         <Menu.Dropdown className=''>
-                            <Menu.Item className='' icon={<FaUserCircle size={14} />}>My Profile</Menu.Item>
-                            <Menu.Item className='' icon={<MdDoneAll size={14} />}>Applied Jobs</Menu.Item>
-                            <Menu.Item className='' icon={<FaSave size={14} />}>Saved Jobs</Menu.Item>
+                            <Link to="/profile"><Menu.Item className='' icon={<FaUserCircle size={14} />}>My Profile</Menu.Item></Link>
+                            <Link to="/applied"><Menu.Item className='' icon={<MdDoneAll size={14} />}>Applied Jobs</Menu.Item></Link>
+                           <Link to="/saved"> <Menu.Item className='' icon={<FaSave size={14} />}>Saved Jobs</Menu.Item></Link>
                             <Menu.Divider />
-                            <Menu.Item color="red" icon={<RiLogoutBoxFill size={14} />}>Logout</Menu.Item>
+                            <Menu.Item onClick={LogOut} color="red" icon={<RiLogoutBoxFill size={14} />}>Logout</Menu.Item>
                         </Menu.Dropdown>
-                    </Menu>
+                    </Menu>:
+                    <Link className='cursor-pointer  fixed  right-32' to="/login"><BiSolidUserRectangle  size={25}/></Link>
+                    }
 
 
                 </ul>
@@ -83,7 +94,7 @@ export const Navbar = () => {
                 </div>
                 <div className='bg-white border-b md:mx-20 mx-3 '></div>
                 <div className={` ${toggle ? "flex" : "hidden"}  absolute w-screen  h-screen  z-20  md:hidden`} >
-                    <ul className='bg-gray-950 bg-opacity-95 flex flex-col gap-20 text-2xl justify-start w-screen  pt-20 items-center'>
+                    <ul className='bg-gray-950 bg-opacity-95 zInd flex flex-col gap-20 text-2xl justify-start w-screen  pt-20 items-center'>
                         <Link onClick={() => setToggle(!toggle)} to="/" className=' hover:underline underline-offset-4 underL ' >Home</Link>
                         <Link onClick={() => setToggle(!toggle)} to="/jobs" className='hover:underline underline-offset-4 underL ' >Jobs</Link>
                         <Link onClick={() => setToggle(!toggle)} to='/contact' className='hover:underline underline-offset-4 underL' >Contact</Link>
