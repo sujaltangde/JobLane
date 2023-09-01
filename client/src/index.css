@@ -16,6 +16,9 @@
 .blueColTxt:hover{
     color: #0041F5;
 }
+.blueColTxt2{
+    color: #0041F5;
+}
 
 .LinkLog:hover{
     background: #1F00B3;
@@ -29,6 +32,9 @@
 
 .underL{
     text-decoration-color: #EAB308;
+}
+.underPur{
+    text-decoration-color: #3803FF;
 }
 
 .titleT{

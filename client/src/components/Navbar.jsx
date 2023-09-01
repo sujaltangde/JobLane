@@ -26,8 +26,12 @@ export const Navbar = () => {
         <>
 
             <div className='text-white  z-20 fixed min-w-full bg-gray-950'>
-                <ul className='md:flex hidden justify-center items-center gap-24 pt-4 pb-3 font-semibold text-xl'>
+                    
 
+                <ul className='md:flex hidden justify-center items-center gap-24 pt-4 pb-3 font-semibold text-xl'>
+                <div className='flex fixed left-24 justify-center items-center titleT'>
+                <MdOutlineBusinessCenter size={19} />  JOBLANE
+                </div>
                     <Link to="/" className=' hover:underline underline-offset-4 underL ' >Home</Link>
                     <Link to="/jobs" className='hover:underline underline-offset-4 underL ' >Jobs</Link>
                     <Link to='/contact' className='hover:underline underline-offset-4 underL' >Contact</Link>
@@ -47,7 +51,7 @@ export const Navbar = () => {
                             <Menu.Item onClick={LogOut} color="red" icon={<RiLogoutBoxFill size={14} />}>Logout</Menu.Item>
                         </Menu.Dropdown>
                     </Menu> :
-                        <span className='fixed right-32 flex gap-3'>
+                        <span className='fixed right-24 flex gap-3'>
                             <Link className='cursor-pointer    text-sm px-3  py-1 rounded-xl blueCol ' to="/login">Login</Link>
                             <Link className='cursor-pointer    text-sm px-3  py-1 rounded-xl blueCol ' to="/register">Register</Link>
 
