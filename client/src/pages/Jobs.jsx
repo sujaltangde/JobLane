@@ -17,7 +17,8 @@ export const Jobs = () => {
         exp: "Fresher",
         qualification: "graduate",
         createdAt: "11-07-2023" ,
-        location: "Banglore,India"
+        location: "Banglore,India",
+        id:1111
       },
       {
         title: ".NET Developer",
@@ -28,7 +29,8 @@ export const Jobs = () => {
         exp: "Fresher",
         qualification: "graduate",
         createdAt: "11-07-2023" ,
-        location: "Banglore,India"
+        location: "Banglore,India",
+        id:2222
       },
       {
         title: "Full Stack Developer",
@@ -39,7 +41,8 @@ export const Jobs = () => {
         exp: "Fresher",
         qualification: "graduate",
         createdAt: "11-07-2023" ,
-        location: "Banglore,India"
+        location: "Banglore,India",
+        id: 3333
       },
       
     ]

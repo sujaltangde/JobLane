@@ -12,6 +12,7 @@ import {AppliedJobs} from './pages/AppliedJobs'
 import {SavedJobs} from './pages/SavedJobs'
 import {Login} from './pages/Login'
 import {Register} from './pages/Register'
+import { JobDetails } from './pages/JobDetails'
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
         <Route path='/saved' element={<SavedJobs/>} />
         <Route path='/login' element={<Login/>} />
         <Route path='/register' element={<Register/>} />
+        <Route path='/details/:id' element={<JobDetails/>} />
 
 
       </Routes>

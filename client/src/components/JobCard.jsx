@@ -1,10 +1,12 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+
 
 export const JobCard = ({ job }) => {
     return (
         <>
 
-            <div className='text-white flex flex-col gap-2  shadow-sm shadow-gray-800 border border-gray-700 md:px-4 px-3  py-2'>
+            <Link to={`/details/${job.id}`} className='text-white flex flex-col gap-2  shadow-sm shadow-gray-800 border border-gray-700 md:px-4 px-3  py-2'>
 
                 <div className='flex gap-5 relative'>
                     <div className='flex justify-center items-center '>
@@ -41,7 +43,7 @@ export const JobCard = ({ job }) => {
                     <span>{job.location}</span>
                 </div>
 
-            </div>
+            </Link>
 
 
         </>
