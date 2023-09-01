@@ -12,6 +12,9 @@ app.use(cors({
     credentials: true
 }))
 
+const User = require('./routes/UserRoutes')
+
+app.use("/api/v1",User)
 
 app.get("/",(req,res)=>{
     res.json("I am working")

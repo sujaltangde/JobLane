@@ -1,4 +1,6 @@
 const jwt = require('jsonwebtoken')
+const User = require('../models/UserModel')
+
 
 exports.createToken = (id, email) => {
     const token = jwt.sign(
@@ -35,7 +37,7 @@ exports.isAuthenticated = (req, res, next) => {
                     message: err.message
                 })
             }
-            // req.user = await User.findById(user.id)
+            req.user = await User.findById(user.id)
             next()
         })
 

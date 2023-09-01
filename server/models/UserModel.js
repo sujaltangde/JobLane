@@ -3,20 +3,17 @@ const validator = require('validator')
 
 const UserSchema = new mongoose.Schema({
 
-    firstName: {
-        type: String,
-        required: [true, "Please enter your first name"]
-    },
     
-    lastName: {
+    name: {
         type: String,
-        required: [true, "Please enter your last name"]
+        required: [true, "Please enter your name"]
     },
     
     email: {
         type: String,
         required: true,
-        validate: [validator.isEmail, "Please Enter valid email address"]
+        validate: [validator.isEmail, "Please Enter valid email address"],
+        unique: true
     },
     
     password: {
@@ -24,7 +21,7 @@ const UserSchema = new mongoose.Schema({
         required: [true, "Please enter a password"]
     },
     
-    avtar: {
+    avatar: {
         public_id: {
             type: String,
             required: true
@@ -37,7 +34,7 @@ const UserSchema = new mongoose.Schema({
     
     role: {
         type: String,
-        enum: ["applicant", "employer", "admin"],
+        enum: ["applicant", "admin"],
         default: "applicant"
     },
     
@@ -59,16 +56,6 @@ const UserSchema = new mongoose.Schema({
 
     },
     
-    company: {
-        type: String,
-        required: false
-    },
-
-    website: {
-        type: String,
-        required: false
-    },
-
     createdAt: {
         type: Date,
         default: Date.now
