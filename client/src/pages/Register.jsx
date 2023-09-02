@@ -1,16 +1,21 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { MetaData } from '../components/MetaData'
 import { AiOutlineMail, AiOutlineUnlock, AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai'
-import { MdPermIdentity, MdOutlineLocationOn, MdOutlineFeaturedPlayList } from 'react-icons/md'
-import { BsTelephone, BsFileEarmarkText } from 'react-icons/bs'
+import { MdPermIdentity, MdOutlineFeaturedPlayList } from 'react-icons/md'
+import { BsFileEarmarkText } from 'react-icons/bs'
 import { CgProfile } from 'react-icons/cg'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import {TbLoader2} from 'react-icons/tb'
+import { registerUser } from '../actions/UserActions'
+import {useDispatch, useSelector} from 'react-redux'
+
 
 
 export const Register = () => { 
 
-  const loading = false 
+  const {loading, isLogin} = useSelector(state => state.user) 
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const [eyeTog, setEyeTog] = useState(false)
 
@@ -40,6 +45,9 @@ export const Register = () => {
       reader.readAsDataURL(e.target.files[0]);
     }
   }
+
+
+
   const resumeChange = (e) => {
     if (e.target.name === "resume") {
       const reader = new FileReader();
@@ -68,7 +76,7 @@ export const Register = () => {
       skills: skillsArr
     } 
 
-    console.log(data)
+    dispatch(registerUser(data))
 
     setName("")
     setEmail("")
@@ -80,6 +88,14 @@ export const Register = () => {
     setSkills("")
 
   }
+
+  
+
+  useEffect(()=>{
+    if(isLogin){
+      navigate("/")
+    }
+  },[isLogin])
 
   return (
     <>
@@ -154,9 +170,9 @@ export const Register = () => {
                 </label>
                 <input required  
                  onChange={resumeChange} 
-                placeholder='Resume' id='resume' name='resume' accept="application/pdf" type="file" className='outline-none hidden w-full text-black px-1 pr-3 py-2' />
+                placeholder='Resume' id='resume' name='resume' accept="image/*" type="file" className='outline-none hidden w-full text-black px-1 pr-3 py-2' />
               </div>
-                <p className='bg-gray-950 text-white text-xs'>Please select PDF file</p>
+                <p className='bg-gray-950 text-white text-xs'>Please select Image file</p>
              </div>
 
               {/* Skills */}

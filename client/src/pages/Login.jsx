@@ -1,30 +1,43 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { MetaData } from '../components/MetaData'
 import { AiOutlineMail, AiOutlineUnlock, AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import {TbLoader2} from 'react-icons/tb'
+import { loginUser } from '../actions/UserActions'
+import {useDispatch, useSelector} from 'react-redux'
 
 export const Login = () => {
 
 
-  const loading = false
+  const {loading, isLogin} = useSelector(state => state.user)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const [email, setEmail] = useState("") ;
   const [password, setPassword] = useState("") ;
   const [eyeTog, setEyeTog] = useState(false)
+
 
   const loginHandler = (e) => {
     e.preventDefault()
     const data = {
       email, password
       }
-    console.log(data)
+
+    dispatch(loginUser(data))
 
     setEmail("")
     setPassword("")
   }
 
 
+
+  useEffect(()=>{
+    if(isLogin){
+      navigate("/")
+    }
+  },[isLogin])
+  
   return (
 
 

@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import {Routes, Route} from 'react-router-dom'
 import { Home } from './pages/Home'
 import { Navbar } from './components/Navbar'
@@ -13,9 +14,33 @@ import {SavedJobs} from './pages/SavedJobs'
 import {Login} from './pages/Login'
 import {Register} from './pages/Register'
 import { JobDetails } from './pages/JobDetails'
+import {useSelector, useDispatch} from 'react-redux'
+import { logOrNot, me } from './actions/UserActions'
 
 
 function App() {
+
+  const dispatch = useDispatch()
+
+
+  const { isLogin } = useSelector(state => state.user)
+
+  
+  useEffect(() => {
+
+      dispatch(me());
+
+  }, [dispatch,isLogin]);
+
+
+  useEffect(() => {
+    const LogOrNot = () => {
+      dispatch(logOrNot());
+    }
+    LogOrNot()
+
+  }, []);
+
 
   return (
     <>

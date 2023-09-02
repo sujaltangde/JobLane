@@ -9,16 +9,22 @@ import { FaUserCircle, FaSave } from 'react-icons/fa'
 import { MdDoneAll } from 'react-icons/md'
 import { RiLogoutBoxFill } from 'react-icons/ri'
 import { toast } from 'react-toastify';
+import {useSelector, useDispatch} from 'react-redux'
+import { logOrNot } from '../actions/UserActions';
+import { useNavigate } from 'react-router-dom';
 
 
 export const Navbar = () => {
 
+    const {isLogin, me} = useSelector(state => state.user)
     const [toggle, setToggle] = useState(false)
-
-    const [isLogin, setIsLogin] = useState(false)
-
+    const dispatch = useDispatch()  
+    const navigate = useNavigate()
 
     const LogOut = () => {
+        localStorage.removeItem('userToken')
+        dispatch(logOrNot())
+        navigate('/')
         toast.success("Logout Successful !")
     }
 
@@ -32,15 +38,15 @@ export const Navbar = () => {
                 <div className='flex fixed left-24 justify-center items-center titleT'>
                 <MdOutlineBusinessCenter size={19} />  JOBLANE
                 </div>
-                    <Link to="/" className=' hover:underline underline-offset-4 underL ' >Home</Link>
-                    <Link to="/jobs" className='hover:underline underline-offset-4 underL ' >Jobs</Link>
-                    <Link to='/contact' className='hover:underline underline-offset-4 underL' >Contact</Link>
-                    <Link to='/about' className='hover:underline underline-offset-4 underL' >About</Link>
+                    <Link to="/" className=' hover:underline underline-offset-8 underL ' >Home</Link>
+                    <Link to="/jobs" className='hover:underline underline-offset-8 underL ' >Jobs</Link>
+                    <Link to='/contact' className='hover:underline underline-offset-8 underL' >Contact</Link>
+                    <Link to='/about' className='hover:underline underline-offset-8 underL' >About</Link>
 
 
                     {isLogin ? <Menu shadow="md" width={200}>
                         <Menu.Target className=''>
-                            <Avatar className='cursor-pointer  fixed  right-32' radius="xl" src="/images/light.jpg" alt="it's me" />
+                            <Avatar className='cursor-pointer  fixed  right-32' radius="xl" src={me.avatar.url} alt="it's me" />
                         </Menu.Target>
 
                         <Menu.Dropdown className=''>
@@ -67,7 +73,7 @@ export const Navbar = () => {
                         <div className='pr-12 ' >
                             {isLogin ? <Menu shadow="md" width={200}>
                                 <Menu.Target className=''>
-                                    <Avatar size={28} className='cursor-pointer  ' radius="xl" src="/images/light.jpg" alt="it's me" />
+                                    <Avatar size={28} className='cursor-pointer  ' radius="xl" src={me.avatar.url} alt="it's me" />
                                 </Menu.Target>
 
                                 <Menu.Dropdown className=''>
@@ -97,10 +103,10 @@ export const Navbar = () => {
                 <div className='bg-white border-b md:mx-20 mx-3 '></div>
                 <div className={` ${toggle ? "flex" : "hidden"}  absolute w-screen  h-screen  z-20  md:hidden`} >
                     <ul className='bg-gray-950 bg-opacity-95 zInd flex flex-col gap-20 text-2xl justify-start w-screen  pt-20 items-center'>
-                        <Link onClick={() => setToggle(!toggle)} to="/" className=' hover:underline underline-offset-4 underL ' >Home</Link>
-                        <Link onClick={() => setToggle(!toggle)} to="/jobs" className='hover:underline underline-offset-4 underL ' >Jobs</Link>
-                        <Link onClick={() => setToggle(!toggle)} to='/contact' className='hover:underline underline-offset-4 underL' >Contact</Link>
-                        <Link onClick={() => setToggle(!toggle)} to='/about' className='hover:underline underline-offset-4 underL' >About</Link>
+                        <Link onClick={() => setToggle(!toggle)} to="/" className=' hover:underline underline-offset-8 underL ' >Home</Link>
+                        <Link onClick={() => setToggle(!toggle)} to="/jobs" className='hover:underline underline-offset-8 underL ' >Jobs</Link>
+                        <Link onClick={() => setToggle(!toggle)} to='/contact' className='hover:underline underline-offset-8 underL' >Contact</Link>
+                        <Link onClick={() => setToggle(!toggle)} to='/about' className='hover:underline underline-offset-8 underL' >About</Link>
                     </ul>
                 </div>
             </div>
