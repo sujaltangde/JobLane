@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { Avatar } from '@mantine/core';
 import { FaBars } from 'react-icons/fa'
 import { RxCross1 } from 'react-icons/rx'
-import { MdOutlineBusinessCenter } from 'react-icons/md'
+import { MdOutlineBusinessCenter, MdOutlineDashboard } from 'react-icons/md'
 import { Menu, Text } from '@mantine/core';
 import { FaUserCircle, FaSave } from 'react-icons/fa'
 import { MdDoneAll } from 'react-icons/md'
@@ -51,6 +51,7 @@ export const Navbar = () => {
 
                         <Menu.Dropdown className=''>
                             <Link to="/profile"><Menu.Item className='' icon={<FaUserCircle size={14} />}>My Profile</Menu.Item></Link>
+                          {me.role === "admin" &&  <Link to="/dashboard"><Menu.Item className='' icon={<MdOutlineDashboard size={14} />}>Dashboard</Menu.Item></Link>}
                             <Link to="/applied"><Menu.Item className='' icon={<MdDoneAll size={14} />}>Applied Jobs</Menu.Item></Link>
                             <Link to="/saved"> <Menu.Item className='' icon={<FaSave size={14} />}>Saved Jobs</Menu.Item></Link>
                             <Menu.Divider />
@@ -78,6 +79,9 @@ export const Navbar = () => {
 
                                 <Menu.Dropdown className=''>
                                     <Link to="/profile"><Menu.Item className='' icon={<FaUserCircle size={14} />}>My Profile</Menu.Item></Link>
+
+                                   {me.role === "admin" && <Link to="/dashboard"><Menu.Item className='' icon={<MdOutlineDashboard size={14} />}>Dashboard</Menu.Item></Link>}
+
                                     <Link to="/applied"><Menu.Item className='' icon={<MdDoneAll size={14} />}>Applied Jobs</Menu.Item></Link>
                                     <Link to="/saved"> <Menu.Item className='' icon={<FaSave size={14} />}>Saved Jobs</Menu.Item></Link>
                                     <Menu.Divider />

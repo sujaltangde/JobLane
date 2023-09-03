@@ -19,6 +19,7 @@ import {useSelector, useDispatch} from 'react-redux'
 import { logOrNot, me } from './actions/UserActions'
 import { EditProfile } from './pages/EditProfile'
 import { DeleteAccount } from './pages/DeleteAccount'
+import { Dashboard } from './pages/Dashboard'
 
 
 function App() {
@@ -64,6 +65,7 @@ function App() {
         <Route path='/changePassword' element={<ChangePassword/>} />
         <Route path='/editProfile' element={<EditProfile/>} />
         <Route path='/deleteAccount' element={<DeleteAccount/>} />
+        <Route path='/dashboard' element={<Dashboard/>} />
 
 
       </Routes>
