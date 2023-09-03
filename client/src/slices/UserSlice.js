@@ -90,11 +90,49 @@ const UserSlice = createSlice({
             state.error = action.payload
         },
 
+        changePasswordRequest : (state) => {
+            state.loading = true ;
+        },
+        changePasswordSuccess : (state) => {
+            state.loading = false ;
+        },
+        changePasswordFail : (state,action) => {
+            state.loading = false ;
+            state.error = action.payload
+        },
+
+
+        updateProfileRequest : (state) => {
+            state.loading = true ;
+        },
+        updateProfileSuccess : (state) => {
+            state.loading = false ;
+        },
+        updateProfileFail : (state,action) => {
+            state.loading = false ;
+            state.error = action.payload
+        },
+
+        deleteAccountRequest: (state)=>{
+            state.loading = true
+        },
+        deleteAccountSuccess: (state)=>{
+            state.loading = false
+        },
+        deleteAccountFail: (state, action)=>{
+            state.loading = false ;
+            state.error = action.payload
+        },
+
     }
 })
 
 
 export const { registerRequest, registerSuccess, registerFail, loginRequest, loginSuccess, loginFail
-    , isLoginRequest, isLoginSuccess, isLoginFail, getMeRequest, getMeSuccess, getMeFail } = UserSlice.actions
+    , isLoginRequest, isLoginSuccess, isLoginFail, getMeRequest, getMeSuccess, getMeFail,
+    changePasswordRequest,changePasswordSuccess,changePasswordFail,
+    updateProfileRequest,updateProfileSuccess,updateProfileFail,
+    deleteAccountRequest, deleteAccountSuccess, deleteAccountFail
+} = UserSlice.actions
 
 export default UserSlice.reducer

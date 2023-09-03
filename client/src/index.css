@@ -43,6 +43,12 @@
 }
 
 
+.bold-placeholder::placeholder {
+    font-weight:500; /* Make the placeholder text bold */
+    color: gray; /* You can also adjust the color if needed */
+  }
+
+
 .zInd{
     z-index: 1000;
 }

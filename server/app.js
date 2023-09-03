@@ -17,8 +17,10 @@ app.use(fileUpload())
 
 
 const User = require('./routes/UserRoutes')
+const Job = require('./routes/JobRoutes')
 
 app.use("/api/v1",User)
+app.use("/api/v1",Job)
 
 app.get("/",(req,res)=>{
     res.json("I am working")

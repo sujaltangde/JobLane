@@ -14,8 +14,11 @@ import {SavedJobs} from './pages/SavedJobs'
 import {Login} from './pages/Login'
 import {Register} from './pages/Register'
 import { JobDetails } from './pages/JobDetails'
+import { ChangePassword } from './pages/ChangePassword'
 import {useSelector, useDispatch} from 'react-redux'
 import { logOrNot, me } from './actions/UserActions'
+import { EditProfile } from './pages/EditProfile'
+import { DeleteAccount } from './pages/DeleteAccount'
 
 
 function App() {
@@ -58,6 +61,9 @@ function App() {
         <Route path='/login' element={<Login/>} />
         <Route path='/register' element={<Register/>} />
         <Route path='/details/:id' element={<JobDetails/>} />
+        <Route path='/changePassword' element={<ChangePassword/>} />
+        <Route path='/editProfile' element={<EditProfile/>} />
+        <Route path='/deleteAccount' element={<DeleteAccount/>} />
 
 
       </Routes>

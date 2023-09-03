@@ -1,5 +1,9 @@
 import {registerRequest,registerSuccess, registerFail,loginRequest, loginSuccess, loginFail
-    , isLoginRequest, isLoginSuccess, isLoginFail, getMeRequest, getMeSuccess, getMeFail } from '../slices/UserSlice'
+    , isLoginRequest, isLoginSuccess, isLoginFail, getMeRequest, getMeSuccess, getMeFail,
+    changePasswordRequest,changePasswordSuccess,changePasswordFail,
+    updateProfileRequest,updateProfileSuccess,updateProfileFail,
+    deleteAccountRequest, deleteAccountSuccess, deleteAccountFail,
+ } from '../slices/UserSlice'
 import {toast} from 'react-toastify'
 import axios from 'axios'
 
@@ -79,3 +83,76 @@ export const me = () => async (dispatch) => {
         dispatch(getMeFail())
     }
 }
+
+
+export const changePass = (userData) => async (dispatch) => {
+    try{
+        dispatch(changePasswordRequest())
+
+        const config = {
+            headers:{
+                Authorization: `Bearer ${localStorage.getItem('userToken')}`
+            }
+        }
+
+        const {data} = await axios.put("http://localhost:4000/api/v1/changePassword",userData,config)
+
+        dispatch(changePasswordSuccess())
+        toast.success("Password Changed successfully !")
+
+    }catch(err){
+        dispatch(changePasswordFail(err.response.data.message))        
+        toast.error(err.response.data.message)
+    }
+}
+
+
+export const updateProfile = (userData) => async (dispatch) => {
+    try{
+        dispatch(updateProfileRequest())
+
+        const config = {
+            headers:{
+                Authorization: `Bearer ${localStorage.getItem('userToken')}`
+            }
+        }
+
+        const {data} = await axios.put("http://localhost:4000/api/v1/updateProfile",userData,config)
+
+        dispatch(updateProfileSuccess())
+        toast.success("Profile Updated successfully !")
+        dispatch(me())
+
+    }catch(err){
+        dispatch(updateProfileFail(err.response.data.message))        
+        toast.error(err.response.data.message)
+    }
+}
+
+
+export const deleteAccount = (userData) => async (dispatch) => {
+    try{
+        dispatch(deleteAccountRequest())
+
+        const config = {
+            headers:{
+                Authorization: `Bearer ${localStorage.getItem('userToken')}`
+            }
+        }
+        
+        const {data} = await axios.delete("http://localhost:4000/api/v1/deleteAccount",userData,config)
+
+        console.log(data)
+        dispatch(deleteAccountSuccess())
+        // toast.success("Account Deleted successfully !")
+        // localStorage.removeItem('userToken')
+        // toast.success("User logged Out !")        
+
+    }catch(err){
+        dispatch(deleteAccountFail(err.response.data.message))        
+        toast.error(err.response.data.message)
+    }
+}
+
+
+

@@ -2,13 +2,17 @@ import React from 'react'
 import { MetaData } from '../components/MetaData'
 import { useDispatch, useSelector } from 'react-redux'
 import { Loader } from '../components/Loader'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { useDisclosure } from '@mantine/hooks';
+import { Modal, Button, Group } from '@mantine/core';
+
 
 
 export const MyProfile = () => {
 
   const { loading, me } = useSelector(state => state.user)
-  console.log(me)
+  const [opened, { open, close }] = useDisclosure(false);
+
   const convertDateFormat = (inputDate) => {
     const parts = inputDate.split('-');
     if (parts.length !== 3) {
@@ -21,6 +25,12 @@ export const MyProfile = () => {
 
     return `${day}-${month}-${year}`;
   }
+
+
+  
+
+
+  
   return (
     <>
 
@@ -42,7 +52,7 @@ export const MyProfile = () => {
                     <img src={me.avatar.url} className='rounded-full w-full h-full' alt="" />
                   </div>
                   <div className='flex justify-center items-center'>
-                    <Link className='blueCol px-10 py-2 font-semibold'>Edit Profile</Link>
+                    <Link to="/editProfile" className='blueCol px-10 py-2 font-semibold'>Edit Profile</Link>
                   </div>
                 </div>
 
@@ -59,40 +69,50 @@ export const MyProfile = () => {
                       <p className='md:text-xl pt-1 text-lg'>{me.email}</p>
                     </div>
                     <div>
-                      <p className='md:text-2xl text-xl'>Jonined On</p>
+                      <p className='md:text-2xl text-xl'>Joined On</p>
                       <p className='md:text-xl pt-1 text-lg'>{convertDateFormat(me.createdAt.substr(0, 10))}</p>
                     </div>
                     <div>
                       <p className='md:text-2xl text-xl'>Skills</p>
                       <div className='md:text-xl text-lg pt-3 flex gap-3'>{
                         me.skills.map((skill, i) => (
-                          <span className='bg-yellow-500 text-black  text-sm px-2 py-1  font-bold '>{skill}</span>
+                          <span key={i} className='bg-yellow-500 text-black  text-sm px-2 py-1  font-bold '>{skill}</span>
                         ))
                       }</div>
                     </div>
 
+
+
                     <div className='flex md:flex-row flex-col md:gap-8 pt-4 gap-3'>
                       <ul className='flex flex-col gap-4'>
-                        <li className=' '> <Link  ><button className='blueCol w-2/3 md:w-full  font-medium px-6 py-1'>My Resume</button></Link> </li>
+
+                        <li className=' '> <Link  ><button onClick={open} className='blueCol w-2/3 md:w-full  font-medium px-6 py-1'>My Resume</button></Link> </li>
                         <li className=' '>
-                          <Link><button className='blueCol w-2/3 md:w-full font-medium px-6 py-1'>My Applications</button></Link>
+                          <Link to="/applied"><button className='blueCol w-2/3 md:w-full font-medium px-6 py-1'>My Applications</button></Link>
                         </li>
                         <li className=' '>
-                          <Link><button className='blueCol w-2/3 md:w-full font-medium px-6 py-1'>Saved Jobs</button></Link>
+                          <Link to="/saved" ><button className='blueCol w-2/3 md:w-full font-medium px-6 py-1'>Saved Jobs</button></Link>
                         </li>
-                        
+
                       </ul>
                       <ul className='flex flex-col gap-4'>
                         <li className=' '>
-                          <Link><button className='blueCol w-2/3 md:w-full font-medium px-6 py-1'>Change Password</button></Link>
+                          <Link to="/changePassword"><button className='blueCol w-2/3 md:w-full font-medium px-6 py-1'>Change Password</button></Link>
                         </li>
-                        <li className=' '><Link><button className='blueCol w-2/3 md:w-full font-medium px-6 py-1'>Delete Account</button></Link></li>
+                        {/* <li className=' '><Link to="/deleteAccount"><button className='blueCol w-2/3 md:w-full font-medium px-6 py-1'>Delete Account</button></Link></li> */}
                       </ul>
-                      
+
                     </div>
 
                   </div>
                 </div>
+                <Modal opened={opened} onClose={close} title="Resume">
+                  <div>
+                    <img src={me.resume.url} className='w-full h-full' alt="" />
+                  </div>
+                 
+                </Modal>
+               
 
               </div>
 
@@ -111,21 +131,4 @@ export const MyProfile = () => {
   )
 }
 
-// _id: "64f2d9a08359986acaa53af1"
-//
-// avatar: Object { public_id: "avatar/mkzuwzhg2drkq9epytc8", url: "https://res.cloudinary.com/dwltg98sm/image/upload/v1693637020/avatar/mkzuwzhg2drkq9epytc8.jpg" }
-//
-// createdAt: "2023-09-02T06:43:44.506Z"
-//
-// email: "levi@mail.com"
-//
-// name: "levi ackerman"
-//
-// password: "$2b$10$y8dofrvjZmGj9m1FAViDq.Z0bGkJiikfSbx09iMrOAvd01tuogYSK"
-//
-// resume: Object { public_id: "resume/pmthgkompbnjlja3lgy3", url: "https://res.cloudinary.com/dwltg98sm/image/upload/v1693637022/resume/pmthgkompbnjlja3lgy3.png" }
-//
-// role: "applicant"
-//
-// skills: Array [ "frontend", "backend" ]
-// ​
+

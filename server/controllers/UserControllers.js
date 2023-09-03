@@ -193,15 +193,39 @@ exports.changePassword = async (req, res) => {
 
 exports.updateProfile = async (req, res) => {
     try {
-        const { newName, newEmail, newSkills } = req.body;
+        const { newName, newEmail, newAvatar, newResume, newSkills } = req.body;
 
         const user = await User.findById(req.user._id);
 
-        // I will add update avtar from cloudinary later 
+        const avatarId = user.avatar.public_id ;
+        const resumeId = user.resume.public_id ;
+
+        await cloudinary.v2.uploader.destroy(avatarId) ;
+        await cloudinary.v2.uploader.destroy(resumeId) ;
+
+        
+        const myCloud1 = await cloudinary.v2.uploader.upload(newAvatar, {
+            folder: 'avatar',            
+            crop: "scale",
+        })
+
+        const myCloud2 = await cloudinary.v2.uploader.upload(newResume, {
+            folder: 'resume',           
+            crop: "fit",
+        })
+      
 
         user.name = newName
         user.email = newEmail
         user.skills = newSkills
+        user.avatar = {
+            public_id: myCloud1.public_id,
+            url: myCloud1.secure_url
+        }
+        user.resume = {
+            public_id: myCloud2.public_id,
+            url: myCloud2.secure_url
+        }
 
         await user.save()
 
@@ -212,6 +236,24 @@ exports.updateProfile = async (req, res) => {
 
 
     } catch (err) {
+        res.status(500).json({
+            success: false,
+            message: err.message
+        })
+    }
+}
+
+
+exports.deleteAccount = async (req,res) => {
+    try{
+
+        
+
+        res.status(200).json({
+            user:req.user
+        })
+
+    }catch(err){
         res.status(500).json({
             success: false,
             message: err.message
