@@ -2,18 +2,20 @@ import React, { useState, useEffect } from 'react'
 import { MetaData } from '../components/MetaData'
 import { Sidebar } from '../components/Sidebar'
 import { AiOutlineMail } from 'react-icons/ai'
-import { MdPermIdentity, MdOutlineFeaturedPlayList } from 'react-icons/md'
-import { CgProfile } from 'react-icons/cg'
+import { MdOutlineLocationOn, MdOutlineFeaturedPlayList, MdOutlineWorkOutline, MdWorkspacesOutline, MdAttachMoney, MdOutlineWorkHistory } from 'react-icons/md'
+import { BiImageAlt, BiCategoryAlt } from 'react-icons/bi'
 import { TbLoader2 } from 'react-icons/tb'
+import { BiBuilding } from 'react-icons/bi'
+import { BsPersonWorkspace } from 'react-icons/bs'
 import { useDispatch, useSelector } from 'react-redux'
-
+import {createJobPost} from '../actions/JobActions'
 
 
 
 
 export const CreateJob = () => {
 
-    const loading = false ;
+    const {loading} = useSelector(state => state.job) ;
 
     const dispatch = useDispatch()
 
@@ -32,7 +34,7 @@ export const CreateJob = () => {
 
 
   
-//   title, description, companyName, location, logo, skillsRequired, salary, category, employmentType
+  
     
 
 
@@ -50,9 +52,25 @@ export const CreateJob = () => {
         }
       }
     
-      const postHandler = (e) => {
-        e.preventDefault()
 
+
+    const postHandler = (e) => {
+          e.preventDefault()
+          const skillsArr = skillsRequired.split(",")
+          const data = { title, description, companyName, location, logo, skillsRequired:skillsArr, salary, category, employmentType}
+
+          dispatch(createJobPost(data))
+
+          setTitle("") ;
+          setDescription("") ;
+          setCompanyName("") ;
+          setLocation("") ;
+          setSalary("") ;
+          setSkillsRequired("")
+          setCategory("") ;
+          setEmploymentType("") ;
+          setLogo("") ;
+          setLogoName("")
     }
 
 
@@ -76,7 +94,7 @@ export const CreateJob = () => {
               {/* Job Title */}
               <div className='bg-white flex justify-center items-center'>
                 <div className='text-gray-600 px-2'>
-                  <MdPermIdentity size={20} />
+                  <MdOutlineWorkOutline size={20} />
                 </div>
                 <input 
                 value={title} onChange={(e) => setTitle(e.target.value)} 
@@ -101,7 +119,7 @@ export const CreateJob = () => {
               {/* Company Name */}
               <div className='bg-white flex justify-center items-center'>
                 <div className='text-gray-600 px-2'>
-                  <AiOutlineMail size={20} />
+                  <BiBuilding size={20} />
                 </div>
                 <input
                   value={companyName} onChange={(e) => setCompanyName(e.target.value)} 
@@ -114,10 +132,10 @@ export const CreateJob = () => {
               <div>
                 <div className='bg-white flex justify-center items-center'>
                   <div className='text-gray-600 px-2'>
-                    <CgProfile size={20} />
+                    <BiImageAlt size={20} />
                   </div>
                   <label htmlFor='logo' className='outline-none w-full cursor-pointer text-black px-1 pr-3 py-2 '>
-                    {logoName.length === 0 ? <span className='text-gray-500 font-medium'>Select Profile Pic...</span>
+                    {logoName.length === 0 ? <span className='text-gray-500 font-medium'>Select Company Logo...</span>
                       : logoName}
                   </label>
                   <input id='logo' name='logo' required
@@ -134,7 +152,7 @@ export const CreateJob = () => {
               {/* Location */}
               <div className='bg-white flex justify-center items-center'>
                 <div className='text-gray-600 px-2'>
-                  <AiOutlineMail size={20} />
+                  <MdOutlineLocationOn size={20} />
                 </div>
                 <input
                  value={location} onChange={(e) => setLocation(e.target.value)} 
@@ -144,7 +162,7 @@ export const CreateJob = () => {
               {/* Skills Required */}
               <div className='bg-white flex justify-center items-center'>
                 <div className='text-gray-600 md:pb-12 pb-8 px-2'>
-                  <MdOutlineFeaturedPlayList size={20} />
+                  <MdWorkspacesOutline size={20} />
                 </div>
                 <textarea 
                  value={skillsRequired} onChange={(e) => setSkillsRequired(e.target.value)} 
@@ -155,7 +173,7 @@ export const CreateJob = () => {
               {/* Category */}
               <div className='bg-white flex justify-center items-center'>
                 <div className='text-gray-600 px-2'>
-                  <AiOutlineMail size={20} />
+                  <BiCategoryAlt size={20} />
                 </div>
                 <input
                  value={category} onChange={(e) => setCategory(e.target.value)} 
@@ -166,23 +184,34 @@ export const CreateJob = () => {
               {/* Salary */}
               <div className='bg-white flex justify-center items-center'>
                 <div className='text-gray-600 px-2'>
-                  <AiOutlineMail size={20} />
+                  <MdAttachMoney size={20} />
                 </div>
+
                 <input
                  value={salary} onChange={(e) => setSalary(e.target.value)} 
                  required placeholder='Salary' type="text" className='outline-none bold-placeholder w-full text-black px-1 pr-3 py-2' />
+
               </div>
 
 
               {/* Employment Type */}
               <div className='bg-white flex justify-center items-center'>
-                <div className='text-gray-600 px-2'>
-                  <AiOutlineMail size={20} />
-                </div>
-                <input
-                 value={employmentType} onChange={(e) => setEmploymentType(e.target.value)} 
-                 required placeholder='Employment Type' type="text" className='outline-none bold-placeholder w-full text-black px-1 pr-3 py-2' />
+                
+ 
+                <select required onChange={(e) => setEmploymentType(e.target.value)}  value={employmentType} name="" className='w-full py-2 text-center text-gray-700 cursor-pointer ' id="">
+                    <option className='w-full flex text-gray-700 py-2 justify-center cursor-pointer items-center text-center  'value="">Employment Type</option>
+                    <option className='w-full text-gray-700 flex py-2 justify-center cursor-pointer items-center text-center 'value="full-time">Full-time</option>
+                    <option className='w-full text-gray-700 flex py-2 justify-center cursor-pointer items-center text-center 'value="part-time">Part-time</option>
+                    <option className='w-full text-gray-700 flex py-2 justify-center cursor-pointer items-center text-center 'value="contract">Contract</option>
+                    <option className='w-full text-gray-700 flex py-2 justify-center cursor-pointer items-center text-center 'value="internship">Internship</option>
+                 </select>
+
+               
+                 
+
               </div>
+
+              
 
 
             
