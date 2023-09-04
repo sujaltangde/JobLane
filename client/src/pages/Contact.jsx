@@ -28,22 +28,22 @@ export const Contact = () => {
                     <div>
                         <p className='text-2xl text-yellow-500'>Contact Information</p>
                         <p className='text-xl pt-3 pb-1'>Address:</p>
-                        <ul className='text-sm'>
+                        <ul className='text-lg'>
                             <li>JobLane</li>
                             <li>Wall Street</li>
                             <li>New York, 123</li>
                             <li>United States</li>
                         </ul>
                         <p className='text-xl pt-3 pb-1'>Email:</p>
-                        <ul className='text-sm'>
-                            <li>General Inquiries: [info@yourwebsite.com]</li>
-                            <li>Support: [support@yourwebsite.com]</li>
-                            <li>Job Applications: [jobs@yourwebsite.com]</li>
+                        <ul className='text-lg'>
+                            <li>General Inquiries: info@joblane.com</li>
+                            <li>Support: support@joblane.com</li>
+                            <li>Job Applications: jobs@joblane.com</li>
                         </ul>
                         <p className='text-xl pt-3 pb-1'>Phone:</p>
-                        <ul className='text-sm'>
-                            <li>Customer Support: [+123-456-7890]</li>
-                            <li>HR & Job Inquiries: [+123-456-7891]</li>
+                        <ul className='text-lg'>
+                            <li>Customer Support: +123-456-7890</li>
+                            <li>HR & Job Inquiries: +123-456-7891</li>
                         </ul>
                         <p className='text-xl pt-3 pb-1'>Social Media:</p>
                         <ul >
@@ -78,7 +78,7 @@ export const Contact = () => {
                                     }
 
                                 </div>
-                                <div className={`pt-1 ${que1? "flex":"hidden"} pl-6 text-sm`}>
+                                <div className={`pt-1 ${que1? "flex":"hidden"} pl-6 text-lg`}>
                                     <p >To crate an account, click on the "Register" button located at the top right corner of the homepage. Fill in your personal information, including your name, email address, and a secure password. Once your account is created, you can start exploring jobs.</p>
                                 </div>
                             </div>
@@ -102,7 +102,7 @@ export const Contact = () => {
                                     }
 
                                 </div>
-                                <div className={`pt-1 ${que2? "flex":"hidden"} pl-6 text-sm`}>
+                                <div className={`pt-1 ${que2? "flex":"hidden"} pl-6 text-lg`}>
                                     <p >Crafting an effective job application is crucial to stand out to potential employers. Make sure to include a tailored resume that highlights your relevant experience and skills. Additionally, write a resume that showcases how your qualifications align with the job requirements.</p>
                                 </div>
                             </div>
@@ -125,7 +125,7 @@ export const Contact = () => {
                                     }
 
                                 </div>
-                                <div className={`pt-1 ${que3? "flex":"hidden"} pl-6 text-sm`}>
+                                <div className={`pt-1 ${que3? "flex":"hidden"} pl-6 text-lg`}>
                                     <p >After submitting your applications, you can log in to your account dashboard. Here, you'll find a section that lists your submitted applications along with their current statuses.The statuses may include accepted, rejected or pending.</p>
                                 </div>
                             </div>
