@@ -20,6 +20,7 @@ import { logOrNot, me } from './actions/UserActions'
 import { EditProfile } from './pages/EditProfile'
 import { DeleteAccount } from './pages/DeleteAccount'
 import { Dashboard } from './pages/Dashboard'
+import { CreateJob } from './pages/CreateJob'
 
 
 function App() {
@@ -66,6 +67,7 @@ function App() {
         <Route path='/editProfile' element={<EditProfile/>} />
         <Route path='/deleteAccount' element={<DeleteAccount/>} />
         <Route path='/dashboard' element={<Dashboard/>} />
+        <Route path='/postJob' element={<CreateJob/>} />
 
 
       </Routes>

@@ -9,9 +9,19 @@ const JobSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    company: {
+    companyName: {
         type: String,
         required: true
+    },
+    companyLogo: {
+        public_id: {
+            type: String,
+            required: true
+        },
+        url: {
+            type: String,
+            required: true
+        },
     },
     location:{
         type: String,
@@ -33,10 +43,15 @@ const JobSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: true
+    }, 
+    salary:{
+        type: String,
+        required: true
     },
     status:{
         type: String,
-        enum: ['active','closed']
+        enum: ['active','closed'],
+        default: 'active'
     },
     createdAt: {
         type: Date,
