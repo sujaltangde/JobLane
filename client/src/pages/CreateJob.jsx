@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { MetaData } from '../components/MetaData'
 import { Sidebar } from '../components/Sidebar'
-
 import { AiOutlineMail } from 'react-icons/ai'
 import { MdPermIdentity, MdOutlineFeaturedPlayList } from 'react-icons/md'
 import { CgProfile } from 'react-icons/cg'
@@ -14,29 +13,36 @@ import { useDispatch, useSelector } from 'react-redux'
 
 export const CreateJob = () => {
 
-    const loading = true ;
+    const loading = false ;
 
     const dispatch = useDispatch()
 
-    const [avatar, setAvatar] = useState("")
-  const [avatarName, setAvatarName] = useState("")
+
+  const [title, setTitle] = useState("") ;
+  const [description, setDescription] = useState("") ;
+  const [companyName, setCompanyName] = useState("") ;
+  const [location, setLocation] = useState("") ;
+  const [skillsRequired, setSkillsRequired] = useState("") ;
+  const [salary, setSalary] = useState("") ;
+  const [category, setCategory] = useState("") ;
+  const [employmentType, setEmploymentType] = useState("") ;
+
+  const [logo, setLogo] = useState("") ;
+  const [logoName, setLogoName] = useState("") ;
 
 
-    const postHandler = (e) => {
-        e.preventDefault()
-
-    }
-
+  
+//   title, description, companyName, location, logo, skillsRequired, salary, category, employmentType
     
 
 
-    const avatarChange = (e) => {
-        if (e.target.name === "avatar") {
+    const logoChange = (e) => {
+        if (e.target.name === "logo") {
           const reader = new FileReader();
           reader.onload = () => {
             if (reader.readyState === 2) {
-              setAvatar(reader.result);
-              setAvatarName(e.target.files[0].name)
+                setLogo(reader.result);
+                setLogoName(e.target.files[0].name)
             }
           };
     
@@ -44,6 +50,11 @@ export const CreateJob = () => {
         }
       }
     
+      const postHandler = (e) => {
+        e.preventDefault()
+
+    }
+
 
     return (
         <>
@@ -68,7 +79,7 @@ export const CreateJob = () => {
                   <MdPermIdentity size={20} />
                 </div>
                 <input 
-                // value={name} onChange={(e) => setName(e.target.value)} 
+                value={title} onChange={(e) => setTitle(e.target.value)} 
                 required placeholder='Job Title' type="text" className='outline-none bold-placeholder w-full text-black px-1 pr-3 py-2' />
               </div>
 
@@ -80,7 +91,8 @@ export const CreateJob = () => {
                   <MdOutlineFeaturedPlayList size={20} />
                 </div>
                 <textarea 
-                // value={skills} onChange={(e) => setSkills(e.target.value)} 
+                value={description} 
+                onChange={(e) => setDescription(e.target.value)} 
                 placeholder='Job Description' type="text" className='outline-none w-full text-black bold-placeholder px-1 pr-3 py-2' />
               </div>
 
@@ -92,7 +104,7 @@ export const CreateJob = () => {
                   <AiOutlineMail size={20} />
                 </div>
                 <input
-                //  value={email} onChange={(e) => setEmail(e.target.value)} 
+                  value={companyName} onChange={(e) => setCompanyName(e.target.value)} 
                  required placeholder='Company Name' type="text" className='outline-none bold-placeholder w-full text-black px-1 pr-3 py-2' />
               </div>
 
@@ -104,13 +116,13 @@ export const CreateJob = () => {
                   <div className='text-gray-600 px-2'>
                     <CgProfile size={20} />
                   </div>
-                  <label htmlFor='avatar' className='outline-none w-full cursor-pointer text-black px-1 pr-3 py-2 '>
-                    {avatarName.length === 0 ? <span className='text-gray-500 font-medium'>Select Profile Pic...</span>
-                      : avatarName}
+                  <label htmlFor='logo' className='outline-none w-full cursor-pointer text-black px-1 pr-3 py-2 '>
+                    {logoName.length === 0 ? <span className='text-gray-500 font-medium'>Select Profile Pic...</span>
+                      : logoName}
                   </label>
-                  <input id='avatar' name='avatar' required
-                    onChange={avatarChange}
-                    placeholder='Profile' accept="image/*" type="file" className='outline-none  w-full hidden text-black px-1 pr-3 py-2' />
+                  <input id='logo' name='logo' required
+                    onChange={logoChange}
+                    placeholder='Logo' accept="image/*" type="file" className='outline-none  w-full hidden text-black px-1 pr-3 py-2' />
 
 
                 </div>
@@ -125,8 +137,18 @@ export const CreateJob = () => {
                   <AiOutlineMail size={20} />
                 </div>
                 <input
-                //  value={email} onChange={(e) => setEmail(e.target.value)} 
+                 value={location} onChange={(e) => setLocation(e.target.value)} 
                  required placeholder='Location' type="text" className='outline-none bold-placeholder w-full text-black px-1 pr-3 py-2' />
+              </div>
+
+              {/* Skills Required */}
+              <div className='bg-white flex justify-center items-center'>
+                <div className='text-gray-600 md:pb-12 pb-8 px-2'>
+                  <MdOutlineFeaturedPlayList size={20} />
+                </div>
+                <textarea 
+                 value={skillsRequired} onChange={(e) => setSkillsRequired(e.target.value)} 
+                placeholder='Required Skills' type="text" className='outline-none w-full text-black bold-placeholder px-1 pr-3 py-2' />
               </div>
 
 
@@ -136,7 +158,7 @@ export const CreateJob = () => {
                   <AiOutlineMail size={20} />
                 </div>
                 <input
-                //  value={email} onChange={(e) => setEmail(e.target.value)} 
+                 value={category} onChange={(e) => setCategory(e.target.value)} 
                  required placeholder='Category' type="text" className='outline-none bold-placeholder w-full text-black px-1 pr-3 py-2' />
               </div>
 
@@ -147,8 +169,8 @@ export const CreateJob = () => {
                   <AiOutlineMail size={20} />
                 </div>
                 <input
-                //  value={email} onChange={(e) => setEmail(e.target.value)} 
-                 required placeholder='Category' type="text" className='outline-none bold-placeholder w-full text-black px-1 pr-3 py-2' />
+                 value={salary} onChange={(e) => setSalary(e.target.value)} 
+                 required placeholder='Salary' type="text" className='outline-none bold-placeholder w-full text-black px-1 pr-3 py-2' />
               </div>
 
 
@@ -158,8 +180,8 @@ export const CreateJob = () => {
                   <AiOutlineMail size={20} />
                 </div>
                 <input
-                //  value={email} onChange={(e) => setEmail(e.target.value)} 
-                 required placeholder='Category' type="text" className='outline-none bold-placeholder w-full text-black px-1 pr-3 py-2' />
+                 value={employmentType} onChange={(e) => setEmploymentType(e.target.value)} 
+                 required placeholder='Employment Type' type="text" className='outline-none bold-placeholder w-full text-black px-1 pr-3 py-2' />
               </div>
 
 

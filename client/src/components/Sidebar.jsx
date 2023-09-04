@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { BsFilterLeft } from 'react-icons/bs'
+import { RxCross1 } from 'react-icons/rx'
 import { MdOutlineCreateNewFolder, MdOutlineFeaturedPlayList, MdOutlineDashboard } from 'react-icons/md'
 import { BsBriefcase } from 'react-icons/bs'
 import { AiOutlineUser } from 'react-icons/ai'
@@ -16,9 +16,9 @@ export const Sidebar = () => {
 
              <div className="pt-6 fixed left-0 z-20 pl-0">
                 {/* <BsFilterLeft onClick={(() => setTog(!tog))} className='cursor-pointer ' size={44} />     */}
-                <span onClick={(() => setTog(!tog))} className='cursor-pointer blueCol px-3 py-2' size={44} >
-                      { !tog?  "Menu" : "X" }
-                    </span>     
+                <div onClick={(() => setTog(!tog))} className='cursor-pointer blueCol px-3 py-2' size={44} >
+                      { !tog?  "Menu" : <RxCross1/> }
+                    </div>     
             </div>
 
              <div className={`${tog ? "flex" : "hidden"} flex-col bg-gray-950 min-h-screen md:w-72 w-64  shadow-lg shadow-gray-700 border-r border-gray-800 fixed left-0`}>

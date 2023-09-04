@@ -8,11 +8,11 @@ const mongoose = require('mongoose')
 exports.createJob = async (req, res) => {
     try {
 
-        const { title, description, companyName, location, companyLogo, skillsRequired, salary, category, employmentType } = req.body;
+        const { title, description, companyName, location, logo, skillsRequired, salary, category, employmentType } = req.body;
 
 
         // I will add cloudinary later
-        const myCloud = await cloudinary.v2.uploader.upload(companyLogo, {
+        const myCloud = await cloudinary.v2.uploader.upload(logo, {
             folder: 'logo',
 
             crop: "scale",
