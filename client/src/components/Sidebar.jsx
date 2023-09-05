@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom'
 
 export const Sidebar = () => {
 
-    const [tog, setTog] = useState(false)
+    const [tog, setTog] = useState(true)
 
     return (
          <>

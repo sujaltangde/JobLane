@@ -1,4 +1,5 @@
-import {newPostRequest, newPostSuccess, newPostFail}  from '../slices/JobSlice'
+import {newPostRequest, newPostSuccess, newPostFail, allJobsRequest, allJobsSuccess, allJobsFail,
+    jobDetailsRequest, jobDetailsSuccess, jobDetailsFail,  }  from '../slices/JobSlice'
 import {toast} from 'react-toastify'
 import axios from 'axios'
 
@@ -20,5 +21,32 @@ export const createJobPost = (jobData) => async (dispatch) => {
 
     }catch(err){
         dispatch(newPostFail(err.response.data.message))
+    }
+}
+
+export const getAllJobs = () => async (dispatch) => {
+    try{
+        dispatch(allJobsRequest()) ;
+
+        const {data} = await axios.get("http://localhost:4000/api/v1/jobs") ;
+
+        dispatch(allJobsSuccess(data.Jobs)) ;
+
+    }catch(err){
+        dispatch(allJobsFail(err.response.data.message))   
+    }
+}
+
+
+export const getSingleJob = (id) => async (dispatch) => {
+    try{
+        dispatch(jobDetailsRequest()) ;
+
+        const {data} = await axios.get(`http://localhost:4000/api/v1/job/${id}`) ;
+
+        dispatch(jobDetailsSuccess(data.job)) ;
+
+    }catch(err){
+        dispatch(jobDetailsFail(err.response.data.message))   
     }
 }

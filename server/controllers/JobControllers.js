@@ -8,7 +8,7 @@ const mongoose = require('mongoose')
 exports.createJob = async (req, res) => {
     try {
 
-        const { title, description, companyName, location, logo, skillsRequired, salary, category, employmentType } = req.body;
+        const { title, description, companyName, location, logo, skillsRequired,experience, salary, category, employmentType } = req.body;
 
 
         // I will add cloudinary later
@@ -31,6 +31,7 @@ exports.createJob = async (req, res) => {
                 },
                 location,
                 skillsRequired,
+                experience,
                 category,
                 salary,
                 employmentType,
@@ -76,7 +77,9 @@ exports.allJobs = async (req, res) => {
 
 exports.oneJob = async (req, res) => {
     try {
-        const job = await Job.findById(req.params.id);
+        const job = await Job.findById(req.params.id).populate('postedBy');
+
+        console.log(job)
 
         res.status(200).json({
             success: true,

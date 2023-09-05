@@ -21,6 +21,7 @@ import { EditProfile } from './pages/EditProfile'
 import { DeleteAccount } from './pages/DeleteAccount'
 import { Dashboard } from './pages/Dashboard'
 import { CreateJob } from './pages/CreateJob'
+import {getAllJobs} from './actions/JobActions'
 
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
   useEffect(() => {
     const LogOrNot = () => {
       dispatch(logOrNot());
+      dispatch(getAllJobs())
     }
     LogOrNot()
 
