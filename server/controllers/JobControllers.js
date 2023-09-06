@@ -79,8 +79,6 @@ exports.oneJob = async (req, res) => {
     try {
         const job = await Job.findById(req.params.id).populate('postedBy');
 
-        console.log(job)
-
         res.status(200).json({
             success: true,
             job

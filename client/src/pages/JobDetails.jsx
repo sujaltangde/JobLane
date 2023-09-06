@@ -4,14 +4,16 @@ import { MetaData } from '../components/MetaData'
 import { Loader } from '../components/Loader'
 import { useDispatch, useSelector } from 'react-redux'
 import { getSingleJob } from '../actions/JobActions'
-import { BiBriefcase, BiBuildings } from 'react-icons/bi'
-import { BsPersonWorkspace } from 'react-icons/bs'
+import { BiBriefcase, BiBuildings, BiRupee } from 'react-icons/bi'
+import { AiOutlineSave } from 'react-icons/ai'
+import { BsPersonWorkspace, BsSend } from 'react-icons/bs'
 
 
 export const JobDetails = () => {
 
   const dispatch = useDispatch();
   const { jobDetails, loading } = useSelector(state => state.job);
+  const { me } = useSelector(state => state.user);
   const job = jobDetails;
   const { id } = useParams()
 
@@ -21,8 +23,20 @@ export const JobDetails = () => {
     dispatch(getSingleJob(id))
   }, [dispatch])
 
+  const convertDateFormat = (inputDate) => {
+    const parts = inputDate.split('-');
+    if (parts.length !== 3) {
+      return "Invalid date format";
+    }
 
-  console.log(jobDetails.createdAt)
+    const day = parts[2];
+    const month = parts[1];
+    const year = parts[0];
+
+    return `${day}-${month}-${year}`;
+  }
+
+  
 
   return (
     <>
@@ -38,7 +52,7 @@ export const JobDetails = () => {
           <>
 
             <div>
-              <div className='flex pt-5 md:px-12 px-6 md:gap-10 gap-5'>
+              <div className='flex pt-5 md:px-12 pl-4 md:gap-10 gap-5'>
                 <div className=''>
                   <img src={jobDetails.companyLogo.url} className='md:h-32 h-24 w-24 md:w-32' alt="" />
                 </div>
@@ -46,12 +60,45 @@ export const JobDetails = () => {
                   <p className='text-xl flex gap-1 items-center  md:text-3xl'><BiBriefcase /> {jobDetails.title}</p>
                   <p className='text-lg flex gap-1 items-center  md:text-2xl'><BiBuildings />{jobDetails.companyName}</p>
                   <p className='text-lg flex gap-2 items-center  md:text-2xl'><BsPersonWorkspace size={20} />{jobDetails.employmentType}</p>
+                  <span className={` ${jobDetails.status === "active" ? "text-green-700" : "text-red-500"  } 
+                  pl-4 w-20 text-center rounded-lg font-semibold`} >
+                    {jobDetails.status}
+                    </span>
                 </div>
 
               </div>
-              <div className='border-b pt-10 md:mx-12 mx-8'>
+              <div className='border-b pt-2 pb-3 md:mx-12 mx-4'>
 
               </div>
+              <div className='md:px-12 pl-4'>
+                  <div>
+                    <p className='text-2xl py-3 '>Details:</p>
+                  </div>
+                  <div>
+                    <ul className='flex flex-col gap-3'>
+                      <li className='flex items-center gap-3'>Posted By: <div>{jobDetails.postedBy.name}</div></li>
+                      <li className='flex items-center gap-3'>Posted At: <div>{convertDateFormat(jobDetails.createdAt.substr(0,10))}</div></li>
+                      <li className='flex items-center gap-3'>Location: <div> {jobDetails.location}</div></li>
+                      <li className='flex items-center gap-3'>Salary: <div className='flex items-center' ><BiRupee/>  <span>{jobDetails.salary} LPA</span></div></li>
+                      <li className='flex items-center gap-3'>Experience: <div> {jobDetails.experience}</div></li>
+                      <li className='flex items-center gap-3'>Skills Required: <div className='flex flex-wrap items-center gap-3'> {jobDetails.skillsRequired.map((e)=>(<span className='px-2 py-0.5 bg-yellow-600 rounded text-black md:text-sm font-semibold text-xs'>{e}</span>))}                     </div></li>
+                      <li className='grid gird-cols-1 gap-2 pt-2'><div className='text-2xl'>Job Description: </div> <div> {jobDetails.description}</div></li>
+                    </ul>
+                  </div>
+              </div>
+
+              <div className='md:px-12 pl-4 flex gap-8 pb-32 pt-6 '>
+                <button className=' rounded-md hover:bg-green-600 font-bold px-10 py-1.5 bg-green-700 flex items-center gap-1 '> <BsSend/> {me.appliedJobs.includes(jobDetails._id)? "Applied":"Apply"}</button>
+                <button className=' rounded-md hover:bg-blue-600 font-bold px-10 py-1.5 bg-blue-700 flex items-center gap-1 '>
+                  <AiOutlineSave/>
+                  
+                  {me.savedJobs.includes(jobDetails._id)? "UnSave":"Save"}
+                  </button>
+
+                 
+              </div>
+
+              
 
             </div>
 
@@ -59,7 +106,7 @@ export const JobDetails = () => {
           </>
 
         }
-
+        
 
 
 
