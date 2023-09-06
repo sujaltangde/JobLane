@@ -185,12 +185,16 @@ export const CreateJob = () => {
 
               {/* Category */}
               <div className='bg-white flex justify-center items-center'>
-                <div className='text-gray-600 px-2'>
-                  <BiCategoryAlt size={20} />
-                </div>
-                <input
-                  value={category} onChange={(e) => setCategory(e.target.value)}
-                  required placeholder='Category' type="text" className='outline-none bold-placeholder w-full text-black px-1 pr-3 py-2' />
+               
+                       
+                <select required onChange={(e) => setCategory(e.target.value)} value={category} name="" className='w-full py-2 text-center text-gray-700 cursor-pointer ' id="">
+                  <option className='w-full flex text-gray-700 py-2 justify-center cursor-pointer items-center text-center  ' value="">Category</option>
+                  <option className='w-full text-gray-700 flex py-2 justify-center cursor-pointer items-center text-center ' value="full-time">Technology</option>
+                  <option className='w-full text-gray-700 flex py-2 justify-center cursor-pointer items-center text-center ' value="part-time">Marketing</option>
+                  <option className='w-full text-gray-700 flex py-2 justify-center cursor-pointer items-center text-center ' value="contract">Finance</option>
+                  <option className='w-full text-gray-700 flex py-2 justify-center cursor-pointer items-center text-center ' value="internship">Sales</option>
+                  <option className='w-full text-gray-700 flex py-2 justify-center cursor-pointer items-center text-center ' value="internship">Legal</option>
+                </select>
               </div>
 
 

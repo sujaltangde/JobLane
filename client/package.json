@@ -13,6 +13,8 @@
     "@mantine/carousel": "^6.0.19",
     "@mantine/core": "^6.0.19",
     "@mantine/hooks": "^6.0.19",
+    "@mui/icons-material": "^5.14.8",
+    "@mui/material": "^5.14.8",
     "@reduxjs/toolkit": "^1.9.5",
     "axios": "^1.5.0",
     "react": "^18.2.0",

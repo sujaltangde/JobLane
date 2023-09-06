@@ -5,6 +5,8 @@ import { Loader } from '../components/Loader'
 import { JobCard } from '../components/JobCard'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllJobs, getSingleJob } from '../actions/JobActions'
+import { Slider } from '@mantine/core';
+
 
 export const Jobs = () => {
 
@@ -13,6 +15,8 @@ export const Jobs = () => {
 
   const [jobs, setJobs] = useState([]);
 
+  const data = ["Technology","Marketing","Finance","Sales","Legal"]
+
   useEffect(() => {
     dispatch(getAllJobs());
   }, [])
@@ -20,12 +24,6 @@ export const Jobs = () => {
   useEffect(() => {
     setJobs(allJobs);
   }, [allJobs])
-
-
-
-  console.log(jobs)
-
-
 
 
 
@@ -56,25 +54,36 @@ export const Jobs = () => {
               <div className='flex'>
                 <div className='w-1/3 md:flex hidden'>
                   <div className='flex flex-col'>
-                  <p className='text-xl'>Categories</p>
-                  <ul className='flex pt-3 flex-col gap-3'>
-                    <li>Technology</li>
-                    <li>Marketing</li>
-                    <li>Finance</li>
-                    <li>Sales</li>
-                    <li>Legal</li>
-                  </ul>
-                  <div className='pt-4'>
-                    <p className='text-xl'>Salary</p>
+                    <p className='text-xl underline underline-offset-4'>Categories</p>
+                    <ul className='flex pt-3 flex-col gap-3'>
 
-                  </div>
+                      {
+                        data.map((e)=>(
+                          <li className='hover:text-yellow-600 cursor-pointer'>{e}</li>
+                        ))
+                      }                
+
+                    </ul>
+                    <div className='pt-4'>
+                      <p className='text-xl pb-3 underline underline-offset-4'>Salary</p>
+
+                      <Slider
+                        color="indigo"
+                        className='outline-none w-44'
+                      
+                        min={0}
+                        max={2000000}
+                      />
+                    </div>
+
+
                   </div>
                 </div>
                 <div className='grid grid-cols-1 md:px-8 px-2 gap-4 pb-20 md:w-3/5 w-full justify-items-center pt-8'>
 
                   {
                     jobs && jobs
-                      .filter(job => job._id) 
+                      .filter(job => job._id)
                       .sort((a, b) => {
                         const dateA = new Date(a.createdAt);
                         const dateB = new Date(b.createdAt);
