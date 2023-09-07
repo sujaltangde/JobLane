@@ -9,7 +9,7 @@ import { Slider } from '@mantine/core';
 import { RxCross2 } from 'react-icons/rx'
 
 
-export const Jobs = () => {
+export const JobsLayout = () => {
 
   const dispatch = useDispatch()
   const { allJobs, loading } = useSelector(state => state.job)
@@ -17,21 +17,11 @@ export const Jobs = () => {
   const [jobs, setJobs] = useState([]);
 
   const [category, setCategory] = useState("");
-  const [salary, setSalary] = useState(0);
-  const [company, setCompany] = useState("") ;
+  const [salary, setSalary] = useState("");
+
   const [search, setSearch] = useState("");
 
   const data = ["Technology", "Marketing", "Finance", "Sales", "Legal"]
-
-  const companyData = [
-    "Google",
-      "Apple",
-      "Paypal",
-      "Samsung",
-      "Airtel",
-      "Oracle"
-  ]
-
 
   useEffect(() => {
     dispatch(getAllJobs());
@@ -43,7 +33,7 @@ export const Jobs = () => {
 
   useEffect(() => {
     const searchArr = jobs.filter((e) => (
-      e.title.toLowerCase().includes(search.toLowerCase().trim())
+      e.title.toLowerCase().includes(search.toLowerCase())
     ))
 
     if (search === "") {
@@ -56,7 +46,9 @@ export const Jobs = () => {
 
   }, [search])
 
+  const filter = () => {
 
+  }
 
   const searchHandler = () => {
 
@@ -76,33 +68,9 @@ export const Jobs = () => {
       setJobs(allJobs)
     }
 
-  }
-
-  const leftFilter = () => {
-    console.log(category, salary)
 
 
-    const leftFilArr = allJobs.filter((item) => (
-      item.category.toLowerCase() === category.toLowerCase() && parseInt(item.salary) >= salary
-    ))
-    setJobs(leftFilArr)
-  }
-  const removeLeftFilter = () => {
-    setCategory("")
-    setSalary(0)
-    setJobs(allJobs)
-  }
 
-  const rightFilter = () => {
-    const rightFilArr = allJobs.filter((item) => (
-      item.companyName.toLowerCase() === company.toLowerCase()
-    ))
-    setJobs(rightFilArr)
-
-  }
-  const removeRightFilter = () => {
-    setCompany("")
-    setJobs(allJobs)
   }
 
 
@@ -135,7 +103,7 @@ export const Jobs = () => {
               </div>
 
 
-              <div className=' flex flex-col pt-1 justify-between md:flex-row w-full '>
+              <div className=' flex flex-col justify-between md:flex-row w-full '>
 
                 <div className='filter1  md:flex hidden flex-col'>
                   <div className='flex justify-start  flex-col filter  '>
@@ -155,8 +123,7 @@ export const Jobs = () => {
                       <Slider
                         color="indigo"
                         className='outline-none w-44'
-                        onChange={setSalary}
-                        value={salary}
+
                         min={0}
                         max={2000000}
                       />
@@ -164,8 +131,8 @@ export const Jobs = () => {
 
 
                     <div className='flex flex-col gap-4 w-2/3 pt-5'>
-                      <button onClick={() => leftFilter()} className='blueCol px-1 py-1 text-xs'>Apply Filter</button>
-                      <button onClick={() => removeLeftFilter()} className='blueCol px-1 py-1 text-xs'>Remove Filter</button>
+                      <button onClick={() => filter()} className='blueCol px-1 py-1 text-sm'>Apply Filter</button>
+                      <button className='blueCol px-1 py-1 text-sm'>Remove Filter</button>
                     </div>
 
                   </div>
@@ -177,7 +144,7 @@ export const Jobs = () => {
                 <div className='md:w-2/4 pb-20 pt-2'>
 
                   {/* <div className='flex flex-col gap-4'> */}
-                  <div className='grid grid-cols-1  pb-14 md:px-0 px-2 gap-4'>
+                  <div className='grid grid-cols-1 pb-14 md:px-0 px-2 gap-4'>
                     {
                       jobs && jobs
                         .filter(job => job._id)
@@ -190,12 +157,9 @@ export const Jobs = () => {
 
                         ))
                     }
-                    <div className={`${jobs.length == 0 ? "flex" : "hidden"}  w-full  justify-center items-center  text-center pt-16 pb-12 md:text-xl text-lg    `}>
-                      No Jobs available according to your preferences
-                    </div>
                   </div>
 
-                  <div className={`${jobs.length === 0 ? "hidden" : "flex"} justify-center pt-20 items-center`}>
+                  <div className='flex justify-center pt-20 items-center'>
                     <div className='flex gap-3'>
                       <button className='border px-3 py-1'>1st</button>
                       <button className='border px-3 py-1'>2nd</button>
@@ -203,7 +167,7 @@ export const Jobs = () => {
                       <button className='border px-3 py-1'>4th</button>
                     </div>
                   </div>
-
+                  
                 </div>
 
 
@@ -213,15 +177,16 @@ export const Jobs = () => {
                     <p className='text-xl underline underline-offset-4'>Companies</p>
 
                     <div className='pt-3 flex flex-col justify-end text-right gap-3'>
-                        {
-                          companyData.map(e => (
-                            <div onClick={()=>setCompany(e)} className={`${company === e ? "text-yellow-600" : ""} cursor-pointer hover:text-yellow-600`} >{e}</div>
-                          ))
-                        }
+                      <div>Google</div>
+                      <div>Apple</div>
+                      <div>Paypal</div>
+                      <div>Samsung</div>
+                      <div>Airtel</div>
+                      <div>Oracle</div>
                     </div>
                     <div className='flex flex-col gap-4 pt-5'>
-                      <button onClick={() => rightFilter()} className='blueCol px-1 py-1 text-xs'>Apply Search</button>
-                      <button onClick={() => removeRightFilter()} className='blueCol px-1 py-1 text-xs'>Remove Search</button>
+                      <button className='blueCol px-1 py-1 text-sm'>Apply Filter</button>
+                      <button className='blueCol px-1 py-1 text-sm'>Remove Filter</button>
                     </div>
                   </div>
 

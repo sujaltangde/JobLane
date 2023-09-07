@@ -31,7 +31,7 @@ export const JobCard = ({ job }) => {
 
                 <div className='flex gap-5 relative'>
                     <div className='flex justify-center items-center '>
-                        <img src={job.companyLogo.url} className='md:w-20 h-16 w-16  md:h-20' alt="" />
+                        <img src={job.companyLogo.url} className='md:w-[5em] h-16 w-16  md:h-20' alt="" />
                     </div>
                     <div className='flex flex-col '>
 
@@ -43,7 +43,7 @@ export const JobCard = ({ job }) => {
                                 <p className='text-sm'>{job.companyName}</p>
                                 <p className='text-sm'>{job.exp}</p>
                                 <p className='text-sm md:flex hidden'>{job.description.slice(0, 64)}...</p>
-                                <p className='text-sm flex md:hidden'>{job.description.slice(0, 44)}...</p>
+                                <p className='text-sm flex md:hidden'>{job.description.slice(0, 39)}...</p>
                             </div>
                             <div className='absolute md:right-3 right-0 md:pt-0 top-3' >
                                 <button className='blueCol font-semibold md:text-sm text-sm px-3 py-1 ' >Apply</button>

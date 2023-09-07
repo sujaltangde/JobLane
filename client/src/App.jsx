@@ -22,6 +22,7 @@ import { DeleteAccount } from './pages/DeleteAccount'
 import { Dashboard } from './pages/Dashboard'
 import { CreateJob } from './pages/CreateJob'
 import {getAllJobs} from './actions/JobActions'
+import { JobsLayout } from './pages/JobsLayout'
 
 
 function App() {
@@ -70,6 +71,7 @@ function App() {
         <Route path='/deleteAccount' element={<DeleteAccount/>} />
         <Route path='/dashboard' element={<Dashboard/>} />
         <Route path='/postJob' element={<CreateJob/>} />
+        <Route path='/JobsLayout' element={<JobsLayout/>} />
 
 
       </Routes>
