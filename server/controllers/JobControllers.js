@@ -102,7 +102,7 @@ exports.saveJob = async (req, res) => {
 
         if (user.savedJobs.includes(JobId)) {
 
-            const jobIdObjectId = new mongoose.Types.ObjectId(JobId); // Convert JobId to ObjectId
+            const jobIdObjectId = new mongoose.Types.ObjectId(JobId); 
             const arr = user.savedJobs.filter(jobid => jobid.toString() !== jobIdObjectId.toString());
 
             user.savedJobs = arr;
@@ -114,7 +114,8 @@ exports.saveJob = async (req, res) => {
             })
 
         } else {
-            user.savedJobs.push(JobId);
+            const jobIdObjectId = new mongoose.Types.ObjectId(JobId); 
+            user.savedJobs.push(jobIdObjectId);
             await user.save();
             res.status(200).json({
                 success: true,
@@ -123,6 +124,28 @@ exports.saveJob = async (req, res) => {
         }
 
     } catch (err) {
+        res.status(500).json({
+            success: false,
+            message: err.message
+        })
+    }
+}
+
+exports.getSavedJobs = async (req,res) => {
+    try{
+
+        const user = await User.findById(req.user._id).populate('savedJobs'); ;
+      
+
+
+        res.status(200).json({
+            success: true,
+            savedJob: user.savedJobs
+        })
+
+
+
+    }catch(err){
         res.status(500).json({
             success: false,
             message: err.message

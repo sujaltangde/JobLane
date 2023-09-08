@@ -143,8 +143,8 @@ export const Jobs = () => {
                     <ul className='flex pt-3 flex-col gap-3'>
 
                       {
-                        data.map((e) => (
-                          <li onClick={() => setCategory(e)} className={`hover:text-yellow-600 cursor-pointer ${category === e ? "text-yellow-600" : ""} `}>{e}</li>
+                        data.map((e,i) => (
+                          <li key={i} onClick={() => setCategory(e)} className={`hover:text-yellow-600 cursor-pointer ${category === e ? "text-yellow-600" : ""} `}>{e}</li>
                         ))
                       }
 

@@ -1,6 +1,6 @@
 const express = require('express')
 const { isAuthenticated, authorizationRoles } = require('../middlewares/auth')
-const {createJob, allJobs, oneJob, saveJob} = require('../controllers/JobControllers')
+const {createJob, allJobs, oneJob, saveJob, getSavedJobs} = require('../controllers/JobControllers')
 
 const router = express.Router()
 
@@ -11,6 +11,8 @@ router.route("/jobs").get(allJobs) ;
 
 router.route("/job/:id").get(oneJob) ;
 
-router.route("/saveJob/:id").put(isAuthenticated,saveJob) ;
+router.route("/saveJob/:id").get(isAuthenticated, saveJob) ;
+
+router.route("/getSavedJobs").get(isAuthenticated, getSavedJobs) ;
 
 module.exports = router ;

@@ -4,6 +4,7 @@ const JobSlice = createSlice({
     name: 'Job',
     initialState: {
         loading: false,
+        saveJobLoading: false,
         error: null,
         jobDetails: {
             __v: 0,
@@ -25,6 +26,7 @@ const JobSlice = createSlice({
             status: "",
             title: " "
         },
+        savedJobs:[],
         allJobs: []
     },
     reducers: {
@@ -62,13 +64,40 @@ const JobSlice = createSlice({
         jobDetailsFail: (state, action) => {
             state.loading = false;
             state.error = action.payload;
+        }, 
+
+        jobSaveRequest: (state) => {
+            state.saveJobLoading = true;
         },
+        jobSaveSuccess: (state) => {
+            state.saveJobLoading = false;
+        },
+        jobSaveFail: (state, action) => {
+            state.saveJobLoading = false;
+            state.error = action.payload;
+        }, 
+
+
+        getSavedJobsRequest: (state, action) => {
+            state.loading = true
+        },
+        getSavedJobsSuccess: (state, action) => {
+            state.loading = false 
+            state.savedJobs = action.payload.savedJob
+        },
+        getSavedJobsFail: (state, action) => {
+            state.loading = false
+            state.error = action.payload;
+        }
+
     }
 
 })
 
 export const { newPostRequest, newPostSuccess, newPostFail, allJobsRequest, allJobsSuccess, allJobsFail,
     jobDetailsRequest, jobDetailsSuccess, jobDetailsFail,
+    jobSaveRequest, jobSaveSuccess, jobSaveFail,
+    getSavedJobsRequest, getSavedJobsSuccess, getSavedJobsFail
 } = JobSlice.actions;
 
 export default JobSlice.reducer
