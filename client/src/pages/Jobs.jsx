@@ -18,20 +18,21 @@ export const Jobs = () => {
 
   const [category, setCategory] = useState("");
   const [salary, setSalary] = useState(0);
-  const [company, setCompany] = useState("") ;
+  const [company, setCompany] = useState("");
   const [search, setSearch] = useState("");
 
   const data = ["Technology", "Marketing", "Finance", "Sales", "Legal"]
 
   const companyData = [
     "Google",
-      "Apple",
-      "Paypal",
-      "Samsung",
-      "Airtel",
-      "Oracle"
+    "Apple",
+    "Paypal",
+    "Samsung",
+    "Airtel",
+    "Oracle"
   ]
 
+  
 
   useEffect(() => {
     dispatch(getAllJobs());
@@ -55,6 +56,9 @@ export const Jobs = () => {
     }
 
   }, [search])
+
+
+  
 
 
 
@@ -105,6 +109,13 @@ export const Jobs = () => {
     setJobs(allJobs)
   }
 
+  const [currentPage, setCurrentPage] = useState(1) ;
+  const [postsPerPage, setPostsPerPage] = useState(4) ;
+
+  // jobs
+  const lastPostIndex = currentPage * postsPerPage  ;
+  const firstPostIndex = lastPostIndex - postsPerPage ;
+  const currentPosts = jobs.slice(firstPostIndex, lastPostIndex) ;
 
   return (
     <>
@@ -143,7 +154,7 @@ export const Jobs = () => {
                     <ul className='flex pt-3 flex-col gap-3'>
 
                       {
-                        data.map((e,i) => (
+                        data.map((e, i) => (
                           <li key={i} onClick={() => setCategory(e)} className={`hover:text-yellow-600 cursor-pointer ${category === e ? "text-yellow-600" : ""} `}>{e}</li>
                         ))
                       }
@@ -175,11 +186,11 @@ export const Jobs = () => {
 
 
                 <div className='md:w-2/4 pb-20 pt-2'>
-
+                {/* overflow-y-auto max-h-[30em] */}
                   {/* <div className='flex flex-col gap-4'> */}
                   <div className='grid grid-cols-1  pb-14 md:px-0 px-2 gap-4'>
                     {
-                      jobs && jobs
+                      jobs && currentPosts
                         .filter(job => job._id)
                         .sort((a, b) => {
                           const dateA = new Date(a.createdAt);
@@ -213,11 +224,11 @@ export const Jobs = () => {
                     <p className='text-xl underline underline-offset-4'>Companies</p>
 
                     <div className='pt-3 flex flex-col justify-end text-right gap-3'>
-                        {
-                          companyData.map(e => (
-                            <div onClick={()=>setCompany(e)} className={`${company === e ? "text-yellow-600" : ""} cursor-pointer hover:text-yellow-600`} >{e}</div>
-                          ))
-                        }
+                      {
+                        companyData.map(e => (
+                          <div onClick={() => setCompany(e)} className={`${company === e ? "text-yellow-600" : ""} cursor-pointer hover:text-yellow-600`} >{e}</div>
+                        ))
+                      }
                     </div>
                     <div className='flex flex-col gap-4 pt-5'>
                       <button onClick={() => rightFilter()} className='blueCol px-1 py-1 text-xs'>Apply Search</button>

@@ -40,7 +40,7 @@ export const SavedJobs = () => {
             {loading ? <Loader/> :
               
               <div className='pt-6 md:px-28 px-1' >
-
+                  {savedJobs.length !== 0 && <div className='text-center text-3xl pb-4 font-medium'>Saved Jobs</div>}
                 {
                   savedJobs.slice().reverse().map((job,i)=>(
                     <SaveJobCard key={i} job={job}/>
@@ -49,6 +49,8 @@ export const SavedJobs = () => {
                 {
                   savedJobs.length === 0 && 
                   <div className='pt-10 text-center flex flex-col justify-center items-center'>
+
+
                         <div>
                           <img src="/images/jobEmpty.svg" className='w-52 h-52' alt="" />
                         </div>
