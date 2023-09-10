@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getAllJobs, getSingleJob } from '../actions/JobActions'
 import { Slider } from '@mantine/core';
 import { RxCross2 } from 'react-icons/rx'
+import { Pagination } from '@mantine/core';
 
 
 export const Jobs = () => {
@@ -21,6 +22,8 @@ export const Jobs = () => {
   const [company, setCompany] = useState("");
   const [search, setSearch] = useState("");
 
+  
+
   const data = ["Technology", "Marketing", "Finance", "Sales", "Legal"]
 
   const companyData = [
@@ -32,7 +35,7 @@ export const Jobs = () => {
     "Oracle"
   ]
 
-  
+console.log(allJobs.length)
 
   useEffect(() => {
     dispatch(getAllJobs());
@@ -58,7 +61,7 @@ export const Jobs = () => {
   }, [search])
 
 
-  
+
 
 
 
@@ -70,8 +73,7 @@ export const Jobs = () => {
       e.title.toLowerCase().includes(search.toLowerCase())
     ))
 
-    console.log(jobs)
-    console.log(searchArr)
+  
 
     if (search !== "") {
       setJobs(searchArr)
@@ -109,13 +111,10 @@ export const Jobs = () => {
     setJobs(allJobs)
   }
 
-  const [currentPage, setCurrentPage] = useState(1) ;
-  const [postsPerPage, setPostsPerPage] = useState(4) ;
+ 
 
-  // jobs
-  const lastPostIndex = currentPage * postsPerPage  ;
-  const firstPostIndex = lastPostIndex - postsPerPage ;
-  const currentPosts = jobs.slice(firstPostIndex, lastPostIndex) ;
+  
+
 
   return (
     <>
@@ -186,11 +185,11 @@ export const Jobs = () => {
 
 
                 <div className='md:w-2/4 pb-20 pt-2'>
-                {/* overflow-y-auto max-h-[30em] */}
+                  {/* overflow-y-auto max-h-[30em] */}
                   {/* <div className='flex flex-col gap-4'> */}
                   <div className='grid grid-cols-1  pb-14 md:px-0 px-2 gap-4'>
                     {
-                      jobs && currentPosts
+                      jobs && jobs
                         .filter(job => job._id)
                         .sort((a, b) => {
                           const dateA = new Date(a.createdAt);
@@ -200,18 +199,21 @@ export const Jobs = () => {
                           <JobCard onClick={() => { dispatch(getSingleJob(job._id)) }} key={i} job={job} />
 
                         ))
+
                     }
+
+
+
                     <div className={`${jobs.length == 0 ? "flex" : "hidden"}  w-full  justify-center items-center  text-center pt-16 pb-12 md:text-xl text-lg    `}>
                       No Jobs available according to your preferences
                     </div>
                   </div>
 
                   <div className={`${jobs.length === 0 ? "hidden" : "flex"} justify-center pt-20 items-center`}>
-                    <div className='flex gap-3'>
-                      <button className='border px-3 py-1'>1st</button>
-                      <button className='border px-3 py-1'>2nd</button>
-                      <button className='border px-3 py-1'>3rd</button>
-                      <button className='border px-3 py-1'>4th</button>
+                    <div className='flex '>
+
+                    
+
                     </div>
                   </div>
 

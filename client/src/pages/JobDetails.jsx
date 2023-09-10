@@ -8,6 +8,7 @@ import { BiBriefcase, BiBuildings, BiRupee } from 'react-icons/bi'
 import { AiOutlineSave } from 'react-icons/ai'
 import { BsPersonWorkspace, BsSend } from 'react-icons/bs'
 import { TbLoader2 } from 'react-icons/tb'
+import {Link} from 'react-router-dom'
 
 
 export const JobDetails = () => {
@@ -18,7 +19,7 @@ export const JobDetails = () => {
   const job = jobDetails;
   const { id } = useParams()
 
-  // console.log(jobDetails)
+  
 
   useEffect(() => {
     dispatch(getSingleJob(id))
@@ -92,7 +93,7 @@ export const JobDetails = () => {
               </div>
 
               <div className='md:px-12 pl-4 flex gap-8 pb-32 pt-6 '>
-                <button className=' rounded-md hover:bg-green-600 font-bold px-10 py-1.5 bg-green-700 flex items-center gap-1 '> <BsSend /> {me.appliedJobs && me.appliedJobs.includes(jobDetails._id) ? "Applied" : "Apply"}</button>
+                <Link to={`/Application/${jobDetails._id}`}  className=' rounded-md hover:bg-green-600 font-bold px-10 py-1.5 bg-green-700 flex items-center gap-1 '> <BsSend /> {me.appliedJobs && me.appliedJobs.includes(jobDetails._id) ? "Applied" : "Apply"}</Link>
                 <button onClick={saveJobHandler} className=' rounded-md hover:bg-blue-600 font-bold px-10 py-1.5 bg-blue-700 flex items-center gap-1 '>
                   {saveJobLoading ? <span className='animate-spin px-5'><TbLoader2 size={20}/></span> : 
                   

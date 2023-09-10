@@ -23,6 +23,7 @@ import { Dashboard } from './pages/Dashboard'
 import { CreateJob } from './pages/CreateJob'
 import {getAllJobs} from './actions/JobActions'
 import { JobsLayout } from './pages/JobsLayout'
+import { Application } from './pages/Application'
 
 
 function App() {
@@ -72,6 +73,7 @@ function App() {
         <Route path='/dashboard' element={<Dashboard/>} />
         <Route path='/postJob' element={<CreateJob/>} />
         <Route path='/JobsLayout' element={<JobsLayout/>} />
+        <Route path='/Application/:id' element={<Application/>} />
 
 
       </Routes>
