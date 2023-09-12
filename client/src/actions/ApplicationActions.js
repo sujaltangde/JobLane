@@ -1,6 +1,7 @@
 import axios from 'axios'
 import {createApplicationRequest , createApplicationSuccess, createApplicationFail,
-    allAppliedJobsRequest, allAppliedJobsSuccess, allAppliedJobsFail} from '../slices/ApplicationSlice'
+    allAppliedJobsRequest, allAppliedJobsSuccess, allAppliedJobsFail,
+    applicationDetailsRequest, applicationDetailsSuccess, applicationDetailsFail} from '../slices/ApplicationSlice'
 import {me} from '../actions/UserActions'
 import {toast} from 'react-toastify'
 
@@ -47,5 +48,26 @@ export const getAppliedJob = () => async (dispatch) => {
 
     }catch(err){
         dispatch(allAppliedJobsFail())
+    }
+}
+
+
+export const getSingleApplication = (id) => async (dispatch) => {
+    try{
+
+        dispatch(applicationDetailsRequest())
+
+        const config = {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('userToken')}`
+            } 
+        }
+
+        const {data} = await axios.get(`http://localhost:4000/api/v1/singleApplication/${id}`,config) ;
+
+        dispatch(applicationDetailsSuccess(data.application))
+
+    }catch(err){
+        dispatch(applicationDetailsFail())
     }
 }

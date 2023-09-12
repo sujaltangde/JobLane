@@ -39,7 +39,7 @@ export const SavedJobs = () => {
 
             {loading ? <Loader/> :
               
-              <div className='pt-6 md:px-28  px-1' >
+              <div className='pt-6 md:px-28  px-1 pb-32' >
                   {savedJobs.length !== 0 && <div className='text-center text-3xl pb-4 font-medium'>Saved Jobs</div>}
                 {
                  <div className='flex flex-col gap-4'>

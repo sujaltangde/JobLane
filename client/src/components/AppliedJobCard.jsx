@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
 
-export const AppliedJobCard = ({ job }) => {
+export const AppliedJobCard = ({id, job, time }) => {
 
     const dispatch = useDispatch()
 
@@ -45,7 +45,7 @@ export const AppliedJobCard = ({ job }) => {
                             <p className='text-sm flex md:hidden'>{job.description.slice(0, 25)}...</p>
                         </div>
                         <div className='absolute md:right-3 right-0 md:pt-0 md:top-3 top-18  flex flex-col gap-3' >
-                            <Link to={`/details/${job._id}`} className='blueCol font-semibold md:text-sm text-sm px-3 py-1 text-center ' >View Application</Link>
+                            <Link to={`/Application/Details/${id}`} className='blueCol font-semibold md:text-sm text-sm px-3 py-1 text-center ' >View Application</Link>
                             
                         </div>
 
@@ -58,9 +58,8 @@ export const AppliedJobCard = ({ job }) => {
             </div>
 
             <div className='flex md:gap-8 gap-3 md:text-sm text-xs'>
-                <span>{convertDateFormat(job.createdAt.substr(0, 10))}</span>
-                <span>{job.employmentType}</span>
-                <span>{job.location}</span>
+                <span>Applied on {convertDateFormat(time.substr(0, 10))}</span>
+               
             </div>
 
         </div>

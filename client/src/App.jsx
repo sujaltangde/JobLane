@@ -24,6 +24,7 @@ import { CreateJob } from './pages/CreateJob'
 import {getAllJobs} from './actions/JobActions'
 import { JobsLayout } from './pages/JobsLayout'
 import { Application } from './pages/Application'
+import {ApplicationDetails} from './pages/ApplicationDetails'
 
 
 function App() {
@@ -74,6 +75,7 @@ function App() {
         <Route path='/postJob' element={<CreateJob/>} />
         <Route path='/JobsLayout' element={<JobsLayout/>} />
         <Route path='/Application/:id' element={<Application/>} />
+        <Route path='/Application/Details/:id' element={<ApplicationDetails/>} />
 
 
       </Routes>

@@ -5,7 +5,10 @@ const ApplicationSlice = createSlice({
     initialState:{
         loading: false,
         error: null,
-        appliedJobs: []
+        appliedJobs: [],
+        applicationDetails: {
+
+        }
     },
     reducers:{
         createApplicationRequest: (state)=>{
@@ -30,10 +33,26 @@ const ApplicationSlice = createSlice({
             state.loading = false
             state.error = action.payload 
         },
+
+
+        applicationDetailsRequest: (state)=>{
+            state.loading = true ;
+        },
+        applicationDetailsSuccess: (state, action)=>{
+            state.loading = false ;
+            state.applicationDetails = action.payload
+        },
+        applicationDetailsFail: (state, action)=>{
+            state.loading = false ;
+            state.error = action.payload
+        },
+
+
     }
 })
 
 export const {createApplicationRequest ,createApplicationSuccess, createApplicationFail,
-    allAppliedJobsRequest, allAppliedJobsSuccess, allAppliedJobsFail} = ApplicationSlice.actions
+    allAppliedJobsRequest, allAppliedJobsSuccess, allAppliedJobsFail,
+    applicationDetailsRequest, applicationDetailsSuccess, applicationDetailsFail} = ApplicationSlice.actions
 
 export default ApplicationSlice.reducer

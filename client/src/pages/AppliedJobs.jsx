@@ -30,13 +30,13 @@ export const AppliedJobs = () => {
            <Loader/> :
            <>
 
-             <div className='pt-6 md:px-28 px-1' >
+             <div className='pt-6 md:px-28 px-1 pb-32' >
                   {appliedJobs.length !== 0 && <div className='text-center text-3xl pb-4 font-medium'>Applied Jobs</div>}
                 {
                   <div className='flex flex-col gap-4'>
                     {
                       appliedJobs.slice().reverse().map((app,i)=>(
-                        <AppliedJobCard key={i} job={app.job}/>
+                        <AppliedJobCard key={i} id={app._id} time={app.createdAt} job={app.job}/>
                       ))
                     }
                   </div>
