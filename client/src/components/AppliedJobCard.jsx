@@ -1,10 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { saveJob } from '../actions/JobActions'
 import { useDispatch, useSelector } from 'react-redux'
 
 
-export const SaveJobCard = ({ job }) => {
+export const AppliedJobCard = ({ job }) => {
 
     const dispatch = useDispatch()
 
@@ -21,11 +20,9 @@ export const SaveJobCard = ({ job }) => {
         return `${day}-${month}-${year}`;
     }
 
- 
+   
 
-    const unSaveJobHandler = () => {
-        dispatch(saveJob(job._id))
-    }
+    
 
 
     return (
@@ -47,9 +44,9 @@ export const SaveJobCard = ({ job }) => {
                             <p className='text-sm md:flex hidden'>{job.description.slice(0, 90)}...</p>
                             <p className='text-sm flex md:hidden'>{job.description.slice(0, 25)}...</p>
                         </div>
-                        <div className='absolute md:right-3 right-0 md:pt-0 top-3 flex flex-col gap-3' >
-                            <Link to={`/details/${job._id}`} className='blueCol font-semibold md:text-sm text-sm px-3 py-1 text-center ' >Apply</Link>
-                            <button onClick={unSaveJobHandler} className='blueCol font-semibold md:text-sm text-sm px-3 py-1 text-center ' >UnSave</button>
+                        <div className='absolute md:right-3 right-0 md:pt-0 md:top-3 top-18  flex flex-col gap-3' >
+                            <Link to={`/details/${job._id}`} className='blueCol font-semibold md:text-sm text-sm px-3 py-1 text-center ' >View Application</Link>
+                            
                         </div>
 
 
