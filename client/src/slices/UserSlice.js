@@ -124,6 +124,26 @@ const UserSlice = createSlice({
             state.error = action.payload
         },
 
+        logoutClearState:(state)=>{
+            state.me = {
+                avatar: {
+                    public_id: "",
+                    url: "",
+                },
+                resume: {
+                    public_id: "",
+                    url: "",
+                },
+                _id: "",
+                name: "",
+                email: "",
+                password: "",
+                role: "",
+                skills: [],
+                createdAt: ""
+            }
+        }
+
     }
 })
 
@@ -132,7 +152,7 @@ export const { registerRequest, registerSuccess, registerFail, loginRequest, log
     , isLoginRequest, isLoginSuccess, isLoginFail, getMeRequest, getMeSuccess, getMeFail,
     changePasswordRequest,changePasswordSuccess,changePasswordFail,
     updateProfileRequest,updateProfileSuccess,updateProfileFail,
-    deleteAccountRequest, deleteAccountSuccess, deleteAccountFail
+    deleteAccountRequest, deleteAccountSuccess, deleteAccountFail, logoutClearState
 } = UserSlice.actions
 
 export default UserSlice.reducer

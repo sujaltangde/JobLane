@@ -1,7 +1,9 @@
 import axios from 'axios'
 import {createApplicationRequest , createApplicationSuccess, createApplicationFail,
     allAppliedJobsRequest, allAppliedJobsSuccess, allAppliedJobsFail,
-    applicationDetailsRequest, applicationDetailsSuccess, applicationDetailsFail} from '../slices/ApplicationSlice'
+    applicationDetailsRequest, applicationDetailsSuccess, applicationDetailsFail,
+    deleteApplicationRequest, deleteApplicationSuccess, deleteApplicationFail} from '../slices/ApplicationSlice'
+    
 import {me} from '../actions/UserActions'
 import {toast} from 'react-toastify'
 
@@ -69,5 +71,29 @@ export const getSingleApplication = (id) => async (dispatch) => {
 
     }catch(err){
         dispatch(applicationDetailsFail())
+    }
+}
+
+export const deleteApplication = (id) => async (dispatch) => {
+    try{
+
+        dispatch(deleteApplicationRequest())
+
+        const config = {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('userToken')}`
+            } 
+        }
+
+        const {data} = await axios.delete(`http://localhost:4000/api/v1/deleteApplication/${id}`,config)
+
+        dispatch(deleteApplicationSuccess())
+        dispatch(getAppliedJob())
+        dispatch(me())
+        
+        toast.success("Application Deleted Successfully !") 
+
+    }catch(err){
+        dispatch(deleteApplicationFail(err.response.data.message))
     }
 }

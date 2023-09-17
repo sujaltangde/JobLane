@@ -12,6 +12,7 @@ import { toast } from 'react-toastify';
 import {useSelector, useDispatch} from 'react-redux'
 import { logOrNot } from '../actions/UserActions';
 import { useNavigate } from 'react-router-dom';
+import {logoutClearState} from '../slices/UserSlice'
 
 
 export const Navbar = () => {
@@ -26,6 +27,7 @@ export const Navbar = () => {
         dispatch(logOrNot())
         navigate('/')
         toast.success("Logout Successful !")
+        dispatch(logoutClearState())
     }
 
     return (
@@ -51,7 +53,7 @@ export const Navbar = () => {
 
                         <Menu.Dropdown className=''>
                             <Link to="/profile"><Menu.Item className='' icon={<FaUserCircle size={14} />}>My Profile</Menu.Item></Link>
-                          {me.role === "admin" &&  <Link to="/dashboard"><Menu.Item className='' icon={<MdOutlineDashboard size={14} />}>Dashboard</Menu.Item></Link>}
+                          {me.role === "admin" &&  <Link to="/admin/dashboard"><Menu.Item className='' icon={<MdOutlineDashboard size={14} />}>Dashboard</Menu.Item></Link>}
                             <Link to="/applied"><Menu.Item className='' icon={<MdDoneAll size={14} />}>Applied Jobs</Menu.Item></Link>
                             <Link to="/saved"> <Menu.Item className='' icon={<FaSave size={14} />}>Saved Jobs</Menu.Item></Link>
                             <Menu.Divider />
@@ -59,7 +61,7 @@ export const Navbar = () => {
                         </Menu.Dropdown>
                     </Menu> :
                         <span className='fixed right-24 flex gap-3'>
-                            <Link className='cursor-pointer    text-sm px-3  py-1 rounded-xl blueCol ' to="/login">Login</Link>
+                            <Link className='cursor-pointer    text-sm px-3  py-1 rounded-xl blueCol' to="/login">Login</Link>
                             <Link className='cursor-pointer    text-sm px-3  py-1 rounded-xl blueCol ' to="/register">Register</Link>
 
                         </span>
@@ -80,7 +82,7 @@ export const Navbar = () => {
                                 <Menu.Dropdown className=''>
                                     <Link to="/profile"><Menu.Item className='' icon={<FaUserCircle size={14} />}>My Profile</Menu.Item></Link>
 
-                                   {me.role === "admin" && <Link to="/dashboard"><Menu.Item className='' icon={<MdOutlineDashboard size={14} />}>Dashboard</Menu.Item></Link>}
+                                   {me.role === "admin" && <Link to="/admin/dashboard"><Menu.Item className='' icon={<MdOutlineDashboard size={14} />}>Dashboard</Menu.Item></Link>}
 
                                     <Link to="/applied"><Menu.Item className='' icon={<MdDoneAll size={14} />}>Applied Jobs</Menu.Item></Link>
                                     <Link to="/saved"> <Menu.Item className='' icon={<FaSave size={14} />}>Saved Jobs</Menu.Item></Link>

@@ -25,6 +25,10 @@ import {getAllJobs} from './actions/JobActions'
 import { JobsLayout } from './pages/JobsLayout'
 import { Application } from './pages/Application'
 import {ApplicationDetails} from './pages/ApplicationDetails'
+import { ViewAllJobAdmin } from './pages/VIewAllJobAdmin'
+import { ViewAllAppli } from './pages/ViewAllAppli'
+import { ViewAllUsersAdmin } from './pages/ViewAllUsersAdmin'
+
 
 
 function App() {
@@ -71,11 +75,18 @@ function App() {
         <Route path='/changePassword' element={<ChangePassword/>} />
         <Route path='/editProfile' element={<EditProfile/>} />
         <Route path='/deleteAccount' element={<DeleteAccount/>} />
-        <Route path='/dashboard' element={<Dashboard/>} />
-        <Route path='/postJob' element={<CreateJob/>} />
         <Route path='/JobsLayout' element={<JobsLayout/>} />
         <Route path='/Application/:id' element={<Application/>} />
         <Route path='/Application/Details/:id' element={<ApplicationDetails/>} />
+
+        <Route path='/admin/dashboard' element={<Dashboard/>} />
+        <Route path='/admin/postJob' element={<CreateJob/>} />
+        <Route path='/admin/allJobs' element={<ViewAllJobAdmin/>} />
+        <Route path='/admin/allApplications' element={<ViewAllAppli/>} />
+        <Route path='/admin/allUsers' element={<ViewAllUsersAdmin/>} />
+
+
+        
 
 
       </Routes>

@@ -9,6 +9,7 @@ import { BiBuilding } from 'react-icons/bi'
 import { BsPersonWorkspace } from 'react-icons/bs'
 import { useDispatch, useSelector } from 'react-redux'
 import { createJobPost } from '../actions/JobActions'
+import { RxCross1 } from 'react-icons/rx'
 
 
 
@@ -16,6 +17,8 @@ import { createJobPost } from '../actions/JobActions'
 export const CreateJob = () => {
 
   const { loading } = useSelector(state => state.job);
+
+  const [sideTog, setSideTog] = useState(false)
 
   const dispatch = useDispatch()
 
@@ -82,7 +85,14 @@ export const CreateJob = () => {
       <MetaData title="Post Job" />
       <div className='bg-gray-950 min-h-screen pt-12  md:px-20 px-3  text-white'>
 
-        <Sidebar />
+        
+      <div className="pt-4 fixed left-0 z-20 pl-0">
+            <div onClick={(() => setSideTog(!sideTog))} className='cursor-pointer blueCol px-3 py-2' size={44} >
+              {!sideTog ? "Menu" : <RxCross1 />}
+            </div>
+          </div>
+
+        <Sidebar sideTog={sideTog} />
 
 
         <div className=' flex justify-center w-full items-start pt-6'>

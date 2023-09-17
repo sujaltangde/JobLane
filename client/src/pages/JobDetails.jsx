@@ -8,16 +8,18 @@ import { BiBriefcase, BiBuildings, BiRupee } from 'react-icons/bi'
 import { AiOutlineSave } from 'react-icons/ai'
 import { BsPersonWorkspace, BsSend } from 'react-icons/bs'
 import { TbLoader2 } from 'react-icons/tb'
-import {Link} from 'react-router-dom'
-
+import { useNavigate } from 'react-router'
+import {toast} from 'react-toastify'
 
 export const JobDetails = () => {
 
   const dispatch = useDispatch();
   const { jobDetails, loading, saveJobLoading } = useSelector(state => state.job);
-  const { me } = useSelector(state => state.user);
+  const { me, isLogin } = useSelector(state => state.user);
   const job = jobDetails;
   const { id } = useParams()
+
+  const navigate = useNavigate()
 
   
 
@@ -41,6 +43,13 @@ export const JobDetails = () => {
 
   const saveJobHandler = () => {
     dispatch(saveJob(id)) ;
+  }
+
+  const notLoginHandler = (str)=>{
+    if(!isLogin){
+      toast.info(`Please login to ${str} job`)
+      navigate("/login")
+    } 
   }
 
   return (
@@ -93,8 +102,34 @@ export const JobDetails = () => {
               </div>
 
               <div className='md:px-12 pl-4 flex gap-8 pb-32 pt-6 '>
-                <Link to={`/Application/${jobDetails._id}`}  className=' rounded-md hover:bg-green-600 font-bold px-10 py-1.5 bg-green-700 flex items-center gap-1 '> <BsSend /> {me.appliedJobs && me.appliedJobs.includes(jobDetails._id) ? "Applied" : "Apply"}</Link>
-                <button onClick={saveJobHandler} className=' rounded-md hover:bg-blue-600 font-bold px-10 py-1.5 bg-blue-700 flex items-center gap-1 '>
+                <button 
+                  onClick={()=>{
+
+                    isLogin ? 
+                    
+                    me.appliedJobs && me.appliedJobs.includes(jobDetails._id) ? toast.error("You are already applied !") :
+                    navigate(`/Application/${jobDetails._id}`)
+
+                    : 
+                    notLoginHandler("apply")
+                    
+                    
+                  }}
+                className=' rounded-md hover:bg-green-600 font-bold px-10 py-1.5 bg-green-700 flex items-center gap-1 '> <BsSend /> {me.appliedJobs && me.appliedJobs.includes(jobDetails._id) ? "Applied" : "Apply"}</button>
+
+
+                <button onClick={
+                  ()=>{
+                    if(isLogin) {
+
+                      saveJobHandler() 
+                    }else{
+                      notLoginHandler("save")
+  
+                    }
+                  }
+                  
+                  } className=' rounded-md hover:bg-blue-600 font-bold px-10 py-1.5 bg-blue-700 flex items-center gap-1 '>
                   {saveJobLoading ? <span className='animate-spin px-5'><TbLoader2 size={20}/></span> : 
                   
                   <>

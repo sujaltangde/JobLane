@@ -60,6 +60,8 @@ export const logOrNot = () => async (dispatch) => {
       
         dispatch(isLoginSuccess(data.isLogin))
 
+     
+
     }catch(err){
         dispatch(isLoginFail())
     }

@@ -25,6 +25,11 @@
 }
 
 
+.blueColBorder{
+    
+    border-color: #3803FF;
+}
+
 
 *{
     font-family: 'Open Sans', sans-serif ;

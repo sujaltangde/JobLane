@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import {Link} from 'react-router-dom'
 import {getSingleJob} from '../actions/JobActions'
 import {createApplication} from '../actions/ApplicationActions'
+import { useNavigate } from 'react-router'
 
 export const Application = () => {
 
@@ -16,7 +17,7 @@ export const Application = () => {
     const { jobDetails } = useSelector(state => state.job)
     const { me } = useSelector(state => state.user)
     const { loading } = useSelector(state => state.application)
-
+    const navigate = useNavigate()
     const [confirm, setConfirm] = useState(false)
 
     useEffect(()=>{
@@ -26,6 +27,7 @@ export const Application = () => {
     const makeApplication = (e) => {
         e.preventDefault() ;
         dispatch(createApplication(id)) ;        
+        navigate(`/details/${id}`)
     }
 
     return (

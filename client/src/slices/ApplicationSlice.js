@@ -7,7 +7,20 @@ const ApplicationSlice = createSlice({
         error: null,
         appliedJobs: [],
         applicationDetails: {
-
+          applicant:{  _id: "",
+            name: "",
+            email: ""
+          },
+          applicantResume:{
+            public_id:"",
+            url:""
+          },
+          job: {
+            _id: "",
+            title: ""
+          },
+          status: "",
+          createdAt: "" ,          
         }
     },
     reducers:{
@@ -48,11 +61,24 @@ const ApplicationSlice = createSlice({
         },
 
 
+        deleteApplicationRequest: (state)=>{
+            state.loading = true ;
+        },
+        deleteApplicationSuccess: (state)=>{
+            state.loading = false ;
+        },
+        deleteApplicationFail: (state, action)=>{
+            state.loading = false ;
+            state.error = action.payload
+        },
+
+
     }
 })
 
 export const {createApplicationRequest ,createApplicationSuccess, createApplicationFail,
     allAppliedJobsRequest, allAppliedJobsSuccess, allAppliedJobsFail,
-    applicationDetailsRequest, applicationDetailsSuccess, applicationDetailsFail} = ApplicationSlice.actions
+    applicationDetailsRequest, applicationDetailsSuccess, applicationDetailsFail,
+    deleteApplicationRequest, deleteApplicationSuccess, deleteApplicationFail } = ApplicationSlice.actions
 
 export default ApplicationSlice.reducer
