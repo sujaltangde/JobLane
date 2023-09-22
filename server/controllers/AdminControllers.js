@@ -1,6 +1,8 @@
 const Job = require('../models/JobModel')
 const User = require('../models/UserModel')
 const Application = require('../models/AppModel')
+const cloudinary = require('cloudinary')
+
 
 // Get all jobs
 exports.getAllJobs = async (req,res) => {
@@ -163,6 +165,86 @@ exports.getUser = async (req,res) => {
         res.status(200).json({
             success: true,
             user
+        })
+
+    }catch(err){
+        res.status(500).json({
+            success: false,
+            message: err.message
+        })
+    }
+}
+
+
+// Update Job
+exports.updateJob = async (req,res) => {
+    try{    
+
+        const job = await Job.findById(req.params.id) ;
+
+        const logoToDelete_Id = job.companyLogo.public_id ;
+
+        await cloudinary.v2.uploader.destroy(logoToDelete_Id) ;
+
+        const logo = req.body.companyLogo  ;
+
+        const myCloud = await cloudinary.v2.uploader.upload(logo, {
+            folder: 'logo',
+            crop: "scale",
+        })
+
+        req.body.companyLogo = {
+            public_id: myCloud.public_id,
+            url: myCloud.secure_url
+        }
+
+        const updatedJob = await Job.findByIdAndUpdate(req.params.id, req.body, { new: true }) ;
+
+        
+
+        res.status(200).json({
+            success: true,
+            message: "Job Updated"
+        })
+
+    }catch(err){
+        res.status(500).json({
+            success: false,
+            message: err.message
+        })
+    }
+}
+
+
+// Get Single Job
+exports.getJob = async (req,res) => {
+    try{    
+
+        const job = await Job.findById(req.params.id)
+
+        res.status(200).json({
+            success: true,
+            job
+        })
+
+    }catch(err){
+        res.status(500).json({
+            success: false,
+            message: err.message
+        })
+    }
+}
+
+
+// Delete Single Job
+exports.deleteJob = async (req,res) => {
+    try{    
+
+        const job = await Job.findByIdAndRemove(req.params.id)
+
+        res.status(200).json({
+            success: true,
+            message: "Job Deleted"
         })
 
     }catch(err){

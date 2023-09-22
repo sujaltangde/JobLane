@@ -4,9 +4,10 @@ import { Sidebar } from '../components/Sidebar'
 import { MdOutlineModeEditOutline } from 'react-icons/md'
 import { AiOutlineDelete } from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux'
-import { getAllJobsAdmin } from '../actions/AdminActions'
+import { getAllJobsAdmin, deleteJobData } from '../actions/AdminActions'
 import { Loader } from '../components/Loader'
 import { RxCross1 } from 'react-icons/rx'
+import { Link } from 'react-router-dom'
 
 
 export const ViewAllJobAdmin = () => {
@@ -30,6 +31,11 @@ export const ViewAllJobAdmin = () => {
     const year = parts[0];
 
     return `${day}-${month}-${year}`;
+  }
+
+
+  const deleteJobHandler = (id) => {
+    dispatch(deleteJobData(id))
   }
 
 
@@ -107,12 +113,12 @@ export const ViewAllJobAdmin = () => {
                             {convertDateFormat(job.createdAt.substr(0, 10))}
                           </td>
                           <td className="px-6 flex gap-4 py-4">
-                            <span className='text-blue-500 hover:text-blue-400 cursor-pointer'>
+                            <Link to={`/admin/job/details/${job._id}`} className='text-blue-500 hover:text-blue-400 cursor-pointer'>
                               <MdOutlineModeEditOutline size={20} />
-                            </span>
+                            </Link>
 
                             <span className='text-red-500 hover:text-red-400 cursor-pointer'>
-                              <AiOutlineDelete size={20} />
+                              <AiOutlineDelete onClick={()=> deleteJobHandler(job._id)} size={20} />
                             </span>
                           </td>
                         </tr>

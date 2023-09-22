@@ -1,5 +1,5 @@
 const express = require("express")
-const {getAllJobs, getAllUsers, getAllApp, updateApplication, deleteApplication, updateUser, deleteUser, getApplication, getUser} = require('../controllers/AdminControllers')
+const {getAllJobs, getAllUsers, getAllApp, updateApplication, deleteApplication, updateUser, deleteUser, getApplication, getUser, getJob, updateJob, deleteJob} = require('../controllers/AdminControllers')
 const {isAuthenticated, authorizationRoles} = require('../middlewares/auth')
 
 const router = express.Router() ;
@@ -15,6 +15,10 @@ router.route("/admin/deleteApplication/:id").delete(isAuthenticated ,authorizati
 router.route("/admin/getUser/:id").get(isAuthenticated ,authorizationRoles("admin") , getUser)
 router.route("/admin/updateUser/:id").put(isAuthenticated ,authorizationRoles("admin") , updateUser)
 router.route("/admin/deleteUser/:id").delete(isAuthenticated ,authorizationRoles("admin") , deleteUser)
+
+router.route("/admin/getJob/:id").get(isAuthenticated ,authorizationRoles("admin") , getJob)
+router.route("/admin/updateJob/:id").put(isAuthenticated ,authorizationRoles("admin") , updateJob)
+router.route("/admin/deleteJob/:id").delete(isAuthenticated ,authorizationRoles("admin") , deleteJob)
 
 
 

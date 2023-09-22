@@ -3,10 +3,11 @@ import { MetaData } from '../components/MetaData'
 import { Sidebar } from '../components/Sidebar'
 import { MdOutlineModeEditOutline } from 'react-icons/md'
 import { AiOutlineDelete } from 'react-icons/ai'
-import {getAllAppAdmin} from '../actions/AdminActions'
+import {getAllAppAdmin, deleteApp} from '../actions/AdminActions'
 import {useDispatch, useSelector} from 'react-redux'
 import {Loader} from '../components/Loader'
 import { RxCross1 } from 'react-icons/rx'
+import { Link } from 'react-router-dom'
 
 
 export const ViewAllAppli = () => {
@@ -32,6 +33,10 @@ export const ViewAllAppli = () => {
     return `${day}-${month}-${year}`;
   }
 
+  const deleteApplication = (id) => {
+    dispatch(deleteApp(id))
+  } 
+
 
   return (
     <>
@@ -56,7 +61,7 @@ export const ViewAllAppli = () => {
           <div className="relative pb-24 overflow-x-auto shadow-md sm:rounded-lg">
 
 
-            <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+          <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
 
               <thead className="text-xs text-gray-200 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-200">
                 <tr>
@@ -68,6 +73,9 @@ export const ViewAllAppli = () => {
                   </th>
                   <th scope="col" className="px-6 py-3">
                     Applicant
+                  </th>
+                  <th scope="col" className="px-6 py-3">
+                    Status
                   </th>
                   <th scope="col" className="px-6 py-3">
                     Created On
@@ -94,22 +102,32 @@ export const ViewAllAppli = () => {
                   <td className="px-6 py-4">
                     {app.applicant.name}
                   </td>
+                  <td className={`px-6 py-4 ${
+                    app.status === "pending" ? "text-blue-500" : app.status === "rejected" ? "text-red-500" : "text-green-500"                
+                } `}>
+                    {app.status} 
+                  </td>
                   <td className="px-6 py-4">
                     {convertDateFormat(app.createdAt.substr(0,10))}
                   </td>
                   <td className="px-6 flex gap-4 py-4">
-                    <span className='text-blue-500 hover:text-blue-400 cursor-pointer'>
-                      <MdOutlineModeEditOutline size={20} />
-                    </span>
+                    <Link to={`/admin/update/application/${app._id}`} className='text-blue-500 hover:text-blue-400 cursor-pointer'>
+                      <MdOutlineModeEditOutline  size={20} />
+                    </Link>
 
-                    <span className='text-red-500 hover:text-red-400 cursor-pointer'>
-                      <AiOutlineDelete size={20} />
-                    </span>
+                    <div className='text-red-500 hover:text-red-400 cursor-pointer'>
+                      <AiOutlineDelete onClick={()=> deleteApplication(app._id)} size={20} />
+                    </div>
                   </td>
                 </tr>))}
 
               </tbody>
             </table>
+            
+            
+            
+
+            
 
 
           </div>

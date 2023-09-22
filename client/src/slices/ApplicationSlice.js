@@ -17,7 +17,8 @@ const ApplicationSlice = createSlice({
           },
           job: {
             _id: "",
-            title: ""
+            title: "",
+            companyName: ""
           },
           status: "",
           createdAt: "" ,          

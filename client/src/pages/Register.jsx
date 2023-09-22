@@ -143,7 +143,9 @@ export const Register = () => {
               <div>
                 <div className='bg-white flex justify-center items-center'>
                   <div className='text-gray-600 px-2'>
-                    <CgProfile size={20} />
+                   {avatar.length === 0 ? <CgProfile size={20} />
+                   : <img src={avatar} className='w-[3em] h-[2.5em]'/> 
+                   }
                   </div>
                   <label htmlFor='avatar' className='outline-none w-full cursor-pointer text-black px-1 pr-3 py-2 '>
                     {avatarName.length === 0 ? <span className='text-gray-500 font-medium'>Select Profile Pic...</span>

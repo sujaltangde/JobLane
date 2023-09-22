@@ -28,6 +28,10 @@ import {ApplicationDetails} from './pages/ApplicationDetails'
 import { ViewAllJobAdmin } from './pages/VIewAllJobAdmin'
 import { ViewAllAppli } from './pages/ViewAllAppli'
 import { ViewAllUsersAdmin } from './pages/ViewAllUsersAdmin'
+import { EditAppAdmin } from './pages/EditAppAdmin'
+import { EditUserAdmin } from './pages/EditUserAdmin'
+import { EditJobAdmin } from './pages/EditJobAdmin'
+import { Test } from './pages/Test'
 
 
 
@@ -84,7 +88,15 @@ function App() {
         <Route path='/admin/allJobs' element={<ViewAllJobAdmin/>} />
         <Route path='/admin/allApplications' element={<ViewAllAppli/>} />
         <Route path='/admin/allUsers' element={<ViewAllUsersAdmin/>} />
+        <Route path='/admin/update/application/:id' element={<EditAppAdmin/>} />
+        <Route path='/admin/user/role/:id' element={<EditUserAdmin/>} />
+        <Route path='/admin/job/details/:id' element={<EditJobAdmin/>} />
 
+
+        {/* test */}
+        <Route path='/test' element={<Test/>} />
+
+    
 
         
 

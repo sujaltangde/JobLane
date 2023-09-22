@@ -3,10 +3,11 @@ import { MetaData } from '../components/MetaData'
 import { Sidebar } from '../components/Sidebar'
 import { MdOutlineModeEditOutline } from 'react-icons/md'
 import { AiOutlineDelete } from 'react-icons/ai'
-import { getAllUsersAdmin } from '../actions/AdminActions'
+import { getAllUsersAdmin, deleteUser } from '../actions/AdminActions'
 import { useDispatch, useSelector } from 'react-redux'
 import { Loader } from '../components/Loader'
 import { RxCross1 } from 'react-icons/rx'
+import { Link } from 'react-router-dom'
 
 
 export const ViewAllUsersAdmin = () => {
@@ -20,6 +21,11 @@ export const ViewAllUsersAdmin = () => {
   useEffect(() => {
     dispatch(getAllUsersAdmin())
   }, [])
+
+
+  const deleteUserHandler = (id)=>{
+        dispatch(deleteUser(id))
+  }
 
 
 
@@ -103,11 +109,11 @@ export const ViewAllUsersAdmin = () => {
                           {convertDateFormat(user.createdAt.substr(0, 10))}
                         </td>
                         <td className="px-6 flex gap-4 md:pt-4 pt-6 py-4">
-                          <span className='text-blue-500 hover:text-blue-400 cursor-pointer flex justify-center items-center '>
-                            <MdOutlineModeEditOutline size={20} />
-                          </span>
+                          <Link to={`/admin/user/role/${user._id}`} className='text-blue-500 hover:text-blue-400 cursor-pointer flex justify-center items-center '>
+                            <MdOutlineModeEditOutline  size={20} />
+                          </Link>
 
-                          <span className='text-red-500 hover:text-red-400 cursor-pointer flex justify-center items-center '>
+                          <span onClick={()=>deleteUserHandler(user._id)} className='text-red-500 hover:text-red-400 cursor-pointer flex justify-center items-center '>
                             <AiOutlineDelete size={20} />
                           </span>
                         </td>

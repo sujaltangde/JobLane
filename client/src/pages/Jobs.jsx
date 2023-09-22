@@ -22,7 +22,7 @@ export const Jobs = () => {
   const [company, setCompany] = useState("");
   const [search, setSearch] = useState("");
 
-  
+
 
   const data = ["Technology", "Marketing", "Finance", "Sales", "Legal"]
 
@@ -35,7 +35,7 @@ export const Jobs = () => {
     "Oracle"
   ]
 
-console.log(allJobs.length)
+  console.log(allJobs.length)
 
   useEffect(() => {
     dispatch(getAllJobs());
@@ -73,7 +73,7 @@ console.log(allJobs.length)
       e.title.toLowerCase().includes(search.toLowerCase())
     ))
 
-  
+
 
     if (search !== "") {
       setJobs(searchArr)
@@ -111,9 +111,55 @@ console.log(allJobs.length)
     setJobs(allJobs)
   }
 
- 
 
-  
+
+
+
+
+  // Pagination 
+
+  const itemsPerPage = 5;
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const totalPageCount = Math.ceil(jobs.length / itemsPerPage);
+
+  const handleNextPage = () => {
+    setCurrentPage(prevPage => Math.min(prevPage + 1, totalPageCount));
+  };
+
+  const handlePrevPage = () => {
+    setCurrentPage(prevPage => Math.max(prevPage - 1, 1));
+  };
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+
+  const displayedData = jobs.slice(startIndex, endIndex);
+
+  const pageButtons = [];
+  const maxButtonsToShow = 3; // Maximum number of page buttons to show
+
+  let startButton = Math.max(1, currentPage - Math.floor(maxButtonsToShow / 2));
+  let endButton = Math.min(totalPageCount, startButton + maxButtonsToShow - 1);
+
+  for (let i = startButton; i <= endButton; i++) {
+    pageButtons.push(
+      <button 
+        key={i}
+        onClick={() => handlePageChange(i)}
+        className={`mx-1 px-3 py-1 border border-gray-700 rounded ${currentPage === i ? 'bg-gray-800  text-white' : 'bg-gray-900  text-white hover:bg-gray-800 hover:text-white'}`}
+      >
+        {i}
+      </button>
+    );
+  }
+
+  // Pagination 
+
 
 
   return (
@@ -185,11 +231,12 @@ console.log(allJobs.length)
 
 
                 <div className='md:w-2/4 pb-20 pt-2'>
-                  {/* overflow-y-auto max-h-[30em] */}
-                  {/* <div className='flex flex-col gap-4'> */}
-                  <div className='grid grid-cols-1  pb-14 md:px-0 px-2 gap-4'>
+
+                  {/* <div className='flex flex-col overflow-y-hidden max-h-[30em] gap-4'> */}
+                  <div className='grid grid-cols-1  pb-4 md:px-0 px-2 gap-4'>
                     {
-                      jobs && jobs
+                      // jobs && jobs
+                      jobs && displayedData
                         .filter(job => job._id)
                         .sort((a, b) => {
                           const dateA = new Date(a.createdAt);
@@ -212,7 +259,30 @@ console.log(allJobs.length)
                   <div className={`${jobs.length === 0 ? "hidden" : "flex"} justify-center pt-20 items-center`}>
                     <div className='flex '>
 
-                    
+
+                    {/* Pagination */}
+                      <div className="flex justify-center mt-1">
+                        <button
+                          onClick={handlePrevPage}
+                          disabled={currentPage === 1}
+                          className="bg-gray-900 border border-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 mr-2"
+                        >
+                          Previous
+                        </button>
+
+
+                        {pageButtons}
+
+
+                        <button
+                          onClick={handleNextPage}
+                          disabled={currentPage === totalPageCount}
+                          className="bg-gray-900 border border-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 ml-2"
+                        >
+                          Next
+                        </button>
+                      </div>
+
 
                     </div>
                   </div>
