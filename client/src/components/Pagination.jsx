@@ -2,22 +2,16 @@ import React from 'react'
 
 export const Pagination = ({totalPosts,postsPerPage}) => {
 
-    let pages = [] ;
-
-    for(let i = 1 ; i <= Math.ceil(totalPosts/postsPerPage) ; i++ ){
-        pages.push(i)
-    }
-
-    console.log(totalPosts,postsPerPage)
+    const [page, nbPages] = useGloba
 
   return (
     <>
             <div className='text-white'>
-                {
-                    pages.map((page, index)=>{
-                        return <button key={index}>{page}</button>
-                    })
-                }
+                <button onClick={()=>getPrevPage()} >PREV</button>
+                <p>
+                    {page} of {nbPages}
+                </p>
+                <button onClick={()=>getNextPage()} ></button>
             </div>
     
     </>

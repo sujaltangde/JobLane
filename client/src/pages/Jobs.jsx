@@ -232,8 +232,8 @@ export const Jobs = () => {
 
                 <div className='md:w-2/4 pb-20 pt-2'>
 
-                  {/* <div className='flex flex-col overflow-y-hidden max-h-[30em] gap-4'> */}
-                  <div className='grid grid-cols-1  pb-4 md:px-0 px-2 gap-4'>
+                  <div className='flex flex-col overflow-y-auto max-h-[30em] gap-4'>
+                  {/* <div className='grid grid-cols-1  pb-4 md:px-0 px-2 gap-4'> */}
                     {
                       // jobs && jobs
                       jobs && displayedData

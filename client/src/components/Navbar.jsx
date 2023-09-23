@@ -43,10 +43,10 @@ export const Navbar = () => {
                     <div className='flex fixed left-24 justify-center items-center titleT'>
                         <MdOutlineBusinessCenter size={19} />  JOBLANE
                     </div>
-                    <Link to="/" className=' hover:underline underline-offset-8 underL ' >Home</Link>
-                    <Link to="/jobs" className='hover:underline underline-offset-8 underL ' >Jobs</Link>
-                    <Link to='/contact' className='hover:underline underline-offset-8 underL' >Contact</Link>
-                    <Link to='/about' className='hover:underline underline-offset-8 underL' >About</Link>
+                    <Link to="/" className=' cool-link ' >Home</Link>
+                    <Link to="/jobs" className='cool-link ' >Jobs</Link>
+                    <Link to='/contact' className='cool-link ' >Contact</Link>
+                    <Link to='/about' className='cool-link ' >About</Link>
 
 
                     {isLogin ? <Menu shadow="md" width={200}>
@@ -116,10 +116,10 @@ export const Navbar = () => {
 
                
                     <ul className='bg-gray-950 bg-opacity-95 zInd flex flex-col gap-20 text-2xl justify-start w-screen  pt-20 items-center'>
-                        <Link onClick={() => setToggle(!toggle)} to="/" className=' hover:underline underline-offset-8 underL ' >Home</Link>
-                        <Link onClick={() => setToggle(!toggle)} to="/jobs" className='hover:underline underline-offset-8 underL ' >Jobs</Link>
-                        <Link onClick={() => setToggle(!toggle)} to='/contact' className='hover:underline underline-offset-8 underL' >Contact</Link>
-                        <Link onClick={() => setToggle(!toggle)} to='/about' className='hover:underline underline-offset-8 underL' >About</Link>
+                        <Link onClick={() => setToggle(!toggle)} to="/" className=' cool-link  ' >Home</Link>
+                        <Link onClick={() => setToggle(!toggle)} to="/jobs" className='cool-link ' >Jobs</Link>
+                        <Link onClick={() => setToggle(!toggle)} to='/contact' className='cool-link ' >Contact</Link>
+                        <Link onClick={() => setToggle(!toggle)} to='/about' className='cool-link ' >About</Link>
                     </ul>
                     </div>
 

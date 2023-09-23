@@ -61,12 +61,12 @@ export const ViewAllJobAdmin = () => {
                 <p className='text-center pt-3 pb-4 text-3xl font-medium'>All Jobs</p>
               </div>
 
-              <div className="relative pb-24 overflow-x-auto shadow-md sm:rounded-lg">
+              <div className="relative pb-24 overflow-x-auto shadow-md ">
 
 
                 <table className="w-full  text-sm text-left text-gray-500 dark:text-gray-400">
 
-                  <thead className="text-xs text-gray-200 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-200">
+                  <thead className="text-xs text-gray-200 uppercase blueCol dark:text-gray-200">
                     <tr>
                       <th scope="col" className="px-6 py-3">
                         Job Id
@@ -96,7 +96,7 @@ export const ViewAllJobAdmin = () => {
                         const dateB = new Date(b.createdAt);
                         return dateB - dateA;
                       }).map((job, i) => (
-                        <tr className="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                        <tr className="bg-white border-b dark:bg-gray-950 dark:border-gray-700">
                           <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {job._id}
                           </th>
