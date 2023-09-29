@@ -47,9 +47,9 @@ export const SaveJobCard = ({ job }) => {
                             <p className='text-sm md:flex hidden'>{job.description.slice(0, 90)}...</p>
                             <p className='text-sm flex md:hidden'>{job.description.slice(0, 25)}...</p>
                         </div>
-                        <div className='absolute md:right-3 right-0 md:pt-0 top-3 flex flex-col gap-3' >
-                            <Link to={`/details/${job._id}`} className='blueCol font-semibold md:text-sm text-sm px-3 py-1 text-center ' >Apply</Link>
-                            <button onClick={unSaveJobHandler} className='blueCol font-semibold md:text-sm text-sm px-3 py-1 text-center ' >UnSave</button>
+                        <div className='absolute md:right-3 right-0 md:pt-0 top-7 text-sm flex flex-col gap-6' >
+                            <Link to={`/details/${job._id}`} className='blueCol font-semibold md:text-sm text-xs px-3 py-1 text-center ' >Apply</Link>
+                            <button onClick={unSaveJobHandler} className='blueCol font-semibold md:text-sm text-xs px-3 py-1 text-center ' >UnSave</button>
                         </div>
 
 

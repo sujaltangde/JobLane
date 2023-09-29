@@ -48,7 +48,7 @@ export const Login = () => {
 
 
         <div className=' flex justify-center w-full items-start pt-14'>
-          <form onSubmit={loginHandler} className='flex flex-col md:w-1/3 shadow-gray-700  w-full md:mx-0 mx-8' action="">
+          <form onSubmit={loginHandler} className='flex  flex-col md:w-1/3 shadow-gray-700  w-full md:mx-0 mx-8' action="">
 
             <div className='md:px-10 px-2 py-6 w-full flex flex-col gap-4'>
               <div className='text-center'>

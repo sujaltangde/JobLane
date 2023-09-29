@@ -1,15 +1,16 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { MetaData } from '../components/MetaData'
 import { useDispatch, useSelector } from 'react-redux'
 import { AiOutlineUnlock, AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'
 import { TbLoader2 } from 'react-icons/tb'
 import { deleteAccount } from '../actions/UserActions'
 import { Checkbox } from '@mantine/core';
+import { useNavigate } from 'react-router'
 
 
 export const DeleteAccount = () => {
 
-    const { loading } = useSelector(state => state.user)
+    const { loading , isLogin} = useSelector(state => state.user)
     const dispatch = useDispatch()
 
     const [eyeTog, setEyeTog] = useState(false)
@@ -17,13 +18,27 @@ export const DeleteAccount = () => {
     const [password, setPassword] = useState("")
 
     const [confirm, setConfirm] = useState(false)
-    console.log(confirm)
+    
+    const navigate = useNavigate() ;
+
+
     const deleteHandler = (e) => {
         e.preventDefault()
-        const data = {password}
+        
+        const data = {
+            password
+        }
+        
         dispatch(deleteAccount(data))
         setPassword("")
     }
+
+
+    useEffect(()=>{
+        if(!isLogin){
+            navigate("/")
+        }
+    },[isLogin])
 
     return (
         <>
@@ -34,11 +49,11 @@ export const DeleteAccount = () => {
 
                 <div>
                     <div className=' flex justify-center w-full items-start pt-14'>
-                        <form onSubmit={deleteHandler} className='flex flex-col md:w-1/3 shadow-gray-700  w-full md:mx-0 mx-8' action="">
+                        <form onSubmit={deleteHandler} className='flex flex-col md:w-1/3 shadow-gray-700  w-full md:mx-0 mx-4' action="">
 
-                            <div className='md:px-10 px-2 py-6 w-full flex flex-col gap-4'>
-                                <div className='text-center pb-6'>
-                                    <p className='md:text-4xl text-3xl  font-medium'>Delete Account</p>
+                            <div className='md:px-10 px-6 py-6 shadow-sm shadow-gray-700 border-gray-700 border w-full flex flex-col gap-4'>
+                                <div className='text-center pb-3'>
+                                    <p className='md:text-4xl text-3xl  font-semibold border-b pb-2 border-gray-700'>Delete Account</p>
                                 </div>
 
 

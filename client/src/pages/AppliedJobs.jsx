@@ -12,7 +12,6 @@ export const AppliedJobs = () => {
   const {loading, appliedJobs} = useSelector(state => state.application) ;
   const dispatch = useDispatch()
 
-  console.log(appliedJobs)
 
   useEffect(()=>{
     dispatch(getAppliedJob())

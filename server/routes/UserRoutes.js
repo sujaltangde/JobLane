@@ -10,7 +10,7 @@ router.route("/isLogin").get(isAuthenticated, isLogin) ;
 router.route("/me").get(isAuthenticated, me) ; 
 router.route("/changePassword").put(isAuthenticated, changePassword) ; 
 router.route("/updateProfile").put(isAuthenticated, updateProfile) ; 
-router.route("/deleteAccount").delete(isAuthenticated, deleteAccount) ; 
+router.route("/deleteAccount").put(isAuthenticated, deleteAccount) ; 
 
 
 

@@ -30,7 +30,7 @@ export const Sidebar = ({sideTog}) => {
             variants={sidebarVariants}
             initial="hidden"
             animate={sideTog ? "visible" : "hidden"}
-            transition={{ duration: 0.3, ease: "easeIn" }}  
+            transition={{ duration: 0.1, ease: "easeIn" }}  
         >
 
                 <div className='text-center w-full pt-8 text-xl '>

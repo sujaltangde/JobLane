@@ -92,8 +92,8 @@ export const ViewAllAppli = () => {
                  const dateB = new Date(b.createdAt);
                  return dateB - dateA;
                }).map((app,i)=>(
-                <tr key={i} className="bg-white border-b dark:bg-gray-950 dark:border-gray-700">
-                  <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <tr key={i} className=" border-b hover:bg-gray-900 bg-gray-950 border-gray-700 text-white">
+                  <th scope="row" className="px-6 py-4 font-medium whitespace-nowrap text-white">
                     {app._id}
                   </th>
                   <td className="px-6 py-4">

@@ -45,11 +45,11 @@ export const ChangePassword = () => {
 
                         <div>
                             <div className=' flex justify-center w-full items-start pt-14'>
-                                <form onSubmit={changeHandler} className='flex flex-col md:w-1/3 shadow-gray-700  w-full md:mx-0 mx-8' action="">
+                                <form onSubmit={changeHandler} className='flex flex-col md:w-1/3 shadow-gray-700  w-full md:mx-0 mx-4' action="">
 
-                                    <div className='md:px-10 px-2 py-6 w-full flex flex-col gap-4'>
+                                    <div className='md:px-10 shadow-sm  shadow-gray-700 border-gray-700 border px-5 py-6 w-full flex flex-col gap-4'>
                                         <div className='text-center'>
-                                            <p className='md:text-4xl text-3xl  font-medium'>Change Password</p>
+                                            <p className='md:text-4xl text-3xl border-b border-gray-700 font-semibold pb-3'>Change Password</p>
                                         </div>
 
 

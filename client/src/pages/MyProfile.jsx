@@ -1,17 +1,20 @@
-import React from 'react'
+import React,{useEffect,useState} from 'react'
 import { MetaData } from '../components/MetaData'
 import { useDispatch, useSelector } from 'react-redux'
 import { Loader } from '../components/Loader'
 import { Link } from 'react-router-dom'
 import { useDisclosure } from '@mantine/hooks';
 import { Modal, Button, Group } from '@mantine/core';
+import { useNavigate } from 'react-router-dom'
 
 
 
 export const MyProfile = () => {
 
-  const { loading, me } = useSelector(state => state.user)
+  const { loading, me, isLogin } = useSelector(state => state.user)
   const [opened, { open, close }] = useDisclosure(false);
+
+  const navigate = useNavigate()
 
   const convertDateFormat = (inputDate) => {
     const parts = inputDate.split('-');
@@ -26,7 +29,11 @@ export const MyProfile = () => {
     return `${day}-${month}-${year}`;
   }
 
-
+  useEffect(()=>{
+    if(isLogin === false){
+      navigate("/")
+    }
+  },[])
   
 
 
@@ -99,7 +106,7 @@ export const MyProfile = () => {
                         <li className=' '>
                           <Link to="/changePassword"><button className='blueCol w-2/3 md:w-full font-medium px-6 py-1'>Change Password</button></Link>
                         </li>
-                        {/* <li className=' '><Link to="/deleteAccount"><button className='blueCol w-2/3 md:w-full font-medium px-6 py-1'>Delete Account</button></Link></li> */}
+                        <li className=' '><Link to="/deleteAccount"><button className='blueCol w-2/3 md:w-full font-medium px-6 py-1'>Delete Account</button></Link></li>
                       </ul>
 
                     </div>

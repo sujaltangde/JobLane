@@ -101,11 +101,11 @@ export const EditProfile = () => {
 
                     <div>
                         <div className=' flex justify-center w-full items-start pt-14'>
-                            <form onSubmit={editHandler} className='flex flex-col md:w-1/3 shadow-gray-700  w-full md:mx-0 mx-8' action="">
+                            <form onSubmit={editHandler} className='flex flex-col md:w-1/3 shadow-gray-700  w-full md:mx-0 mx-3 pb-28' action="">
 
-                                <div className='md:px-10 px-2 pb-6 w-full flex flex-col gap-4'>
+                                <div className='md:px-10 px-7 pb-6 w-full shadow-sm shadow-gray-700 border-gray-700 border pt-5  flex flex-col gap-4'>
                                     <div className='text-center'>
-                                        <p className='text-4xl  font-medium'>Edit Profile</p>
+                                        <p className='text-4xl  font-semibold'>Edit Profile</p>
                                     </div>
 
 

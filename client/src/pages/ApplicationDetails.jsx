@@ -81,7 +81,7 @@ export const ApplicationDetails = () => {
                         :
 
                         <div>
-                            <div className='py-3 text-2xl md:text-4xl'>Application #{id}</div>
+                            <div className='py-3  text-2xl md:text-4xl'>Application #{id}</div>
 
                             <div className='pt-4 pb-3'>
                                 <p className='text-2xl pb-2'>Job Details:</p>

@@ -65,7 +65,7 @@ export const ViewAllUsersAdmin = () => {
           <div className="relative pb-24 overflow-x-auto shadow-md ">
 
 
-            <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <table className="w-full text-sm text-left  text-white">
 
               <thead className="text-xs text-gray-200 uppercase blueCol dark:text-gray-200">
                 <tr>
@@ -95,8 +95,8 @@ export const ViewAllUsersAdmin = () => {
                       return dateB - dateA;
                     }).map((user, i) => (
 
-                      <tr key={i} className="bg-white border-b dark:bg-gray-950 dark:border-gray-700">
-                        <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                      <tr key={i} className=" border-b hover:bg-gray-900 bg-gray-950 border-gray-700">
+                        <th scope="row" className="px-6 py-4 font-medium  whitespace-nowrap text-white">
                           {user._id}
                         </th>
                         <td className="px-6 py-4">

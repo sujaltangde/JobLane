@@ -247,10 +247,24 @@ exports.updateProfile = async (req, res) => {
 exports.deleteAccount = async (req,res) => {
     try{
 
+        const user = await User.findById(req.user._id) 
+
+        const isMatch =  await bcrypt.compare(req.body.password, user.password);
+        
+        if(isMatch){
+            await User.findByIdAndRemove(req.user._id) ;
+        }else{
+            return res.status(200).json({
+                success: false,
+                message: "Password does not match !"
+
+            })
+        }
         
 
         res.status(200).json({
-            user:req.user
+            success: true,
+            message: "Account Deleted"
         })
 
     }catch(err){

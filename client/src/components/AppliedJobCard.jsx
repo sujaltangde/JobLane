@@ -45,7 +45,8 @@ export const AppliedJobCard = ({id, job, time }) => {
                             <p className='text-sm flex md:hidden'>{job.description.slice(0, 25)}...</p>
                         </div>
                         <div className='absolute md:right-3 right-0 md:pt-0 md:top-3 top-18  flex flex-col gap-3' >
-                            <Link to={`/Application/Details/${id}`} className='blueCol font-semibold md:text-sm text-sm px-3 py-1 text-center ' >View Application</Link>
+                            <Link to={`/Application/Details/${id}`} className='blueCol font-semibold md:text-sm 
+                            text-[0.6rem] px-3 py-1 text-center ' >View Application</Link>
                             
                         </div>
 

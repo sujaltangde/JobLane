@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getSingleJob, saveJob } from '../actions/JobActions'
 import { BiBriefcase, BiBuildings, BiRupee } from 'react-icons/bi'
 import { AiOutlineSave } from 'react-icons/ai'
+import { HiStatusOnline } from 'react-icons/hi'
 import { BsPersonWorkspace, BsSend } from 'react-icons/bs'
 import { TbLoader2 } from 'react-icons/tb'
 import { useNavigate } from 'react-router'
@@ -57,7 +58,7 @@ export const JobDetails = () => {
 
 
       <MetaData title="Job Details" />
-      <div className='bg-gray-950 min-h-screen pt-14 md:px-20 px-3 text-white'>
+      <div className='bg-gray-950 min-h-screen pt-14 md:px-20  text-white'>
 
         {loading  ?
           <Loader />
@@ -67,17 +68,21 @@ export const JobDetails = () => {
 
             {jobDetails && <div>
               <div className='flex pt-5 md:px-12 pl-4 md:gap-10 gap-5'>
-                <div className=''>
-                  <img src={jobDetails && jobDetails.companyLogo.url} className='md:h-32 h-24 w-24 md:w-32' alt="" />
+                {/* <div className=''> */}
+                  {/* <img src={jobDetails && jobDetails.companyLogo.url} className='md:h-32 h-24 w-24 md:w-32' alt="" /> */}
+                {/* </div> */}
+                <div className='flex  items-center w-[6rem]'>
+                  <img src={jobDetails && jobDetails.companyLogo.url} className='' alt="" />
                 </div>
                 <div className='flex flex-col gap-2 md:pt-2'>
                   <p className='text-xl flex gap-1 items-center  md:text-3xl'><BiBriefcase /> {jobDetails.title}</p>
                   <p className='text-lg flex gap-1 items-center  md:text-2xl'><BiBuildings />{jobDetails.companyName}</p>
                   <p className='text-lg flex gap-2 items-center  md:text-2xl'><BsPersonWorkspace size={20} />{jobDetails.employmentType}</p>
-                  <span className={` ${jobDetails.status === "active" ? "text-green-700" : "text-red-500"} 
-                  pl-4 w-20 text-center rounded-lg font-semibold`} >
+                  <p className='text-lg flex gap-1.5 items-center  md:text-2xl'><HiStatusOnline size={20} /><span className={` ${jobDetails.status === "active" ? "text-green-700" : "text-red-500"} 
+                  w-20 text-center rounded-lg font-semibold`} >
                     {jobDetails.status}
-                  </span>
+                  </span></p>
+                  
                 </div>
 
               </div>
@@ -115,7 +120,7 @@ export const JobDetails = () => {
                     
                     
                   }}
-                className=' rounded-md hover:bg-green-600 font-bold px-10 py-1.5 bg-green-700 flex items-center gap-1 '> <BsSend /> {me.appliedJobs && me.appliedJobs.includes(jobDetails._id) ? "Applied" : "Apply"}</button>
+                className=' hover:bg-green-600 md:text-lg text-sm  font-bold px-10 py-1.5 bg-green-800 flex items-center gap-1 '> <BsSend /> {me.appliedJobs && me.appliedJobs.includes(jobDetails._id) ? "Applied" : "Apply"}</button>
 
 
                 <button onClick={
@@ -129,7 +134,7 @@ export const JobDetails = () => {
                     }
                   }
                   
-                  } className=' rounded-md hover:bg-blue-600 font-bold px-10 py-1.5 bg-blue-700 flex items-center gap-1 '>
+                  } className='  hover:bg-blue-600 md:text-lg text-sm font-bold px-10 py-1.5 bg-blue-800 flex items-center gap-1 '>
                   {saveJobLoading ? <span className='animate-spin px-5'><TbLoader2 size={20}/></span> : 
                   
                   <>

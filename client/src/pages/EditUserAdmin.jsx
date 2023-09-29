@@ -52,9 +52,9 @@ export const EditUserAdmin = () => {
                             </div>
 
                             <Sidebar sideTog={sideTog} />
-                            <div className='flex flex-col gap-3 md:px-0 px-10  justify-center items-center md:pt-20 pt-28'>
+                            <div className='flex flex-col gap-3 md:px-0 px-3  justify-center items-center md:pt-20 pt-28'>
 
-                                <div className='py-4 md:w-1/3 w-full  px-6 shadow-sm shadow-gray-700 border-gray-700 border'>
+                                <div className='py-4 md:w-1/3 w-full  px-5 shadow-sm shadow-gray-700 border-gray-700 border'>
                                     <div className='flex gap-3 border-b border-gray-700  pb-3 text-2xl justify-center items-center'>
                                        <div className='font-semibold'>Update User</div>
                                     </div>
@@ -71,7 +71,7 @@ export const EditUserAdmin = () => {
                                         <div>{userData.role}</div>
                                     </div>
                                     <div className='flex gap-3  pt-4 py-2 text-sm justify-start items-center'>
-                                        <select onChange={(e) => setRole(e.target.value)} id="large" className="block w-full px-6 py-2 text-base text-gray-900 border border-gray-300  bg-gray-50 dark:bg-gray-900 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white ">
+                                        <select onChange={(e) => setRole(e.target.value)} id="large" className="block w-full px-6 py-2 text-base  border  bg-gray-900 border-gray-600 placeholder-gray-400 text-white ">
                                             <option value="not" selected>Select Status</option>
                                             <option value="admin">Admin</option>
                                             <option value="applicant">Applicant</option>
