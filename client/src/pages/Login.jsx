@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { MetaData } from '../components/MetaData'
-import { AiOutlineMail, AiOutlineUnlock, AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai'
+import { AiOutlineMail, AiOutlineLock,AiOutlineUnlock, AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai'
 import { Link, useNavigate } from 'react-router-dom'
 import { TbLoader2 } from 'react-icons/tb'
 import { loginUser } from '../actions/UserActions'
@@ -64,7 +64,10 @@ export const Login = () => {
 
               <div className='bg-white flex justify-center items-center'>
                 <div className='text-gray-600 px-2'>
-                  <AiOutlineUnlock size={20} />
+                {eyeTog ?
+                    <AiOutlineUnlock size={20} /> : <AiOutlineLock size={20} />
+                  }
+                  
                 </div>
                 <input onChange={(e) => setPassword(e.target.value)} value={password} required placeholder='Password' type={eyeTog ? "text" : "password"} className='outline-none bold-placeholder w-full text-black px-1 pr-3 py-2' />
                 <div className='text-gray-600 px-2 cursor-pointer' >
