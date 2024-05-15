@@ -18,7 +18,7 @@ export const createApplication = (id) => async (dispatch) =>{
         }
 
 
-        const { data } = await axios.post(`https://joblane-b.onrender.com/api/v1/createApplication/${id}`,config,config) ;
+        const { data } = await axios.post(`https://joblane-backend.onrender.com/api/v1/createApplication/${id}`,config,config) ;
         
         console.log(data)
         dispatch(createApplicationSuccess())
@@ -44,7 +44,7 @@ export const getAppliedJob = () => async (dispatch) => {
             } 
         }
 
-        const {data} = await axios.get("https://joblane-b.onrender.com/api/v1/getAllApplication",config) ;
+        const {data} = await axios.get("https://joblane-backend.onrender.com/api/v1/getAllApplication",config) ;
 
         dispatch(allAppliedJobsSuccess(data.allApplications))
 
@@ -65,7 +65,7 @@ export const getSingleApplication = (id) => async (dispatch) => {
             } 
         }
 
-        const {data} = await axios.get(`https://joblane-b.onrender.com/api/v1/singleApplication/${id}`,config) ;
+        const {data} = await axios.get(`https://joblane-backend.onrender.com/api/v1/singleApplication/${id}`,config) ;
 
         dispatch(applicationDetailsSuccess(data.application))
 
@@ -85,7 +85,7 @@ export const deleteApplication = (id) => async (dispatch) => {
             } 
         }
 
-        const {data} = await axios.delete(`https://joblane-b.onrender.com/api/v1/deleteApplication/${id}`,config)
+        const {data} = await axios.delete(`https://joblane-backend.onrender.com/api/v1/deleteApplication/${id}`,config)
 
         dispatch(deleteApplicationSuccess())
         dispatch(getAppliedJob())

@@ -25,7 +25,7 @@ export const getAllJobsAdmin = () => async (dispatch) => {
             } 
         }
 
-        const {data} = await axios.get("https://joblane-b.onrender.com/api/v1/admin/allJobs",config) ;
+        const {data} = await axios.get("https://joblane-backend.onrender.com/api/v1/admin/allJobs",config) ;
 
         dispatch(getAllJobsSuccess(data.jobs))
 
@@ -44,7 +44,7 @@ export const getAllUsersAdmin = () => async (dispatch) => {
             } 
         }
 
-        const {data} = await axios.get("https://joblane-b.onrender.com/api/v1/admin/allUsers",config) ;
+        const {data} = await axios.get("https://joblane-backend.onrender.com/api/v1/admin/allUsers",config) ;
 
         dispatch(getAllUsersSuccess(data.users))
 
@@ -64,7 +64,7 @@ export const getAllAppAdmin = () => async (dispatch) => {
             } 
         }
 
-        const {data} = await axios.get("https://joblane-b.onrender.com/api/v1/admin/allApp",config) ;
+        const {data} = await axios.get("https://joblane-backend.onrender.com/api/v1/admin/allApp",config) ;
 
         dispatch(getAllAppSuccess(data.applications))
 
@@ -84,7 +84,7 @@ export const getAppData = (id) => async (dispatch) => {
             } 
         }
 
-        const {data} = await axios.get(`https://joblane-b.onrender.com/api/v1/admin/getApplication/${id}`,config)
+        const {data} = await axios.get(`https://joblane-backend.onrender.com/api/v1/admin/getApplication/${id}`,config)
         
         dispatch(getAppSuccess(data.application))
 
@@ -109,7 +109,7 @@ export const updateApplication = (id,dataBody) => async (dispatch) => {
              } 
          } 
 
-         const {data} = await axios.put(`https://joblane-b.onrender.com/api/v1/admin/updateApplication/${id}`,dataBody,config)
+         const {data} = await axios.put(`https://joblane-backend.onrender.com/api/v1/admin/updateApplication/${id}`,dataBody,config)
         
          dispatch(updateAppSuccess())
          dispatch(getAppData(id))
@@ -133,7 +133,7 @@ export const deleteApp = (id) => async (dispatch) => {
             } 
         }
 
-        const {data} = await axios.delete(`https://joblane-b.onrender.com/api/v1/admin/deleteApplication/${id}`,config)
+        const {data} = await axios.delete(`https://joblane-backend.onrender.com/api/v1/admin/deleteApplication/${id}`,config)
 
         
         dispatch(getAllAppAdmin()) 
@@ -158,7 +158,7 @@ export const getUserData = (id) => async (dispatch) => {
             } 
         }
 
-        const {data} = await axios.get(`https://joblane-b.onrender.com/api/v1/admin/getUser/${id}`,config)
+        const {data} = await axios.get(`https://joblane-backend.onrender.com/api/v1/admin/getUser/${id}`,config)
 
         dispatch(getUserSuccess(data.user))
 
@@ -178,7 +178,7 @@ export const updateUser = (id,userData) => async (dispatch) => {
             } 
         }
 
-        const {data} = await axios.put(`https://joblane-b.onrender.com/api/v1/admin/updateUser/${id}`,userData,config)
+        const {data} = await axios.put(`https://joblane-backend.onrender.com/api/v1/admin/updateUser/${id}`,userData,config)
 
         dispatch(getUserData(id)) ;
         toast.success("Role Updated Successfully !")
@@ -200,7 +200,7 @@ export const deleteUser = (id) => async (dispatch) => {
             } 
         }
 
-        const {data} = await axios.delete(`https://joblane-b.onrender.com/api/v1/admin/deleteUser/${id}`,config)
+        const {data} = await axios.delete(`https://joblane-backend.onrender.com/api/v1/admin/deleteUser/${id}`,config)
 
         dispatch(getAllUsersAdmin()) ;
         toast.success("User Deleted Successfully !")
@@ -222,7 +222,7 @@ export const getJobData = (id) => async (dispatch) => {
             } 
         }
 
-        const {data} = await axios.get(`https://joblane-b.onrender.com/api/v1/admin/getJob/${id}`,config) ;
+        const {data} = await axios.get(`https://joblane-backend.onrender.com/api/v1/admin/getJob/${id}`,config) ;
 
         dispatch(getJobSuccess(data.job))
 
@@ -241,7 +241,7 @@ export const updateJobData = (id,jobData) => async (dispatch) => {
             } 
         }
 
-        const {data} = await axios.put(`https://joblane-b.onrender.com/api/v1/admin/updateJob/${id}`,jobData,config) ;
+        const {data} = await axios.put(`https://joblane-backend.onrender.com/api/v1/admin/updateJob/${id}`,jobData,config) ;
 
         dispatch(updateJobSuccess())
         dispatch(getAllJobsAdmin())
@@ -264,7 +264,7 @@ export const deleteJobData = (id) => async (dispatch) => {
             } 
         }
 
-        const {data} = await axios.delete(`https://joblane-b.onrender.com/api/v1/admin/deleteJob/${id}`,config) ;
+        const {data} = await axios.delete(`https://joblane-backend.onrender.com/api/v1/admin/deleteJob/${id}`,config) ;
 
         dispatch(deleteJobSuccess())
         dispatch(getAllJobsAdmin())
