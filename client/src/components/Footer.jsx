@@ -3,6 +3,7 @@ import { MdOutlineBusinessCenter } from 'react-icons/md'
 import { Link } from 'react-router-dom'
 import { FaFacebook, FaTwitter, FaYoutube } from 'react-icons/fa'
 import { AiFillInstagram, AiFillMail } from 'react-icons/ai'
+import { TiSocialTwitter } from "react-icons/ti";
 
 
 export const Footer = () => {
@@ -26,12 +27,13 @@ export const Footer = () => {
           </div>
 
           <div className='flex gap-5 py-2 justify-center items-center'>
-            <FaFacebook className='cursor-pointer hover:scale-[1.1] hover:shadow-lg rounded-xl hover:shadow-white   '  size={22} />
-            <FaTwitter  className='cursor-pointer hover:scale-[1.1] hover:shadow-lg rounded-xl hover:shadow-white ' size={22} />
-            <FaYoutube  className='cursor-pointer hover:scale-[1.1] hover:shadow-lg rounded-xl hover:shadow-white ' size={22} />
-            <AiFillInstagram className='cursor-pointer hover:scale-[1.1] hover:shadow-lg rounded-xl hover:shadow-white ' size={22} />
-            <AiFillMail className='cursor-pointer hover:scale-[1.1] hover:shadow-lg rounded-xl hover:shadow-white  ' size={22} />
-          </div>
+            <FaFacebook className='cursor-pointer hover:scale-[1.1] hover:shadow-lg hover:shadow-white  rounded-md '  size={22} />
+            <FaTwitter 
+  className='cursor-pointer hover:scale-[1.1] hover:shadow-lg hover:shadow-white scale-0.5 rounded-md' size={22} />
+            <FaYoutube  className='cursor-pointer hover:scale-[1.1] hover:shadow-lg hover:shadow-white rounded-md' size={22} />
+            <AiFillInstagram className='cursor-pointer hover:scale-[1.1] hover:shadow-lg hover:shadow-white rounded-md' size={22} />
+            <AiFillMail className='cursor-pointer hover:scale-[1.1] hover:shadow-lg  hover:shadow-white rounded-md ' size={22} />
+          </div>1
         </div>
 
 
