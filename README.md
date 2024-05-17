@@ -85,3 +85,6 @@ Any contributor who wishes to contribute to this project should first read the R
 - **Backend**: Node.js, Express.js
 - **Database**: MongoDB 
 - **Styling**: Tailwind CSS, Material UI, Mantine UI
+
+
+<!-- trying to pr -->
