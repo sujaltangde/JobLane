@@ -18,13 +18,10 @@ export const Register = () => {
   const navigate = useNavigate()
 
   const [eyeTog, setEyeTog] = useState(false)
-  const [eyeTog2, setEyeTog2] = useState(false)
-
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confpassword, setConfPassword] = useState("");
   const [skills, setSkills] = useState("");
 
   const [avatar, setAvatar] = useState("")
@@ -32,7 +29,6 @@ export const Register = () => {
 
   const [resume, setResume] = useState("")
   const [resumeName, setResumeName] = useState("")
-  const [status, setStatus] = useState("");
 
 
 
@@ -69,15 +65,6 @@ export const Register = () => {
 
   const registerHandler = (e) => {
     e.preventDefault()
-
-    if (password !== confpassword) {
-      setStatus("Passwords do not match");
-      return
-    }
-
-    if(status.length !==0){
-      setStatus("")
-    }
 
     const skillsArr = skills.split(",")
     const data = {
@@ -152,26 +139,13 @@ export const Register = () => {
                 </div>
               </div>
 
-              {/* Confirm Password  */}
-              <div className='bg-white flex justify-center items-center'>
-                <div className='text-gray-600 px-2'>
-                  <AiOutlineUnlock size={20} />
-                </div>
-                <input value={confpassword} onChange={(e) => setConfPassword(e.target.value)} required placeholder='Password' type={eyeTog2 ? "text" : "password"} className='outline-none bold-placeholder w-full text-black px-1 pr-3 py-2' />
-                <div className='text-gray-600 px-2 cursor-pointer' >
-                  {eyeTog2 ?
-                    <AiOutlineEye size={20} onClick={() => setEyeTog2(!eyeTog2)} /> : <AiOutlineEyeInvisible size={20} onClick={() => setEyeTog2(!eyeTog2)} />
-                  }
-                </div>
-              </div>
-
               {/* Profile */}
               <div>
                 <div className='bg-white flex justify-center items-center'>
                   <div className='text-gray-600 px-2'>
-                    {avatar.length === 0 ? <CgProfile size={20} />
-                      : <img src={avatar} className='w-[3em] h-[2.5em]' />
-                    }
+                   {avatar.length === 0 ? <CgProfile size={20} />
+                   : <img src={avatar} className='w-[3em] h-[2.5em]'/> 
+                   }
                   </div>
                   <label htmlFor='avatar' className='outline-none w-full cursor-pointer text-black px-1 pr-3 py-2 '>
                     {avatarName.length === 0 ? <span className='text-gray-500 font-medium'>Select Profile Pic...</span>
@@ -211,9 +185,6 @@ export const Register = () => {
                 <textarea value={skills} onChange={(e) => setSkills(e.target.value)} placeholder='Skills' type="text" className='outline-none w-full text-black bold-placeholder px-1 pr-3 py-2' />
               </div>
 
-              {status.length!==0 && <div className='text-red-500 text-center'>
-                {status}
-              </div>}
 
               <div>
                 <button disabled={loading} className='blueCol flex justify-center items-center px-8 w-full py-2 font-semibold' >
