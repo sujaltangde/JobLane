@@ -33,15 +33,9 @@ export const Navbar = () => {
         <>
             <div className='text-white z-20 fixed min-w-full bg-gray-950'>
                 <ul className='md:flex hidden justify-center items-center gap-24 pt-4 pb-3 font-semibold text-xl'>
-                    <div className='flex fixed left-24 justify-center items-center titleT'>
-                        <Link to="/">
-                            <img
-                                src="/images/JoblaneLOGO.png"
-                                alt="Joblane Logo"
-                                style={{ width: '125px', height: 'auto' }}
-                            />
-                        </Link>
-                    </div>
+                <Link to="/" className='flex fixed left-24 justify-center items-center titleT'>
+                        <MdOutlineBusinessCenter size={19} />  JOBLANE
+                    </Link>
 
                     <Link to="/" className='cool-link'>Home</Link>
                     <Link to="/jobs" className='cool-link'>Jobs</Link>
