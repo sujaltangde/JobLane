@@ -11,11 +11,11 @@ export const Footer = () => {
 
       <div className='bg-gray-900 text-white py-3 pt-5 grid md:grid-cols-3 grid-cols-1 md:gap-6 gap-3 md:justify-center'>
 
-        <div className='flex gap-6 justify-center items-center'>
-          <Link to="/">Home</Link>
-          <Link to="/jobs">Jobs</Link>
-          <Link to="/about">About</Link>
-          <Link to="/contact">Contact</Link>
+        <div className='flex gap-8 justify-center items-center'>
+          <Link className='cool-link' to="/">Home</Link>
+          <Link className='cool-link' to="/jobs">Jobs</Link>
+          <Link className='cool-link' to="/about">About</Link>
+          <Link className='cool-link' to="/contact">Contact</Link>
         </div>
 
 
@@ -26,26 +26,11 @@ export const Footer = () => {
           </div>
 
           <div className='flex gap-5 py-2 justify-center items-center'>
-            <FaFacebook
-              className='cursor-pointer hover:text-[#2D68C4] duration-200 ease'
-              size={22}
-            />
-            <FaTwitter
-              className='cursor-pointer hover:text-[#1DA1F2] duration-200 ease'
-              size={22}
-            />
-            <FaYoutube
-              className='cursor-pointer hover:text-[#FF0000] duration-200 ease'
-              size={22}
-            />
-            <AiFillInstagram
-              className='cursor-pointer hover:text-[#C13584] duration-200 ease'
-              size={22}
-            />
-            <AiFillMail
-              className='cursor-pointer hover:text-[#D44638] duration-200 ease'
-              size={22}
-            />
+            <FaFacebook className='cursor-pointer hover:scale-[1.1] hover:shadow-lg rounded-xl hover:shadow-white   '  size={22} />
+            <FaTwitter  className='cursor-pointer hover:scale-[1.1] hover:shadow-lg rounded-xl hover:shadow-white ' size={22} />
+            <FaYoutube  className='cursor-pointer hover:scale-[1.1] hover:shadow-lg rounded-xl hover:shadow-white ' size={22} />
+            <AiFillInstagram className='cursor-pointer hover:scale-[1.1] hover:shadow-lg rounded-xl hover:shadow-white ' size={22} />
+            <AiFillMail className='cursor-pointer hover:scale-[1.1] hover:shadow-lg rounded-xl hover:shadow-white  ' size={22} />
           </div>
         </div>
 
