@@ -26,11 +26,26 @@ export const Footer = () => {
           </div>
 
           <div className='flex gap-5 py-2 justify-center items-center'>
-            <FaFacebook className='cursor-pointer'  size={22} />
-            <FaTwitter  className='cursor-pointer' size={22} />
-            <FaYoutube  className='cursor-pointer' size={22} />
-            <AiFillInstagram className='cursor-pointer' size={22} />
-            <AiFillMail className='cursor-pointer' size={22} />
+            <FaFacebook
+              className='cursor-pointer hover:text-[#2D68C4] duration-200 ease'
+              size={22}
+            />
+            <FaTwitter
+              className='cursor-pointer hover:text-[#1DA1F2] duration-200 ease'
+              size={22}
+            />
+            <FaYoutube
+              className='cursor-pointer hover:text-[#FF0000] duration-200 ease'
+              size={22}
+            />
+            <AiFillInstagram
+              className='cursor-pointer hover:text-[#C13584] duration-200 ease'
+              size={22}
+            />
+            <AiFillMail
+              className='cursor-pointer hover:text-[#D44638] duration-200 ease'
+              size={22}
+            />
           </div>
         </div>
 
