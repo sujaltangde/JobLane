@@ -6,7 +6,7 @@
 
 <h2>🚀 Demo</h2>
 
-[Website](https://joblane-01.netlify.app/)<br />
+[Website](https://joblane.vercel.app/)<br />
 
   
   
