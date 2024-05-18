@@ -1,9 +1,8 @@
 const Job = require('../models/JobModel')
 const User = require('../models/UserModel')
-const bcrypt = require('bcrypt')
-const { createToken } = require('../middlewares/auth')
 const cloudinary = require('cloudinary')
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+
 
 exports.createJob = async (req, res) => {
     try {
