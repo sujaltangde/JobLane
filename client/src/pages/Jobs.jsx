@@ -14,7 +14,8 @@ export const Jobs = () => {
 
   const dispatch = useDispatch()
   const { allJobs, loading } = useSelector(state => state.job)
-
+  
+  const [baseJobs, setBaseJobs] = useState([]); // New state for base jobs
   const [jobs, setJobs] = useState([]);
 
   const [category, setCategory] = useState("");
@@ -44,22 +45,23 @@ export const Jobs = () => {
 
   useEffect(() => {
     setJobs(allJobs);
+    setBaseJobs(allJobs); // Set base jobs when allJobs changes
   }, [allJobs])
 
   useEffect(() => {
-    const searchArr = jobs.filter((e) => (
+    const searchArr = baseJobs.filter((e) => (
       e.title.toLowerCase().includes(search.toLowerCase().trim())
     ))
 
     if (search === "") {
 
-      setJobs(allJobs)
+      setJobs(baseJobs)
     } else {
 
       setJobs(searchArr)
     }
 
-  }, [search])
+  }, [search,baseJobs])
 
 
 
@@ -70,7 +72,7 @@ export const Jobs = () => {
 
     console.log(search);
 
-    const searchArr = jobs.filter((e) => (
+    const searchArr = baseJobs.filter((e) => (
       e.title.toLowerCase().includes(search.toLowerCase())
     ))
 
@@ -80,7 +82,7 @@ export const Jobs = () => {
       setJobs(searchArr)
     }
     else if (searchArr.length === 0) {
-      setJobs(allJobs)
+      setJobs(baseJobs)
     }
 
   }
@@ -245,7 +247,10 @@ export const Jobs = () => {
                           const dateB = new Date(b.createdAt);
                           return dateB - dateA;
                         }).map((job, i) => (
-                          <JobCard onClick={() => { dispatch(getSingleJob(job._id)) }} key={i} job={job} />
+                          <JobCard onClick={() => {
+                             dispatch(getSingleJob(job._id)) }}
+                              key={i} 
+                              job={job} />
 
                         ))
 
