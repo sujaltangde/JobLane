@@ -19,6 +19,7 @@
     "express-validator": "^7.0.1",
     "jsonwebtoken": "^9.0.1",
     "mongoose": "^7.5.0",
+    "nodemon": "^3.1.0",
     "validator": "^13.11.0"
   }
 }
