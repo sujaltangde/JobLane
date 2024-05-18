@@ -29,7 +29,7 @@ export const SaveJobCard = ({ job }) => {
 
 
     return (
-        <div className='text-white flex flex-col gap-2  shadow-sm shadow-gray-800 border border-gray-700 md:px-4 px-3 w-full py-2'>
+        <div className='text-white flex flex-col gap-2 shadow-sm shadow-gray-800 border border-gray-700 md:px-4 px-3 w-full py-2'>
 
             <div className='flex gap-5 relative'>
                 <div className='flex justify-center items-center '>
