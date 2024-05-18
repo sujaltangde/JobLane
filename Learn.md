@@ -38,8 +38,18 @@ Follow the installation instructions for MongoDB, Express.js, React.js, and Node
     ```bash
     npm install
     ```
-
-7. Run the development backend server:
+7. Configure env file (generate config.env template by running the following command)
+    ```bash
+    cp config.env config.sample.env
+    ```
+8. Open config.env file from config folder replace the following credentials
+    ```bash
+    DB = 
+    CLOUDINARY_NAME = 
+    CLOUDINARY_API_KEY =
+    CLOUDINARY_API_SECRET =
+    ```
+9. Run the development backend server:
     ```bash
     nodemon server.js
     ```
