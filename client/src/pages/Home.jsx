@@ -134,11 +134,11 @@ export const Home = () => {
 
                                 </div> :
                                     <div>
-                                        <div className='flex md:flex-row flex-col  gap-3'>
+                                        <div className='flex md:flex-row flex-col gap-3'>
 
                                             {allJobs && allJobs.length >= 4 ? (
                                                <>
-                                                 <Link to={`/details/${allJobs[3]._id}`} className='flex gap-2 shadow-sm shadow-gray-800 border border-gray-700 md:w-[26rem] w-[21rem] p-2 flex-col'>
+                                                 <Link to={`/details/${allJobs[3]._id}`} className='flex gap-2 shadow-sm shadow-gray-800 border border-gray-700 md:w-[26rem] w-[21rem] p-2 flex-col hover:border-rose-500 transition duration-300 hover:scale-[1.02] hover:bg-slate-950'>
                                                     <div className='flex gap-3'>
                                                         <div className='w-[5rem] flex justify-center items-center' >
                                                             <img src={allJobs[3].companyLogo.url} alt={allJobs[3].title} className='w-[4rem]' />
@@ -160,7 +160,7 @@ export const Home = () => {
                                                     </div>
 
                                                 </Link>
-                                                 <Link  to={`/details/${allJobs[5]._id}`} className='flex gap-2 shadow-sm shadow-gray-800 border border-gray-700 md:w-[26rem] w-[21rem] p-2 flex-col'>
+                                                 <Link  to={`/details/${allJobs[5]._id}`} className='flex gap-2 shadow-sm shadow-gray-800 border border-gray-700 md:w-[26rem] w-[21rem] p-2 flex-col hover:border-rose-500 transition duration-300 hover:scale-[1.02] hover:bg-slate-950'>
                                                     <div className='flex gap-3 '>
                                                         <div className='w-[5rem]  flex justify-center items-center' >
                                                             <img src={allJobs[5].companyLogo.url} alt={allJobs[5].title} className="w-[4rem]" />
@@ -182,7 +182,7 @@ export const Home = () => {
                                                     </div>
 
                                                 </Link>
-                                                 <Link  to={`/details/${allJobs[2]._id}`} className='flex gap-2 shadow-sm shadow-gray-800 border border-gray-700 md:w-[26rem] w-[21rem] p-2 flex-col'>
+                                                 <Link  to={`/details/${allJobs[2]._id}`} className='flex gap-2 shadow-sm shadow-gray-800 border border-gray-700 md:w-[26rem] w-[21rem] p-2 flex-col hover:border-rose-500 transition duration-300 hover:scale-[1.02] hover:bg-slate-950'>
                                                     <div className='flex gap-3'>
                                                         <div className='w-[5rem]  flex justify-center items-center' >
                                                             <img src={allJobs[2].companyLogo.url} alt={allJobs[2].title} className="w-[4rem]" />
