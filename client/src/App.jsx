@@ -32,6 +32,7 @@ import { EditAppAdmin } from './pages/EditAppAdmin'
 import { EditUserAdmin } from './pages/EditUserAdmin'
 import { EditJobAdmin } from './pages/EditJobAdmin'
 import { Test } from './pages/Test'
+import NotFound from './pages/NotFound'
 
 
 
@@ -97,7 +98,7 @@ function App() {
         <Route path='/test' element={<Test/>} />
 
     
-
+        <Route path='*' element={<NotFound/>} />
         
 
 
