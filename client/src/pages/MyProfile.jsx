@@ -29,11 +29,6 @@ export const MyProfile = () => {
     return `${day}-${month}-${year}`;
   }
 
-  useEffect(()=>{
-    if(isLogin === false){
-      navigate("/")
-    }
-  },[])
   
 
 
