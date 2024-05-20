@@ -41,6 +41,7 @@ export const loginUser = (userData) => async (dispatch) => {
         dispatch(loginSuccess())
         localStorage.setItem('userToken', data.token)
         dispatch(logOrNot())
+        dispatch(me())
         toast.success("Login successful !")
 
     } catch (err) {
@@ -81,6 +82,8 @@ export const me = () => async (dispatch) => {
         }
 
         const { data } = await axios.get("https://joblane-backend.onrender.com/api/v1/me", config);
+        
+        localStorage.setItem("role", data.user.role)
 
         dispatch(getMeSuccess(data.user))
 
