@@ -2,7 +2,7 @@
 
 <p align="center"><img src="https://socialify.git.ci/sujaltangde/JobLane/image?forks=1&issues=1&language=1&name=1&owner=1&pulls=1&stargazers=1&theme=Dark" alt="JobLane" width="640" height="320" /></p>
 
-[![Hits](https://hits.sh/github.com/sujaltangde/JobLane.svg)](https://hits.sh/github.com/sujaltangde/JobLane/)
+[![Hits](https://hits.sh/github.com/sujaltangde/JobLane.svg?color=116acc)](https://hits.sh/github.com/sujaltangde/JobLane/)
 
 <p id="description">Full Stack Job application portal built using MERN stack, Focusing on simplifying the job applications.</p>
 
