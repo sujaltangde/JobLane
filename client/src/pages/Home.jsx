@@ -4,8 +4,7 @@ import { MetaData } from '../components/MetaData'
 import { useSelector, useDispatch } from 'react-redux';
 import { JobCard } from '../components/JobCard';
 import { getAllJobs } from '../actions/JobActions';
-
-
+import Testimonials from '../components/Testimonials/Testimonials.jsx';
 
 
 
@@ -234,6 +233,8 @@ export const Home = () => {
                     </div>
                     
 
+                    <Testimonials />
+                    
                     <div className="pt-[7rem] pb-[10rem] md:px-[14rem] px-[1rem]   text-center">
                         <p>Discover the Power of Possibility with JobLane: Where Your Professional Journey Takes Flight, Guided by a Network of Diverse Opportunities!</p>
                     </div>
