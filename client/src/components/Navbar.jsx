@@ -23,6 +23,7 @@ export const Navbar = () => {
 
     const LogOut = () => {
         localStorage.removeItem('userToken');
+        localStorage.removeItem('role');
         dispatch(logOrNot());
         navigate('/');
         toast.success("Logout Successful !");
