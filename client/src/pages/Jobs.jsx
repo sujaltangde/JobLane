@@ -54,6 +54,7 @@ export const Jobs = () => {
     ))
 
     if (search === "") {
+
       setJobs(baseJobs)
     } else {
 
@@ -198,18 +199,16 @@ export const Jobs = () => {
 
                 <div className='filter1  md:flex hidden flex-col'>
                   <div className='flex justify-start  flex-col filter  '>
-                  <p className='text-xl underline underline-offset-4'>Categories</p>
-                  <select 
-                    className='text-black mt-3 p-2 border border-gray-300 rounded-md' 
-                    onChange={(e) => setCategory(e.target.value)} 
-                    value={category}
-                  >
-                    {data.map((e, i) => (
-                      <option key={i} value={e} className='text-black'>
-                        {e}
-                      </option>
-                    ))}
-                  </select>
+                    <p className='text-xl underline underline-offset-4'>Categories</p>
+                    <ul className='flex pt-3 flex-col gap-3'>
+
+                      {
+                        data.map((e, i) => (
+                          <li key={i} onClick={() => setCategory(e)} className={`hover:text-yellow-600 cursor-pointer ${category === e ? "text-yellow-600" : ""} `}>{e}</li>
+                        ))
+                      }
+
+                    </ul>
                     <div className='pt-5'>
                       <p className='text-xl pb-3 underline underline-offset-4'>Salary</p>
 
@@ -300,18 +299,16 @@ export const Jobs = () => {
 
 <div className='filter1  md:hidden flex flex-col'>
   <div className='flex justify-start  flex-col filter  '>
-  <p className='text-xl underline underline-offset-4'>Categories</p>
-  <select 
-        className='text-black mt-3 p-2 border border-gray-300 rounded-md md:hidden' 
-        onChange={(e) => setCategory(e.target.value)} 
-        value={category}
-      >
-        {data.map((e, i) => (
-          <option key={i} value={e} className={`text-black hover:bg-yellow-600 cursor-pointer `}>
-            {e}
-          </option>
-        ))}
-      </select>
+    <p className='text-lg underline underline-offset-4'>Categories</p>
+    <ul className='flex pt-3 text-sm flex-col gap-3'>
+
+      {
+        data.map((e, i) => (
+          <li key={i} onClick={() => setCategory(e)} className={`hover:text-yellow-600 cursor-pointer ${category === e ? "text-yellow-600" : ""} `}>{e}</li>
+        ))
+      }
+
+    </ul>
     <div className='pt-5'>
       <p className='text-xl pb-3 underline underline-offset-4'>Salary</p>
 
@@ -336,26 +333,19 @@ export const Jobs = () => {
 </div>
 <div className='filter2  md:hidden flex flex-col ml-16'>
   <div className='flex justify-end  flex-col filter  '>
-  <p className='text-lg underline underline-offset-4'>Companies</p>
+    <p className='text-lg underline underline-offset-4'>Companies</p>
 
-<div className='pt-3'>
-  <select
-    className='text-black p-2 border border-gray-300 rounded-md'
-    onChange={(e) => setCompany(e.target.value)}
-    value={company}
-  >
-    
-    {companyData.map((e, i) => (
-      <option key={i} value={e}>
-        {e}
-      </option>
-    ))}
-  </select>
-</div>
-<div className='flex text-sm flex-col gap-4 pt-5'>
-        <button onClick={rightFilter} className='blueCol px-1 py-1 text-xs'>Apply Search</button>
-        <button onClick={removeRightFilter} className='blueCol px-1 py-1 text-xs'>Remove Search</button>
-      </div>
+    <div className='pt-3 flex flex-col justify-end text-right gap-3'>
+      {
+        companyData.map(e => (
+          <div onClick={() => setCompany(e)} className={`${company === e ? "text-yellow-600" : ""} cursor-pointer text-sm hover:text-yellow-600`} >{e}</div>
+        ))
+      }
+    </div>
+    <div className='flex text-sm flex-col gap-4 pt-5'>
+      <button onClick={() => rightFilter()} className='blueCol px-1 py-1 text-xs'>Apply Search</button>
+      <button onClick={() => removeRightFilter()} className='blueCol px-1 py-1 text-xs'>Remove Search</button>
+    </div>
   </div>
 
 </div>
@@ -374,21 +364,15 @@ export const Jobs = () => {
 
                 <div className='filter2  md:flex hidden flex-col ml-16'>
                   <div className='flex justify-end  flex-col filter  '>
-                  <p className='text-xl underline underline-offset-4'>Companies</p>
+                    <p className='text-xl underline underline-offset-4'>Companies</p>
 
-
-                <select
-                  className='text-black p-2 mt-3 border border-gray-300 rounded-md w-full'
-                  onChange={(e) => setCompany(e.target.value)}
-                  value={company}
-                >
-                  
-                  {companyData.map((e, i) => (
-                    <option key={i} value={e}>
-                      {e}
-                    </option>
-                  ))}
-                </select>
+                    <div className='pt-3 flex flex-col justify-end text-right gap-3'>
+                      {
+                        companyData.map(e => (
+                          <div onClick={() => setCompany(e)} className={`${company === e ? "text-yellow-600" : ""} cursor-pointer hover:text-yellow-600`} >{e}</div>
+                        ))
+                      }
+                    </div>
                     <div className='flex flex-col gap-4 pt-5'>
                       <button onClick={() => rightFilter()} className='blueCol px-1 py-1 text-xs'>Apply Search</button>
                       <button onClick={() => removeRightFilter()} className='blueCol px-1 py-1 text-xs'>Remove Search</button>
