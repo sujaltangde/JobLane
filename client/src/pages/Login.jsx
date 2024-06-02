@@ -74,7 +74,7 @@ export const Login = () => {
                 </div>
               </div>
               <div>
-                <button disabled={loading} className='blueCol px-8 w-full py-2 flex justify-center items-center font-semibold' >{loading ? <TbLoader2 className='animate-spin' size={24} /> : "Login"}</button>
+              <button disabled={loading || !email || !password} className='blueCol px-8 w-full py-2 flex justify-center items-center font-semibold' >{loading ? <TbLoader2 className='animate-spin' size={24} /> : "Login"}</button>
               </div>
               <div className='text-center text-sm pt-2'>
                 <p>Don't have an account, <Link to="/register" className='text-yellow-400 underline'>Register</Link> here. </p>
