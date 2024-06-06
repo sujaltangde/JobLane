@@ -41,57 +41,86 @@ export const Login = () => {
   return (
 
 
-    <>
-
-      <MetaData title="Login" />
-      <div className='bg-gray-950 min-h-screen pt-14 md:px-20 px-3   text-white'>
-
-
-        <div className=' flex justify-center w-full items-start pt-14'>
-          <form onSubmit={loginHandler} className='flex  flex-col md:w-1/3 shadow-gray-700  w-full md:mx-0 mx-8' action="">
-
-            <div className='md:px-10 px-2 py-6 w-full flex flex-col gap-4'>
-              <div className='text-center'>
-                <p className='text-4xl  font-medium'>Login</p>
-              </div>
-
-              <div className='bg-white flex justify-center items-center'>
-                <div className='text-gray-600 px-2'>
-                  <AiOutlineMail size={20} />
+      <>
+        <MetaData title="Login" />
+        <div className="bg-gray-950 min-h-screen pt-14 md:px-20 px-3 text-white">
+          <div className="flex justify-center w-full items-start pt-14">
+            <form
+                onSubmit={loginHandler}
+                className="flex flex-col md:w-1/3 shadow-lg shadow-gray-700 w-full md:mx-0 mx-8 bg-gray-800 rounded-lg"
+            >
+              <div className="md:px-10 px-6 py-8 w-full flex flex-col gap-6">
+                <div className="text-center">
+                  <p className="text-4xl font-bold text-yellow-400">Login</p>
                 </div>
-                <input onChange={(e) => setEmail(e.target.value)} value={email} required placeholder='Email' type="text" className='outline-none bold-placeholder  w-full text-black px-1 pr-3 py-2' />
-              </div>
 
-              <div className='bg-white flex justify-center items-center'>
-                <div className='text-gray-600 px-2'>
-                  <AiOutlineUnlock size={20} />
+                {/* Email */}
+                <div className="bg-white flex items-center rounded-md overflow-hidden">
+                  <div className="text-gray-600 px-3">
+                    <AiOutlineMail size={24} />
+                  </div>
+                  <input
+                      onChange={(e) => setEmail(e.target.value)}
+                      value={email}
+                      required
+                      placeholder="Email"
+                      type="text"
+                      className="outline-none w-full text-black px-2 py-3"
+                  />
                 </div>
-                <input onChange={(e) => setPassword(e.target.value)} value={password} required placeholder='Password' type={eyeTog ? "text" : "password"} className='outline-none bold-placeholder w-full text-black px-1 pr-3 py-2' />
-                <div className='text-gray-600 px-2 cursor-pointer' >
-                  {eyeTog ?
-                    <AiOutlineEye size={20} onClick={() => setEyeTog(!eyeTog)} /> : <AiOutlineEyeInvisible size={20} onClick={() => setEyeTog(!eyeTog)} />
-                  }
+
+                {/* Password */}
+                <div className="bg-white flex items-center rounded-md overflow-hidden relative">
+                  <div className="text-gray-600 px-3">
+                    <AiOutlineUnlock size={24} />
+                  </div>
+                  <input
+                      onChange={(e) => setPassword(e.target.value)}
+                      value={password}
+                      required
+                      placeholder="Password"
+                      type={eyeTog ? "text" : "password"}
+                      className="outline-none w-full text-black px-2 py-3"
+                  />
+                  <div
+                      className="text-gray-600 px-3 cursor-pointer absolute right-0"
+                      onClick={() => setEyeTog(!eyeTog)}
+                  >
+                    {eyeTog ? (
+                        <AiOutlineEye size={24} />
+                    ) : (
+                        <AiOutlineEyeInvisible size={24} />
+                    )}
+                  </div>
+                </div>
+
+                <div>
+                  <button
+                      disabled={loading}
+                      className="bg-blue-600 hover:bg-blue-700 flex justify-center items-center px-8 w-full py-3 font-semibold rounded-md transition duration-200"
+                  >
+                    {loading ? (
+                        <TbLoader2 className="animate-spin" size={24} />
+                    ) : (
+                        "Login"
+                    )}
+                  </button>
+                </div>
+
+                <div className="text-center text-sm pt-2">
+                  <p>
+                    Don't have an account?{" "}
+                    <Link to="/register" className="text-yellow-400 underline">
+                      Register
+                    </Link>{" "}
+                    here.
+                  </p>
                 </div>
               </div>
-              <div>
-                <button disabled={loading} className='blueCol px-8 w-full py-2 flex justify-center items-center font-semibold' >{loading ? <TbLoader2 className='animate-spin' size={24} /> : "Login"}</button>
-              </div>
-              <div className='text-center text-sm pt-2'>
-                <p>Don't have an account, <Link to="/register" className='text-yellow-400 underline'>Register</Link> here. </p>
-              </div>
-
-            </div>
-
-
-
-          </form>
+            </form>
+          </div>
         </div>
-
-
-      </div>
-
-
-    </>
+      </>
 
 
   )

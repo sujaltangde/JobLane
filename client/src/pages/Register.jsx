@@ -98,113 +98,179 @@ export const Register = () => {
   }, [isLogin])
 
   return (
-    <>
+      <>
       <MetaData title="Register" />
-      <div className='bg-gray-950 min-h-screen pt-14 md:px-20 px-3  text-white'>
-        <div className=' flex justify-center w-full items-start pt-6'>
-          <form onSubmit={registerHandler} className='flex flex-col md:w-1/3 shadow-gray-700  w-full md:mx-0 mx-8' action="">
+  <div className="bg-gray-950 min-h-screen pt-14 md:px-20 px-3 text-white">
+    <div className="flex justify-center w-full items-start pt-6">
+      <form
+          onSubmit={registerHandler}
+          className="flex flex-col md:w-1/3 shadow-lg shadow-gray-700 w-full md:mx-0 mx-8 bg-gray-800 rounded-lg"
+      >
+        <div className="md:px-10 px-6 pt-8 pb-20 w-full flex flex-col gap-6">
+          <div className="text-center">
+            <p className="text-4xl font-bold text-yellow-400">Register</p>
+          </div>
 
-            <div className='md:px-10 px-2 pt-4 pb-20 w-full flex flex-col gap-4'>
-              <div className='text-center'>
-                <p className='text-4xl  font-medium'>Register</p>
-              </div>
-
-              {/* Name */}
-              <div className='bg-white flex justify-center items-center'>
-                <div className='text-gray-600 px-2'>
-                  <MdPermIdentity size={20} />
-                </div>
-                <input value={name} onChange={(e) => setName(e.target.value)} required placeholder='Full name' type="text" className='outline-none bold-placeholder w-full text-black px-1 pr-3 py-2' />
-              </div>
-
-
-              {/* Mail */}
-              <div className='bg-white flex justify-center items-center'>
-                <div className='text-gray-600 px-2'>
-                  <AiOutlineMail size={20} />
-                </div>
-                <input value={email} onChange={(e) => setEmail(e.target.value)} required placeholder='Email' type="email" className='outline-none bold-placeholder w-full text-black px-1 pr-3 py-2' />
-              </div>
-
-              {/* Password */}
-              <div className='bg-white flex justify-center items-center'>
-                <div className='text-gray-600 px-2'>
-                  <AiOutlineUnlock size={20} />
-                </div>
-                <input value={password} onChange={(e) => setPassword(e.target.value)} required placeholder='Password' type={eyeTog ? "text" : "password"} className='outline-none bold-placeholder w-full text-black px-1 pr-3 py-2' />
-                <div className='text-gray-600 px-2 cursor-pointer' >
-                  {eyeTog ?
-                    <AiOutlineEye size={20} onClick={() => setEyeTog(!eyeTog)} /> : <AiOutlineEyeInvisible size={20} onClick={() => setEyeTog(!eyeTog)} />
-                  }
-                </div>
-              </div>
-
-              {/* Profile */}
-              <div>
-                <div className='bg-white flex justify-center items-center'>
-                  <div className='text-gray-600 px-2'>
-                   {avatar.length === 0 ? <CgProfile size={20} />
-                   : <img src={avatar} className='w-[3em] h-[2.5em]'/> 
-                   }
-                  </div>
-                  <label htmlFor='avatar' className='outline-none w-full cursor-pointer text-black px-1 pr-3 py-2 '>
-                    {avatarName.length === 0 ? <span className='text-gray-500 font-medium'>Select Profile Pic...</span>
-                      : avatarName}
-                  </label>
-                  <input id='avatar' name='avatar' required
-                    onChange={avatarChange}
-                    placeholder='Profile' accept="image/*" type="file" className='outline-none  w-full hidden text-black px-1 pr-3 py-2' />
-
-
-                </div>
-                <p className='bg-gray-950 text-white text-xs'>Please select Image file</p>
-              </div>
-
-
-              {/* Resume */}
-              <div>
-                <div className='bg-white flex justify-center items-center'>
-                  <div className='text-gray-600 px-2'>
-                    <BsFileEarmarkText size={20} />
-                  </div>
-                  <label className='outline-none w-full text-black px-1 pr-3 py-2' htmlFor="resume">
-                    {resumeName.length === 0 ? <span className='text-gray-500 cursor-pointer font-medium'>Select Resume...</span> : resumeName}
-                  </label>
-                  <input required
-                    onChange={resumeChange}
-                    placeholder='Resume' id='resume' name='resume' accept="image/*" type="file" className='outline-none hidden w-full text-black px-1 pr-3 py-2' />
-                </div>
-                <p className='bg-gray-950 text-white text-xs'>Please select Image file</p>
-              </div>
-
-              {/* Skills */}
-              <div className='bg-white flex justify-center items-center'>
-                <div className='text-gray-600 md:pb-12 pb-8 px-2'>
-                  <MdOutlineFeaturedPlayList size={20} />
-                </div>
-                <textarea value={skills} onChange={(e) => setSkills(e.target.value)} placeholder='Skills' type="text" className='outline-none w-full text-black bold-placeholder px-1 pr-3 py-2' />
-              </div>
-
-
-              <div>
-                <button disabled={loading} className='blueCol flex justify-center items-center px-8 w-full py-2 font-semibold' >
-                  {loading ? <TbLoader2 className='animate-spin' size={24} /> : "Register"}</button>
-              </div>
-
-              <div className='text-center text-sm pt-2'>
-                <p>Already have a account,<Link to="/login" className='text-yellow-400 underline'>Login</Link> here. </p>
-              </div>
-
+          {/* Name */}
+          <div className="bg-white flex items-center rounded-md overflow-hidden">
+            <div className="text-gray-600 px-3">
+              <MdPermIdentity size={24} />
             </div>
+            <input
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+                placeholder="Full name"
+                type="text"
+                className="outline-none w-full text-black px-2 py-3"
+            />
+          </div>
 
+          {/* Email */}
+          <div className="bg-white flex items-center rounded-md overflow-hidden">
+            <div className="text-gray-600 px-3">
+              <AiOutlineMail size={24} />
+            </div>
+            <input
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                placeholder="Email"
+                type="email"
+                className="outline-none w-full text-black px-2 py-3"
+            />
+          </div>
 
+          {/* Password */}
+          <div className="bg-white flex items-center rounded-md overflow-hidden relative">
+            <div className="text-gray-600 px-3">
+              <AiOutlineUnlock size={24} />
+            </div>
+            <input
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                placeholder="Password"
+                type={eyeTog ? "text" : "password"}
+                className="outline-none w-full text-black px-2 py-3"
+            />
+            <div
+                className="text-gray-600 px-3 cursor-pointer absolute right-0"
+                onClick={() => setEyeTog(!eyeTog)}
+            >
+              {eyeTog ? (
+                  <AiOutlineEye size={24} />
+              ) : (
+                  <AiOutlineEyeInvisible size={24} />
+              )}
+            </div>
+          </div>
 
-          </form>
+          {/* Profile */}
+          <div>
+            <div className="bg-white flex items-center rounded-md overflow-hidden">
+              <div className="text-gray-600 px-3">
+                {avatar.length === 0 ? (
+                    <CgProfile size={24} />
+                ) : (
+                    <img src={avatar} className="w-[3em] h-[2.5em] rounded-full" />
+                )}
+              </div>
+              <label
+                  htmlFor="avatar"
+                  className="outline-none w-full cursor-pointer text-black px-2 py-3"
+              >
+                {avatarName.length === 0 ? (
+                    <span className="text-gray-500 font-medium">
+                        Select Profile Pic...
+                      </span>
+                ) : (
+                    avatarName
+                )}
+              </label>
+              <input
+                  id="avatar"
+                  name="avatar"
+                  required
+                  onChange={avatarChange}
+                  placeholder="Profile"
+                  accept="image/*"
+                  type="file"
+                  className="outline-none w-full hidden text-black px-2 py-3"
+              />
+            </div>
+            <p className="text-gray-400 text-xs mt-1">Please select an image file.</p>
+          </div>
+
+          {/* Resume */}
+          <div>
+            <div className="bg-white flex items-center rounded-md overflow-hidden">
+              <div className="text-gray-600 px-3">
+                <BsFileEarmarkText size={24} />
+              </div>
+              <label
+                  className="outline-none w-full text-black px-2 py-3 cursor-pointer"
+                  htmlFor="resume"
+              >
+                {resumeName.length === 0 ? (
+                    <span className="text-gray-500 font-medium">Select Resume...</span>
+                ) : (
+                    resumeName
+                )}
+              </label>
+              <input
+                  required
+                  onChange={resumeChange}
+                  placeholder="Resume"
+                  id="resume"
+                  name="resume"
+                  accept="image/*"
+                  type="file"
+                  className="outline-none hidden w-full text-black px-2 py-3"
+              />
+            </div>
+            <p className="text-gray-400 text-xs mt-1">Please select an image file.</p>
+          </div>
+
+          {/* Skills */}
+          <div className="bg-white flex items-start rounded-md overflow-hidden">
+            <div className="text-gray-600 px-3 py-3">
+              <MdOutlineFeaturedPlayList size={24} />
+            </div>
+            <textarea
+                value={skills}
+                onChange={(e) => setSkills(e.target.value)}
+                placeholder="Skills"
+                className="outline-none w-full text-black px-2 py-3"
+            />
+          </div>
+
+          <div>
+            <button
+                disabled={loading}
+                className="bg-blue-600 hover:bg-blue-700 flex justify-center items-center px-8 w-full py-3 font-semibold rounded-md transition duration-200"
+            >
+              {loading ? (
+                  <TbLoader2 className="animate-spin" size={24} />
+              ) : (
+                  "Register"
+              )}
+            </button>
+          </div>
+
+          <div className="text-center text-sm pt-2">
+            <p>
+              Already have an account?{" "}
+              <Link to="/login" className="text-yellow-400 underline">
+                Login
+              </Link>{" "}
+              here.
+            </p>
+          </div>
         </div>
-
-
-      </div>
-
-    </>
+      </form>
+    </div>
+  </div>
+</>
   )
 }
