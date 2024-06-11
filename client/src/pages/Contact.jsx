@@ -3,7 +3,8 @@ import { MetaData } from '../components/MetaData'
 import { BsFacebook } from 'react-icons/bs'
 import { AiFillInstagram, AiOutlineTwitter, AiTwotoneMail } from 'react-icons/ai'
 import { BiMinus, BiPlus } from 'react-icons/bi'
-
+// import { FaSquareTwitter } from "react-icons/fa6";
+import X from '../../public/X.png'
 export const Contact = () => {
 
     const [que1, setQue1] = useState(false)
@@ -60,7 +61,8 @@ export const Contact = () => {
                             <div className='flex gap-5 pt-1 items-center'>
                                 <BsFacebook size={26} />
                                 <AiFillInstagram size={30} />
-                                <AiOutlineTwitter size={30} />
+                                {/* <FaSquareTwitter size={30} /> */}
+                                <img src={X} height={20} width={20} alt='twitter'/>
                                 <AiTwotoneMail size={28} />
                             </div>
                         </ul>
