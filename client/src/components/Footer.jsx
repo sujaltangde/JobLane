@@ -1,7 +1,8 @@
 import React from 'react'
 import { MdOutlineBusinessCenter } from 'react-icons/md'
 import { Link } from 'react-router-dom'
-import { FaFacebook, FaTwitter, FaYoutube } from 'react-icons/fa'
+import { FaFacebook,FaTwitterSquare,  FaYoutube } from 'react-icons/fa'
+
 import { AiFillInstagram, AiFillMail } from 'react-icons/ai'
 
 
@@ -9,7 +10,6 @@ export const Footer = () => {
   return (
     <>
       <div className="bg-gray-900 text-white py-3 pt-5 grid md:grid-cols-3 grid-cols-1 md:gap-6 gap-3 md:justify-center">
-
         <div className="flex gap-6 justify-center items-center">
           <Link
             to="/"
@@ -53,9 +53,9 @@ export const Footer = () => {
               className="cursor-pointer hover:text-[#2D68C4] duration-200 ease"
               size={22}
             />
-            <FaTwitter
-              className="cursor-pointer hover:text-[#1DA1F2] duration-200 ease"
-              size={22}
+            <FaTwitterSquare 
+            className="cursor-pointer hover:text-[#1DA1F2] duration-200 ease"
+            size={22}
             />
             <FaYoutube
               className="cursor-pointer hover:text-[#FF0000] duration-200 ease"
