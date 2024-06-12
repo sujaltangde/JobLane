@@ -4,7 +4,7 @@ import { BsFacebook } from 'react-icons/bs'
 import { AiFillInstagram, AiOutlineTwitter, AiTwotoneMail } from 'react-icons/ai'
 import { BiMinus, BiPlus } from 'react-icons/bi'
 // import { FaSquareTwitter } from "react-icons/fa6";
-import X from '../../public/X.png'
+import X from '../../public/X.svg'
 export const Contact = () => {
 
     const [que1, setQue1] = useState(false)
@@ -62,7 +62,7 @@ export const Contact = () => {
                                 <BsFacebook size={26} />
                                 <AiFillInstagram size={30} />
                                 {/* <FaSquareTwitter size={30} /> */}
-                                <img src={X} height={20} width={20} alt='twitter'/>
+                                <img src={X} height={25} width={25} alt='twitter' className='text-white bg-white'/>
                                 <AiTwotoneMail size={28} />
                             </div>
                         </ul>

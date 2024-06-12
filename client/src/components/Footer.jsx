@@ -3,7 +3,7 @@ import { MdOutlineBusinessCenter } from 'react-icons/md'
 import { Link } from 'react-router-dom'
 import { FaFacebook, FaYoutube } from 'react-icons/fa'
 import { AiFillInstagram, AiFillMail } from 'react-icons/ai'
-import X from '../../public/X.png'
+import X from '../../public/X.svg'
 
 export const Footer = () => {
   return (
@@ -34,7 +34,7 @@ export const Footer = () => {
               className='cursor-pointer hover:text-[#1DA1F2] duration-200 ease'
               size={22}
             /> */}
-            <img src={X} height={20} width={20} alt='twitter' className='hover: cursor-pointer hover:text-white'/>
+            <img src={X} height={20} width={20} alt='twitter' className='hover: cursor-pointer bg-white border-r-6'/>
             <FaYoutube
               className='cursor-pointer hover:text-[#FF0000] duration-200 ease'
               size={22}
