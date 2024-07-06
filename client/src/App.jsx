@@ -34,6 +34,7 @@ import { EditJobAdmin } from './pages/EditJobAdmin'
 import { Test } from './pages/Test'
 import NotFound from './pages/NotFound'
 import UnAuthorized from './pages/UnAuthorized'
+import ScrollToTopWhenRouteChanges from './components/ScrollToTopOnRouteChange.jsx'
 
 
 
@@ -72,10 +73,10 @@ function App() {
 
   return (
     <>
-
+       <ScrollToTopWhenRouteChanges/>
       <Navbar />
       <Routes>
-
+        
         <Route exact path='/' element={<Home />} />
         <Route path='/jobs' element={<Jobs />} />
         <Route path='/contact' element={<Contact />} />
