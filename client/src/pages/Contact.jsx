@@ -9,7 +9,7 @@ import {
 import { BiMinus, BiPlus } from "react-icons/bi";
 import  Card  from "../components/Card"; // New Card component
 import Accordion from "../components/Accordion";// New Accordion component
-
+import { FaXTwitter } from "react-icons/fa6";
 export const Contact = () => {
   const [que1, setQue1] = useState(false);
   const [que2, setQue2] = useState(false);
@@ -62,7 +62,7 @@ export const Contact = () => {
   <div className="flex gap-5 pt-1 items-center">
     <BsFacebook className="hover:text-blue-600" size={26} />
     <AiFillInstagram className="hover:text-pink-500" size={30} />
-    <AiOutlineTwitter className="hover:text-blue-400" size={30} />
+    <FaXTwitter className="hover:text-black hover:bg-white" size={26} />
     <AiTwotoneMail className="hover:text-red-600" size={28} />
   </div>
 </ul>
