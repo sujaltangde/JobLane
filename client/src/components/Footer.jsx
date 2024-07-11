@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { FaFacebook,FaTwitterSquare,  FaYoutube } from 'react-icons/fa'
 
 import { AiFillInstagram, AiFillMail } from 'react-icons/ai'
-
+import X from "../../public/X-twitter.png"
 
 export const Footer = () => {
   return (
@@ -53,10 +53,7 @@ export const Footer = () => {
               className="cursor-pointer hover:text-[#2D68C4] duration-200 ease"
               size={22}
             />
-            <FaTwitterSquare 
-            className="cursor-pointer hover:text-[#1DA1F2] duration-200 ease"
-            size={22}
-            />
+            <img src={X} className="hover:cursor-pointer"/>
             <FaYoutube
               className="cursor-pointer hover:text-[#FF0000] duration-200 ease"
               size={22}
