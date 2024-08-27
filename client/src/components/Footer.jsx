@@ -78,9 +78,9 @@ export const Footer = () => {
             <Link
               target="_blank"
               className="underline text-blue-400"
-              to="https://sujal-tangde.netlify.app/"
+              to="https://shaheen-choudhari.netlify.app/"
             >
-              Sujal Tangde
+              Shaheen Choudhari
             </Link>
           </p>
           <p className="text-sm"> &copy;Copyright, All rights reserved.</p>
