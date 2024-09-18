@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+import useIsMobile from '../hooks/useIsMobile'
 
 
 export const AppliedJobCard = ({id, job, time }) => {
@@ -20,7 +21,7 @@ export const AppliedJobCard = ({id, job, time }) => {
         return `${day}-${month}-${year}`;
     }
 
-   
+    const isMobile = useIsMobile()
 
     
 
@@ -41,7 +42,7 @@ export const AppliedJobCard = ({id, job, time }) => {
                         <div className='flex flex-col gap-1'>
                             <p className='text-sm'>{job.companyName}</p>
                             <p className='text-sm'>{job.exp}</p>
-                            <p className='text-sm md:flex hidden'>{job.description.slice(0, 90)}...</p>
+                           {!isMobile && <p className='text-sm flex '>{job.description.slice(0, 90)}...</p>}
                             <p className='text-sm flex md:hidden'>{job.description.slice(0, 25)}...</p>
                         </div>
                         <div className='absolute md:right-3 right-0 md:pt-0 md:top-3 top-18  flex flex-col gap-3' >

@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { saveJob } from '../actions/JobActions'
 import { useDispatch, useSelector } from 'react-redux'
+import useIsMobile from '../hooks/useIsMobile'
 
 
 export const SaveJobCard = ({ job }) => {
@@ -21,7 +22,7 @@ export const SaveJobCard = ({ job }) => {
         return `${day}-${month}-${year}`;
     }
 
- 
+    const isMobile = useIsMobile()
 
     const unSaveJobHandler = () => {
         dispatch(saveJob(job._id))
@@ -44,7 +45,7 @@ export const SaveJobCard = ({ job }) => {
                         <div className='flex flex-col gap-1'>
                             <p className='text-sm'>{job.companyName}</p>
                             <p className='text-sm'>{job.exp}</p>
-                            <p className='text-sm md:flex hidden'>{job.description.slice(0, 90)}...</p>
+                         {!isMobile && <p className='text-sm md:flex '>{job.description.slice(0, 90)}...</p>}
                             <p className='text-sm flex md:hidden'>{job.description.slice(0, 25)}...</p>
                         </div>
                         <div className='absolute md:right-3 right-0 md:pt-0 top-7 text-sm flex flex-col gap-6' >
