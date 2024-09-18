@@ -14,12 +14,16 @@ import { logOrNot } from '../actions/UserActions';
 import { useNavigate } from 'react-router-dom';
 import { logoutClearState } from '../slices/UserSlice';
 import { motion } from "framer-motion";
+import useIsMobile from '../hooks/useIsMobile';
 
 export const Navbar = () => {
     const { isLogin, me } = useSelector(state => state.user);
     const [toggle, setToggle] = useState(false);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+
+    const isMobile = useIsMobile()
 
     const LogOut = () => {
         localStorage.removeItem('userToken');
@@ -33,8 +37,8 @@ export const Navbar = () => {
     return (
         <>
             <div className='text-white z-20 fixed min-w-full bg-gray-950'>
-                <ul className='md:flex hidden justify-center items-center gap-24 pt-4 pb-3 font-semibold text-xl'>
-                <Link to="/" className='flex fixed left-24 justify-center items-center titleT'>
+              {!isMobile &&  <ul className='sm:flex  justify-center items-center gap-24 pt-4 pb-3 font-semibold text-xl'>
+                    <Link to="/" className='flex fixed left-24 justify-center items-center titleT'>
                         <MdOutlineBusinessCenter size={19} />  JOBLANE
                     </Link>
 
@@ -64,7 +68,7 @@ export const Navbar = () => {
                             <Link className='cursor-pointer text-sm px-3 py-1 rounded-xl blueCol' to="/register">Register</Link>
                         </span>
                     )}
-                </ul>
+                </ul>}
 
                 <div className='py-3 px-3 md:hidden justify-between items-center flex'>
                     <Link to="/" className='text-lg titleT flex justify-center items-center gap-1'>
