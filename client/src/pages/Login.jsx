@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from 'react-redux'
 
 export const Login = () => {
 
-
   const { loading, isLogin } = useSelector(state => state.user)
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -16,36 +15,48 @@ export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [eyeTog, setEyeTog] = useState(false)
+  const [errors, setErrors] = useState({});
 
+  const validateForm = () => {
+    const newErrors = {};
 
-  const loginHandler = (e) => {
-    e.preventDefault()
-    const data = {
-      email, password
+    if (!email.trim()) {
+      newErrors.email = "Email is required";
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      newErrors.email = "Email is invalid";
     }
 
-    dispatch(loginUser(data))
+    if (!password) {
+      newErrors.password = "Password is required";
+    } else if (password.length < 6) {
+      newErrors.password = "Password must be at least 6 characters";
+    }
 
-    setEmail("")
-    setPassword("")
-  }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
-
+  const loginHandler = (e) => {
+    e.preventDefault();
+    if (validateForm()) {
+      const data = { email, password };
+      dispatch(loginUser(data));
+      setEmail("");
+      setPassword("");
+    }
+  };
 
   useEffect(() => {
     if (isLogin) {
-      navigate("/")
+      navigate("/");
     }
-  }, [isLogin])
+  }, [isLogin]);
 
   return (
-
-
     <>
 
       <MetaData title="Login" />
       <div className='bg-gray-950 min-h-screen pt-14 md:px-20 px-3   text-white'>
-
 
         <div className=' flex justify-center w-full items-start pt-14'>
           <form onSubmit={loginHandler} className='flex  flex-col md:w-1/3 shadow-gray-700  w-full md:mx-0 mx-8' action="">
@@ -55,26 +66,47 @@ export const Login = () => {
                 <p className='text-4xl  font-medium'>Login</p>
               </div>
 
-              <div className='bg-white flex justify-center items-center'>
-                <div className='text-gray-600 px-2'>
-                  <AiOutlineMail size={20} />
+              <div className='bg-white flex flex-col'>
+                <div className='flex justify-center items-center'>
+                  <div className='text-gray-600 px-2'>
+                    <AiOutlineMail size={20} />
+                  </div>
+                  <input
+                    onChange={(e) => setEmail(e.target.value)}
+                    value={email}
+                    required
+                    placeholder='Email'
+                    type="text"
+                    className='outline-none bold-placeholder  w-full text-black px-1 pr-3 py-2'
+                  />
                 </div>
-                <input onChange={(e) => setEmail(e.target.value)} value={email} required placeholder='Email' type="text" className='outline-none bold-placeholder  w-full text-black px-1 pr-3 py-2' />
+                {errors.email && <p className='text-red-500 text-sm mt-1'>{errors.email}</p>}
               </div>
 
-              <div className='bg-white flex justify-center items-center'>
-                <div className='text-gray-600 px-2'>
-                  <AiOutlineUnlock size={20} />
+              <div className='bg-white flex flex-col'>
+                <div className='flex justify-center items-center'>
+                  <div className='text-gray-600 px-2'>
+                    <AiOutlineUnlock size={20} />
+                  </div>
+                  <input
+                    onChange={(e) => setPassword(e.target.value)}
+                    value={password}
+                    required
+                    placeholder='Password'
+                    type={eyeTog ? "text" : "password"}
+                    className='outline-none bold-placeholder w-full text-black px-1 pr-3 py-2'
+                  />
+                  <div className='text-gray-600 px-2 cursor-pointer' >
+                    {eyeTog ?
+                      <AiOutlineEye size={20} onClick={() => setEyeTog(!eyeTog)} /> :
+                      <AiOutlineEyeInvisible size={20} onClick={() => setEyeTog(!eyeTog)} />
+                    }
+                  </div>
                 </div>
-                <input onChange={(e) => setPassword(e.target.value)} value={password} required placeholder='Password' type={eyeTog ? "text" : "password"} className='outline-none bold-placeholder w-full text-black px-1 pr-3 py-2' />
-                <div className='text-gray-600 px-2 cursor-pointer' >
-                  {eyeTog ?
-                    <AiOutlineEye size={20} onClick={() => setEyeTog(!eyeTog)} /> : <AiOutlineEyeInvisible size={20} onClick={() => setEyeTog(!eyeTog)} />
-                  }
-                </div>
+                {errors.password && <p className='text-red-500 text-sm mt-1'>{errors.password}</p>}
               </div>
               <div>
-              <button disabled={loading || !email || !password} className='blueCol px-8 w-full py-2 flex justify-center items-center font-semibold' >{loading ? <TbLoader2 className='animate-spin' size={24} /> : "Login"}</button>
+                <button disabled={loading || !email || !password} className='blueCol px-8 w-full py-2 flex justify-center items-center font-semibold' >{loading ? <TbLoader2 className='animate-spin' size={24} /> : "Login"}</button>
               </div>
               <div className='text-center text-sm pt-2'>
                 <p>Don't have an account, <Link to="/register" className='text-yellow-400 underline'>Register</Link> here. </p>
@@ -82,17 +114,11 @@ export const Login = () => {
 
             </div>
 
-
-
           </form>
         </div>
 
-
       </div>
 
-
     </>
-
-
   )
 }

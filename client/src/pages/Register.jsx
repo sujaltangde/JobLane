@@ -9,8 +9,6 @@ import { TbLoader2 } from 'react-icons/tb'
 import { registerUser } from '../actions/UserActions'
 import { useDispatch, useSelector } from 'react-redux'
 
-
-
 export const Register = () => {
 
   const { loading, isLogin } = useSelector(state => state.user)
@@ -18,19 +16,18 @@ export const Register = () => {
   const navigate = useNavigate()
 
   const [eyeTog, setEyeTog] = useState(false)
+  const [errors, setErrors] = useState({})
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [skills, setSkills] = useState("");
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [skills, setSkills] = useState("")
 
   const [avatar, setAvatar] = useState("")
   const [avatarName, setAvatarName] = useState("")
 
   const [resume, setResume] = useState("")
   const [resumeName, setResumeName] = useState("")
-
-
 
   const avatarChange = (e) => {
     if (e.target.name === "avatar") {
@@ -46,8 +43,6 @@ export const Register = () => {
     }
   }
 
-
-
   const resumeChange = (e) => {
     if (e.target.name === "resume") {
       const reader = new FileReader();
@@ -62,34 +57,63 @@ export const Register = () => {
     }
   }
 
+  const validateForm = () => {
+    const newErrors = {};
+
+    if (name.trim().length < 3) {
+      newErrors.name = "Name must be at least 3 characters long";
+    }
+
+    if (!/\S+@\S+\.\S+/.test(email)) {
+      newErrors.email = "Please enter a valid email address";
+    }
+
+    if (password.length < 6) {
+      newErrors.password = "Password must be at least 6 characters long";
+    }
+
+    if (!avatar) {
+      newErrors.avatar = "Please select a profile picture";
+    }
+
+    if (!resume) {
+      newErrors.resume = "Please upload your resume";
+    }
+
+    if (skills.trim().length === 0) {
+      newErrors.skills = "Please enter at least one skill";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const registerHandler = (e) => {
     e.preventDefault()
 
-    const skillsArr = skills.split(",")
-    const data = {
-      name,
-      email,
-      password,
-      avatar,
-      resume,
-      skills: skillsArr
+    if (validateForm()) {
+      const skillsArr = skills.split(",")
+      const data = {
+        name,
+        email,
+        password,
+        avatar,
+        resume,
+        skills: skillsArr
+      }
+
+      dispatch(registerUser(data))
+
+      setName("")
+      setEmail("")
+      setPassword("")
+      setAvatar("")
+      setAvatarName("")
+      setResume("")
+      setResumeName("")
+      setSkills("")
     }
-
-    dispatch(registerUser(data))
-
-    setName("")
-    setEmail("")
-    setPassword("")
-    setAvatar("")
-    setAvatarName("")
-    setResume("")
-    setResumeName("")
-    setSkills("")
-
   }
-
-
 
   useEffect(() => {
     if (isLogin) {

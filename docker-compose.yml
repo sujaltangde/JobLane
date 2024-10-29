@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  # MongoDB Service
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongo-data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+
+  # Backend Service (Node.js + Express)
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: server
+    ports:
+      - '8080:8080'
+    env_file:
+      - ./server/.env  # Load environment variables from .env in the server folder
+    depends_on:
+      - mongo
+
+  # Frontend Service (React)
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    container_name: client
+    ports:
+      - '5173:5173'
+    depends_on:
+      - server
+
+volumes:
+  mongo-data:
+    driver: local
