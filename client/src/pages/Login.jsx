@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import  { useEffect, useState } from 'react'
 import { MetaData } from '../components/MetaData'
 import { AiOutlineMail, AiOutlineUnlock, AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai'
 import { Link, useNavigate } from 'react-router-dom'
@@ -47,26 +47,26 @@ export const Login = () => {
       <div className='bg-gray-950 min-h-screen pt-14 md:px-20 px-3   text-white'>
 
 
-        <div className=' flex justify-center w-full items-start pt-14'>
+        <div className=' flex justify-center w-full items-start pt-10'> 
           <form onSubmit={loginHandler} className='flex  flex-col md:w-1/3 shadow-gray-700  w-full md:mx-0 mx-8' action="">
 
             <div className='md:px-10 px-2 py-6 w-full flex flex-col gap-4'>
               <div className='text-center'>
-                <p className='text-4xl  font-medium'>Login</p>
+                <p className='text-4xl  font-medium '>Login</p>
               </div>
 
-              <div className='bg-white flex justify-center items-center'>
-                <div className='text-gray-600 px-2'>
+              <div className=' flex justify-center items-center mt-24 border-b-2 border-gray-600'>
+                <div className='text-gray-600 bg-[#030712] px-2'>
                   <AiOutlineMail size={20} />
                 </div>
-                <input onChange={(e) => setEmail(e.target.value)} value={email} required placeholder='Email' type="text" className='outline-none bold-placeholder  w-full text-black px-1 pr-3 py-2' />
+                <input onChange={(e) => setEmail(e.target.value)} value={email} required placeholder='Email' type="text" className='outline-none bold-placeholder  w-full text-white px-1 pr-3 py-2 bg-[#030712]' />
               </div>
 
-              <div className='bg-white flex justify-center items-center'>
-                <div className='text-gray-600 px-2'>
+              <div className=' flex justify-center items-center border-b-2 border-gray-600'>
+                <div className='text-gray-600 bg-[#030712] px-2'>
                   <AiOutlineUnlock size={20} />
                 </div>
-                <input onChange={(e) => setPassword(e.target.value)} value={password} required placeholder='Password' type={eyeTog ? "text" : "password"} className='outline-none bold-placeholder w-full text-black px-1 pr-3 py-2' />
+                <input onChange={(e) => setPassword(e.target.value)} value={password} required placeholder='Password' type={eyeTog ? "text" : "password"} className='outline-none bold-placeholder w-full text-white px-1 pr-3 py-2 bg-[#030712]' />
                 <div className='text-gray-600 px-2 cursor-pointer' >
                   {eyeTog ?
                     <AiOutlineEye size={20} onClick={() => setEyeTog(!eyeTog)} /> : <AiOutlineEyeInvisible size={20} onClick={() => setEyeTog(!eyeTog)} />
@@ -74,10 +74,10 @@ export const Login = () => {
                 </div>
               </div>
               <div>
-              <button disabled={loading || !email || !password} className='blueCol px-8 w-full py-2 flex justify-center items-center font-semibold' >{loading ? <TbLoader2 className='animate-spin' size={24} /> : "Login"}</button>
+              <button disabled={loading || !email || !password} className='blueCol px-8 w-full py-2 flex justify-center items-center font-semibold rounded-lg' >{loading ? <TbLoader2 className='animate-spin' size={24} /> : "Login"}</button>
               </div>
               <div className='text-center text-sm pt-2'>
-                <p>Don't have an account, <Link to="/register" className='text-yellow-400 underline'>Register</Link> here. </p>
+                <p className='text-gray-300'> Don't have an account, <Link to="/register" className='text-yellow-400 underline'>Register</Link> here. </p>
               </div>
 
             </div>

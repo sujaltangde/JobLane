@@ -1,4 +1,4 @@
-import React from 'react'
+
 import { MetaData } from '../components/MetaData'
 
 export const About = () => {
