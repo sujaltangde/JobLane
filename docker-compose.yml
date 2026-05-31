@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  client:
+    build: ./client
+    ports:
+      - "5173:5173"
+    depends_on:
+      - server
+    networks:
+      - joblane-network
+
+  server:
+    build: ./server
+    ports:
+      - "5000:5000"
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/joblane
+    depends_on:
+      - mongo
+    networks:
+      - joblane-network
+
+  mongo:
+    image: mongo:7
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - joblane-network
+
+volumes:
+  mongo_data:
+
+networks:
+  joblane-network:
+    driver: bridge
