@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { MetaData } from "../components/MetaData";
 import { BsFacebook } from "react-icons/bs";
 import {
@@ -6,15 +5,33 @@ import {
   AiOutlineTwitter,
   AiTwotoneMail,
 } from "react-icons/ai";
-import { BiMinus, BiPlus } from "react-icons/bi";
-import  Card  from "../components/Card"; // New Card component
-import Accordion from "../components/Accordion";// New Accordion component
+import { Link } from "react-router-dom";
+import Card from "../components/Card"; // New Card component
+import Accordion from "../components/Accordion"; // New Accordion component
 
 export const Contact = () => {
-  const [que1, setQue1] = useState(false);
-  const [que2, setQue2] = useState(false);
-  const [que3, setQue3] = useState(false);
-
+  const socialMediaLinks = [
+    {
+      name: "Facebook",
+      link: "https://www.facebook.com/",
+      icon: <BsFacebook className="hover:text-blue-600" size={26} />,
+    },
+    {
+      name: "Instagram",
+      link: "https://www.instagram.com/",
+      icon: <AiFillInstagram className="hover:text-pink-500" size={30} />,
+    },
+    {
+      name: "Twitter",
+      link: "https://twitter.com/",
+      icon: <AiOutlineTwitter className="hover:text-blue-400" size={30} />,
+    },
+    {
+      name: "Email",
+      link: "mailto:info@joblane.com",
+      icon: <AiTwotoneMail className="hover:text-red-600" size={28} />,
+    },
+  ];
   return (
     <>
       <MetaData title="Contact" />
@@ -26,16 +43,16 @@ export const Contact = () => {
             </p>
 
             <p>
-              We're excited to hear from you! If you have any questions,
+              We&apos;re excited to hear from you! If you have any questions,
               inquiries, or feedback, feel free to reach out to us using the
               contact information provided below. Your satisfaction and
-              engagement with our platform are our top priorities, and we're
-              here to assist you in any way we can.
+              engagement with our platform are our top priorities, and
+              we&apos;re here to assist you in any way we can.
             </p>
           </div>
 
           <div>
-            <p class="text-2xl text-yellow-500">Contact Information</p>
+            <p className="text-2xl text-yellow-500">Contact Information</p>
 
             <Card
               title="Address"
@@ -57,17 +74,17 @@ export const Contact = () => {
               ]}
             />
 
-          <p className="text-xl pt-3 pb-1">Social Media:</p>
-<ul>
-  <div className="flex gap-5 pt-1 items-center">
-    <BsFacebook className="hover:text-blue-600" size={26} />
-    <AiFillInstagram className="hover:text-pink-500" size={30} />
-    <AiOutlineTwitter className="hover:text-blue-400" size={30} />
-    <AiTwotoneMail className="hover:text-red-600" size={28} />
-  </div>
-</ul>
-</div>
-        
+            <p className="text-xl pt-3 pb-1">Social Media:</p>
+            <ul>
+              <div className="flex gap-5 pt-1 items-center">
+                {socialMediaLinks.map((item, index) => (
+                  <Link key={index} to={item.link}>
+                    {item.icon}
+                  </Link>
+                ))}
+              </div>
+            </ul>
+          </div>
 
           <div>
             <p className="text-2xl pb-4 text-yellow-500">
