@@ -68,7 +68,14 @@ To get started with the assignment project, follow these steps:
     npm install
     ```
 
-7. Run the development server:
+7. Create the backend environment file from the sample:
+    ```bash
+    copy config\config.sample.env config\config.env
+    ```
+
+8. Open `server/config/config.env` and replace the `DB` value with your complete MongoDB connection URL.
+
+9. Run the development server:
     ```bash
     nodemon server.js
     ```
