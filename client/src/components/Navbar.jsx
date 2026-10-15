@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useUser, UserButton } from '@clerk/clerk-react';
 import { Link } from 'react-router-dom';
 import { Avatar } from '@mantine/core';
 import { FaBars } from 'react-icons/fa';
@@ -18,6 +19,7 @@ import useIsMobile from '../hooks/useIsMobile';
 
 export const Navbar = () => {
     const { isLogin, me } = useSelector(state => state.user);
+    const { isSignedIn: clerkSignedIn } = useUser();
     const [toggle, setToggle] = useState(false);
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -37,7 +39,7 @@ export const Navbar = () => {
     return (
         <>
             <div className='text-white z-20 fixed min-w-full bg-gray-950'>
-              {!isMobile &&  <ul className='sm:flex  justify-center items-center gap-24 pt-4 pb-3 font-semibold text-xl'>
+                {!isMobile && <ul className='sm:flex  justify-center items-center gap-24 pt-4 pb-3 font-semibold text-xl'>
                     <Link to="/" className='flex fixed left-24 justify-center items-center titleT'>
                         <MdOutlineBusinessCenter size={19} />  JOBLANE
                     </Link>
@@ -62,6 +64,10 @@ export const Navbar = () => {
                                 <Menu.Item onClick={LogOut} color="red" icon={<RiLogoutBoxFill size={14} />}>Logout</Menu.Item>
                             </Menu.Dropdown>
                         </Menu>
+                    ) : clerkSignedIn ? (
+                        <span className='fixed right-24 flex items-center'>
+                            <UserButton afterSignOutUrl="/" />
+                        </span>
                     ) : (
                         <span className='fixed right-24 flex gap-3'>
                             <Link className='cursor-pointer text-sm px-3 py-1 rounded-xl blueCol' to="/login">Login</Link>
@@ -91,6 +97,10 @@ export const Navbar = () => {
                                         <Menu.Item onClick={LogOut} color="red" icon={<RiLogoutBoxFill size={14} />}>Logout</Menu.Item>
                                     </Menu.Dropdown>
                                 </Menu>
+                            ) : clerkSignedIn ? (
+                                <span className='flex items-center fixed top-3 right-16'>
+                                    <UserButton afterSignOutUrl="/" />
+                                </span>
                             ) : (
                                 <span className='flex gap-3 fixed top-3 right-16'>
                                     <Link className='cursor-pointer text-sm px-3 py-1 rounded-xl blueCol' to="/login">Login</Link>

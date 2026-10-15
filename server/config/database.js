@@ -5,7 +5,8 @@ const databaseConnection = () => {
 
     if (!dbUri) {
         console.error('ERROR: Missing required environment variable DB.')
-        console.error('Set DB in server/config/config.env or run Docker with --env-file /path/to/config.env or -e DB=...')
+        console.error('Copy server/config/config.sample.env to server/config/config.env and set DB to your MongoDB connection URL.')
+        console.error('Alternatively, run Docker with --env-file /path/to/config.env or -e DB=...')
         process.exit(1)
     }
 

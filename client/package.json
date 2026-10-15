@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@clerk/clerk-react": "^5.61.10",
     "@emotion/react": "^11.11.4",
     "@emotion/serialize": "^1.1.4",
     "@mantine/carousel": "^6.0.19",
