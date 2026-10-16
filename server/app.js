@@ -3,8 +3,9 @@ const app = express()
 const cors = require('cors')
 const dotenv = require('dotenv')
 const fileUpload = require('express-fileupload')
+const path = require('path')
 
-dotenv.config({path:'./config/config.env'})
+dotenv.config({ path: path.join(__dirname, 'config', 'config.env') })
 
 app.use(express.json({ limit: '10mb' }))
 
