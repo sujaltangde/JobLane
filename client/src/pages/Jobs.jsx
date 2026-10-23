@@ -23,6 +23,7 @@ export const Jobs = () => {
   const [salary, setSalary] = useState(0);
   const [company, setCompany] = useState("");
   const [search, setSearch] = useState("");
+  const [location, setLocation] = useState("");
 
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -40,6 +41,8 @@ export const Jobs = () => {
     "Amazon",
     "Oracle"
   ]
+
+  const locationData = [...new Set(allJobs.map(job => job.location).filter(Boolean))]
 
   console.log(allJobs.length)
 
@@ -127,6 +130,23 @@ export const Jobs = () => {
     setCurrentPage(1)
   }
 
+  const locationFilter = (jobsList) => {
+    if (location === "") {
+      setJobs(allJobs)
+      return
+    }
+    const locFilArr = jobsList.filter((item) =>
+      item.location.toLowerCase() === location.toLowerCase()
+    )
+    setJobs(locFilArr)
+  }
+
+  const removeLocationFilter = () => {
+    setLocation("")
+    setJobs(allJobs)
+    setCurrentPage(1)
+  }
+
 
 
 
@@ -208,7 +228,7 @@ export const Jobs = () => {
 
               <div className=' flex flex-col pt-1 justify-between sm:flex-row w-full '>
 
-              {!isMobile &&  <div className='filter1  flex  flex-col'>
+                {!isMobile && <div className='filter1  flex  flex-col'>
                   <div className='flex justify-start  flex-col filter  '>
                     <p className='text-xl underline underline-offset-4'>Categories</p>
                     <ul className='flex pt-3 flex-col gap-3'>
@@ -233,6 +253,19 @@ export const Jobs = () => {
                       />
                     </div>
 
+
+                    <div className='pt-5'>
+                      <p className='text-xl pb-3 underline underline-offset-4'>Location</p>
+                      <ul className='flex pt-1 flex-col gap-3'>
+                        {locationData.map((loc, i) => (
+                          <li key={i} onClick={() => setLocation(loc)} className={`hover:text-yellow-600 cursor-pointer ${location === loc ? "text-yellow-600" : ""}`}>{loc}</li>
+                        ))}
+                      </ul>
+                      <div className='flex flex-col gap-4 w-2/3 pt-4'>
+                        <button onClick={() => locationFilter(jobs)} className='blueCol px-1 py-1 text-xs'>Apply Location</button>
+                        <button onClick={() => removeLocationFilter()} className='blueCol px-1 py-1 text-xs'>Remove Location</button>
+                      </div>
+                    </div>
 
                     <div className='flex flex-col gap-4 w-2/3 pt-5'>
                       <button onClick={() => leftFilter(jobs)} className='blueCol px-1 py-1 text-xs'>Apply Filter</button>
@@ -335,6 +368,19 @@ export const Jobs = () => {
                             </div>
 
 
+                            <div className='pt-4'>
+                              <p className='text-lg pb-2 underline underline-offset-4'>Location</p>
+                              <ul className='flex pt-1 text-sm flex-col gap-3'>
+                                {locationData.map((loc, i) => (
+                                  <li key={i} onClick={() => setLocation(loc)} className={`hover:text-yellow-600 cursor-pointer ${location === loc ? "text-yellow-600" : ""}`}>{loc}</li>
+                                ))}
+                              </ul>
+                              <div className='flex text-sm flex-col gap-3 w-2/3 pt-3'>
+                                <button onClick={() => locationFilter(jobs)} className='blueCol px-1 py-1 text-xs'>Apply Location</button>
+                                <button onClick={() => removeLocationFilter()} className='blueCol px-1 py-1 text-xs'>Remove Location</button>
+                              </div>
+                            </div>
+
                             <div className='flex text-sm flex-col gap-4 w-2/3 pt-5'>
                               <button onClick={() => leftFilter(jobs)} className='blueCol px-1 py-1 text-xs'>Apply Filter</button>
                               <button onClick={() => removeLeftFilter()} className='blueCol px-1 py-1 text-xs'>Remove Filter</button>
@@ -374,7 +420,7 @@ export const Jobs = () => {
 
 
 
-            {!isMobile &&  <div className='filter2 flex flex-col ml-16'>
+                {!isMobile && <div className='filter2 flex flex-col ml-16'>
                   <div className='flex justify-end  flex-col filter  '>
                     <p className='text-xl underline underline-offset-4'>Companies</p>
 
