@@ -11,9 +11,25 @@ import  Card  from "../components/Card"; // New Card component
 import Accordion from "../components/Accordion";// New Accordion component
 
 export const Contact = () => {
-  const [que1, setQue1] = useState(false);
-  const [que2, setQue2] = useState(false);
-  const [que3, setQue3] = useState(false);
+  const [openFaq, setOpenFaq] = useState(null);
+
+  const faqs = [
+    {
+      question: "How do I create an account on your job application platform?",
+      answer:
+        "To create an account, click on the 'Register' button located at the top right corner of the homepage. Fill in your personal information, including your name, email address, and a secure password. Once your account is created, you can start exploring jobs.",
+    },
+    {
+      question: "What should I include in my job application?",
+      answer:
+        "Crafting an effective job application is crucial to stand out to potential employers. Make sure to include a tailored resume that highlights your relevant experience and skills. Additionally, write a resume that showcases how your qualifications align with the job requirements.",
+    },
+    {
+      question: "How can I check the status of my job application?",
+      answer:
+        "After submitting your applications, you can log in to your account dashboard. Here, you'll find a section that lists your submitted applications along with their current statuses.The statuses may include accepted, rejected or pending.",
+    },
+  ];
 
   return (
     <>
@@ -74,18 +90,15 @@ export const Contact = () => {
               Frequently Asked Questions (FAQs):
             </p>
 
-            <Accordion
-              question="How do I create an account on your job application platform?"
-              answer="To create an account, click on the 'Register' button located at the top right corner of the homepage. Fill in your personal information, including your name, email address, and a secure password. Once your account is created, you can start exploring jobs."
-            />
-            <Accordion
-              question="What should I include in my job application?"
-              answer="Crafting an effective job application is crucial to stand out to potential employers. Make sure to include a tailored resume that highlights your relevant experience and skills. Additionally, write a resume that showcases how your qualifications align with the job requirements."
-            />
-            <Accordion
-              question="How can I check the status of my job application?"
-              answer="After submitting your applications, you can log in to your account dashboard. Here, you'll find a section that lists your submitted applications along with their current statuses.The statuses may include accepted, rejected or pending."
-            />
+            {faqs.map((faq, index) => (
+              <Accordion
+                key={index}
+                question={faq.question}
+                answer={faq.answer}
+                isOpen={openFaq === index}
+                onToggle={() => setOpenFaq(openFaq === index ? null : index)}
+              />
+            ))}
           </div>
         </div>
       </div>
